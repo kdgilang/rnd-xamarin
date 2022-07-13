@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Posaidon.Models.Print"
+             x:Class="Posaidon.MainPage">
+
+    <ContentPage.BindingContext>
+        <vm:PrintPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Image Source="relix.png"></Image>
+
+            <!--<Picker ItemsSource="{Binding Devices}"
+                    Title="Select Device"
+                    ItemDisplayBinding="{Binding .}"
+                    SelectedItem="{Binding SelectedDevice}"></Picker>-->
+
+            <Label Text="{Binding PrintText}" TextColor="Red"></Label>
+            <Button Text="Print" Command="{Binding PrintCommand}" />
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>
