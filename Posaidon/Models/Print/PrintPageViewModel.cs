@@ -5,17 +5,16 @@ using System.Windows.Input;
 using Posaidon.Services.BlueTooth;
 using Xamarin.Forms;
 using ESCPOS_NET.Templates;
-using Posaidon.Services.Graphql;
-using Posaidon.Usecases.Company;
 using System.ComponentModel;
 using System.Linq;
+using Posaidon.Usecases.Company.GetCompanyUseCase;
 
 namespace Posaidon.Models.Print
 {
     public class PrintPageViewModel : INotifyPropertyChanged
     {
         private readonly IBluetoothService _bluetoothService;
-        private readonly IGraphqlService _graphqlService;
+        private readonly IGetCompaniesUseCase _getCompanyUseCase;
         public event PropertyChangedEventHandler PropertyChanged;
 
         private IList<string> _devices;
@@ -69,9 +68,9 @@ namespace Posaidon.Models.Print
         {
             //await _bluetoothService.Print(SelectedDevice, Receipt.Template());
             PrintText = "Loading...";
-            var companyResponse = await _graphqlService.QueryAsync<CompaniesResponse>(@"query { companies { data { id attributes { name address email phone createdAt } } } }");
+            var companyResponse = await _getCompanyUseCase.GetCompaniesAsync();
 
-            PrintText = companyResponse?.Data?.Companies.Data.FirstOrDefault().Attributes.Email;
+            PrintText = companyResponse?.Companies.Data.FirstOrDefault().Attributes.Email;
 
         });
 
@@ -79,7 +78,7 @@ namespace Posaidon.Models.Print
         {
             //_bluetoothService = DependencyService.Get<IBluetoothService>();
 
-            _graphqlService = DependencyService.Get<IGraphqlService>();
+            _getCompanyUseCase = DependencyService.Get<IGetCompaniesUseCase>();
 
             //var list = _bluetoothService?.GetDevices();
             //Devices.Clear();

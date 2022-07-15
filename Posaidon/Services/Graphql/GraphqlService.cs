@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 using GraphQL;
 using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
@@ -20,14 +22,23 @@ namespace Posaidon.Services.Graphql
 
         public async Task<GraphQLResponse<T>> QueryAsync<T>(string query)
         {
-            var request = new GraphQLRequest
+            try
             {
-                Query = query
-            };
+                var request = new GraphQLRequest
+                {
+                    Query = query
+                };
 
-            var result = await client.SendQueryAsync<T>(request);
+                var result = await client.SendQueryAsync<T>(request);
 
-            return result;
+                return result;
+            }
+            catch (HttpRequestException e)
+            {
+                Console.WriteLine(e.Message);
+
+                return null;
+            }
         }
     }
 }

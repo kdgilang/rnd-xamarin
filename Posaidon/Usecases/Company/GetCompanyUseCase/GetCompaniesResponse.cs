@@ -6,7 +6,7 @@
 //
 //    var welcome = Welcome.FromJson(jsonString);
 
-namespace Posaidon.Usecases.Company
+namespace Posaidon.Usecases.Company.GetCompanyUseCase
 {
     using System;
     using System.Collections.Generic;
