@@ -36,6 +36,8 @@
     <None Remove="Usecases\Company\" />
     <None Remove="Microsoft.CSharp" />
     <None Remove="Usecases\Company\GetCompaniesUseCase\" />
+    <None Remove="Usecases\Auth\" />
+    <None Remove="Usecases\Auth\LoginUseCase\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -49,7 +51,9 @@
     <Folder Include="Configs\" />
     <Folder Include="Usecases\" />
     <Folder Include="Usecases\Company\" />
-    <Folder Include="Usecases\Company\GetCompaniesUseCase\" />
+    <Folder Include="Usecases\Company\GetCompanyUseCase\" />
+    <Folder Include="Usecases\Auth\" />
+    <Folder Include="Usecases\Auth\LoginUseCase\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />

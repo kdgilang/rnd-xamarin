@@ -21,7 +21,7 @@ namespace Posaidon.Usecases.Company.GetCompanyUseCase
         {
             try
             {
-                var companyResponse = await _graphqlService.QueryAsync<CompaniesResponse>
+                var res = await _graphqlService.QueryAsync<CompaniesResponse>
                 (
                     @"query {
                         companies {
@@ -39,7 +39,7 @@ namespace Posaidon.Usecases.Company.GetCompanyUseCase
                     }"
                 );
 
-                return companyResponse.Data;
+                return res.Data;
             }
             catch (Exception e)
             {
