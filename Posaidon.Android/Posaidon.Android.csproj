@@ -87,6 +87,11 @@
       <Generator></Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable\bg9.png">
+      <SubType></SubType>
+      <Generator></Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

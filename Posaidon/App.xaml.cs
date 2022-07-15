@@ -1,4 +1,5 @@
 ﻿using System;
+using Posaidon.Pages.Auth;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace Posaidon
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new AuthPage();
         }
 
         protected override void OnStart()

@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace Posaidon.Usecases.Auth.LoginUseCase
 {
-    public interface ILoginUsecase
+    public interface ILoginUseCase
     {
-        Task<LoginResponse> LoginAsync();
+        Task<LoginResponse> LoginAsync(string email, string password);
     }
 }

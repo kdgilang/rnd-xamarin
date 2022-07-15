@@ -7,7 +7,7 @@ using Posaidon.Usecases.Auth.LoginUseCase;
 [assembly: Xamarin.Forms.Dependency(typeof(LoginUseCase))]
 namespace Posaidon.Usecases.Auth.LoginUseCase
 {
-    public class LoginUseCase : ILoginUsecase
+    public class LoginUseCase : ILoginUseCase
     {
         private readonly IGraphqlService _graphqlService;
 
@@ -16,23 +16,12 @@ namespace Posaidon.Usecases.Auth.LoginUseCase
             _graphqlService = DependencyService.Get<IGraphqlService>();
         }
 
-        public async Task<LoginResponse> LoginAsync()
+        public async Task<LoginResponse> LoginAsync(string email, string password)
         {
             try
             {
-                var res = await _graphqlService.QueryAsync<LoginResponse>
-                 (
-                     @"
-                    mutation {
-                        login(input: { identifier: roby@gmail.com, password: Roby123 }) {
-                            jwt
-                            user {
-                                id
-                                username
-                            }
-                        }
-                    }"
-                 );
+                string query = @"mutation { login(input: { identifier: " + email + ", password: " + password + " }) { jwt user { id username } } }";
+                var res = await _graphqlService.QueryAsync<LoginResponse>(query);
 
                 return res.Data;
             }
