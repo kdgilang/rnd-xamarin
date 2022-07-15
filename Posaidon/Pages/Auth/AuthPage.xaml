@@ -56,11 +56,15 @@
                         <Entry
                             Placeholder="Email"
                             Margin="0, 20 , 0, 20" 
-                            Text="{Binding Email}"/>
+                            Text="{Binding Email}"
+                            TextColor="#fff"
+                            PlaceholderColor="#ccc" />
                         <Entry
                             Placeholder="Password"
                             Text="{Binding Password}"
-                            IsPassword="true" />
+                            IsPassword="true"
+                            TextColor="#fff"
+                            PlaceholderColor="#ccc" />
                     </StackLayout>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                         <Button

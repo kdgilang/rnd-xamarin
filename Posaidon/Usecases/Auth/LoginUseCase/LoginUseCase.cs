@@ -20,8 +20,23 @@ namespace Posaidon.Usecases.Auth.LoginUseCase
         {
             try
             {
-                string query = @"mutation { login(input: { identifier: " + email + ", password: " + password + " }) { jwt user { id username } } }";
-                var res = await _graphqlService.QueryAsync<LoginResponse>(query);
+                string query = @"
+                mutation Login($email: String, $password: String) {
+                    login(input: { identifier: $email, password: $password }) {
+                        jwt
+                        user {
+                            id
+                            username
+                        }
+                    }
+                }";
+
+                var res = await _graphqlService.QueryAsync<LoginResponse>
+                    (
+                        query,
+                        "Login",
+                        new { email = email, password = password }
+                    );
 
                 return res.Data;
             }

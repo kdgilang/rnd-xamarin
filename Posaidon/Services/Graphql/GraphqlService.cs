@@ -20,13 +20,15 @@ namespace Posaidon.Services.Graphql
             client.HttpClient.DefaultRequestHeaders.Add("Accept", "application/json");
         }
 
-        public async Task<GraphQLResponse<T>> QueryAsync<T>(string query)
+        public async Task<GraphQLResponse<T>> QueryAsync<T>(string query, string operationName, object variables)
         {
             try
             {
                 var request = new GraphQLRequest
                 {
-                    Query = query
+                    Query = query,
+                    OperationName = operationName,
+                    Variables = variables
                 };
 
                 var result = await client.SendQueryAsync<T>(request);
