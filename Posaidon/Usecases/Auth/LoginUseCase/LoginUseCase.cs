@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 using Posaidon.Services.Graphql;
 using Posaidon.Usecases.Auth.LoginUseCase;
+using Xamarin.Essentials;
 
 [assembly: Xamarin.Forms.Dependency(typeof(LoginUseCase))]
 namespace Posaidon.Usecases.Auth.LoginUseCase
@@ -21,7 +22,7 @@ namespace Posaidon.Usecases.Auth.LoginUseCase
             try
             {
                 string query = @"
-                mutation Login($email: String, $password: String) {
+                mutation Login($email: String!, $password: String!) {
                     login(input: { identifier: $email, password: $password }) {
                         jwt
                         user {
@@ -38,13 +39,23 @@ namespace Posaidon.Usecases.Auth.LoginUseCase
                         new { email = email, password = password }
                     );
 
-                return res.Data;
+                var user = res.Data;
+
+                if (user?.Login?.User?.Id > 0)
+                {
+                    await SecureStorage.SetAsync("userID", user.Login.User.Id.ToString());
+                    await SecureStorage.SetAsync("userToken", user.Login.Jwt);
+
+                    return user;
+                }
+
+                throw new InvalidOperationException(res.Errors[0].Message);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
 
-                return null;
+                throw e;
             }
         }
     }

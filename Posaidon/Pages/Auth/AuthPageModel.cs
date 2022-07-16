@@ -44,16 +44,39 @@ namespace Posaidon.Pages.Auth
             }
         }
 
+        private bool _isError;
+        public bool IsError
+        {
+            get
+            {
+                return _isError;
+            }
+            set
+            {
+                _isError = value;
+                OnPropertyChanged("IsError");
+            }
+        }
+
+        public bool IsAuthenticated = false;
+
         public ICommand LoginCommandAsync => new Command(async () =>
         {
             //await _bluetoothService.Print(SelectedDevice, Receipt.Template());
+            IsAuthenticated = false;
             try
             {
                 var loginRes = await _loginUseCase.LoginAsync(Email, Password);
+
+                if (loginRes != null)
+                {
+                    IsAuthenticated = true;
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                await Application.Current.MainPage
+                    .DisplayAlert("Login failed", $"{e.Message}, \nplease try again later.", "Ok");
             }
         });
 
