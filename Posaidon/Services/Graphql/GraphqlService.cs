@@ -39,7 +39,7 @@ namespace Posaidon.Services.Graphql
             {
                 Console.WriteLine(e.Message);
 
-                return null;
+                throw e;
             }
         }
     }
