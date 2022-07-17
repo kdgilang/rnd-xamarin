@@ -11,7 +11,7 @@ namespace Posaidon
         {
             InitializeComponent();
 
-            MainPage = new AuthPage();
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()

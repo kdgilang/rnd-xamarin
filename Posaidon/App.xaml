@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Posaidon.App">
     <Application.Resources>
+        <Color x:Key="colorPrimary">#0d1d35</Color>
+        <Color x:Key="colorSecondary">#0b8a99</Color>
 
     </Application.Resources>
 </Application>

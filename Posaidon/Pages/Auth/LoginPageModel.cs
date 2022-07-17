@@ -6,12 +6,12 @@ using Posaidon.Usecases.Auth.LoginUseCase;
 
 namespace Posaidon.Pages.Auth
 {
-    public class AuthPageModel : INotifyPropertyChanged
+    public class LoginPageModel : INotifyPropertyChanged
     {
         private readonly ILoginUseCase _loginUseCase;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public AuthPageModel()
+        public LoginPageModel()
         {
             _loginUseCase = DependencyService.Get<ILoginUseCase>();
         }
@@ -58,20 +58,27 @@ namespace Posaidon.Pages.Auth
             }
         }
 
-        public bool IsAuthenticated = false;
+        private bool _isAuthtenticated;
+        public bool IsAuthtenticated
+        {
+            get
+            {
+                return _isAuthtenticated;
+            }
+            set
+            {
+                _isAuthtenticated = value;
+                OnPropertyChanged("IsAuthtenticated");
+            }
+        }
 
         public ICommand LoginCommandAsync => new Command(async () =>
         {
             //await _bluetoothService.Print(SelectedDevice, Receipt.Template());
-            IsAuthenticated = false;
             try
             {
-                var loginRes = await _loginUseCase.LoginAsync(Email, Password);
-
-                if (loginRes != null)
-                {
-                    IsAuthenticated = true;
-                }
+                await _loginUseCase.LoginAsync(Email, Password);
+                IsAuthtenticated = true;
             }
             catch (Exception e)
             {

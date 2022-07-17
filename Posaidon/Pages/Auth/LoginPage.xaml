@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Posaidon.Pages.Auth.LoginPage"
+    BackgroundColor="{StaticResource colorPrimary}"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <FlexLayout Direction="Column"
+                AlignItems="Center"
+                JustifyContent="Center"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Padding="20">
+
+                <Image
+                    x:Name="Logo"
+                    Source="relix.png"
+                    WidthRequest="80"
+                    HeightRequest="80"
+                    BackgroundColor="#FC5A5A"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand" />
+
+                <StackLayout
+                
+                    Margin="10,30,10,30"
+                    Spacing="20"
+                    VerticalOptions="EndAndExpand">
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="10"
+                        HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                            <Entry
+                                Placeholder="Email"
+                                Margin="0, 20 , 0, 20" 
+                                Text="{Binding Email}"
+                                TextColor="#fff"
+                                PlaceholderColor="#ccc" />
+                            <Entry
+                                Placeholder="Password"
+                                Text="{Binding Password}"
+                                IsPassword="true"
+                                TextColor="#fff"
+                                PlaceholderColor="#ccc" />
+                        </StackLayout>
+                        <StackLayout
+                            Orientation="Horizontal"
+                            HorizontalOptions="FillAndExpand"
+                            Margin="0, 20">
+                            <Button
+                                x:Name="LoginButton"
+                                Opacity="1"
+                                HeightRequest="60"
+                                BackgroundColor="{StaticResource colorSecondary}"
+                                CornerRadius="5"
+                                Text="Login"
+                                FontAttributes="Bold"
+                                Command="{Binding LoginCommandAsync}"
+                                TextColor="White"
+                                HorizontalOptions="FillAndExpand" />
+                        </StackLayout>
+                    </StackLayout>
+                    <Label
+                        FontSize="10"
+                        TextColor="White"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="EndAndExpand">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="By signing up, you agree with our " />
+                                <Span
+                                    Text="Terms and Conditions"
+                                    TextColor="{StaticResource colorSecondary}"
+                                    TextDecorations="Underline" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+            </FlexLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
