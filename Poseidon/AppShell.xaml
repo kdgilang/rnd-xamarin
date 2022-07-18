@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:sys="clr-namespace:System;assembly=netstandard"
+       xmlns:views="clr-namespace:Poseidon"
+       x:Class="Poseidon.AppShell"
+       FlyoutBackgroundColor="{StaticResource colorPrimary}"
+       FlyoutBackgroundImageAspect="AspectFill"
+       FlyoutHeaderBehavior="CollapseOnScroll">
+
+    <Shell.FlyoutHeader>
+        <Label Text="Header" />
+    </Shell.FlyoutHeader>
+
+    <Shell.Resources>
+        <Style x:Key="BaseStyle"
+               TargetType="Element">
+            <Setter Property="Shell.BackgroundColor"
+                    Value="#455A64" />
+            <Setter Property="Shell.ForegroundColor"
+                    Value="White" />
+            <Setter Property="Shell.TitleColor"
+                    Value="{StaticResource colorPrimary}" />
+            <Setter Property="Shell.DisabledColor"
+                    Value="#B4FFFFFF" />
+            <Setter Property="Shell.UnselectedColor"
+                    Value="#95FFFFFF" />
+        </Style>
+        <Style x:Key="MenuItemShell"
+               TargetType="Element"
+               BasedOn="{StaticResource BaseStyle}">
+            <Setter Property="Shell.BackgroundColor"
+                    Value="{StaticResource colorSecondary}" />
+        </Style>
+    </Shell.Resources>
+
+    <FlyoutItem>
+        <ShellContent
+            Route="MainPage"
+            Style="{StaticResource MenuItemShell}"
+            Title="Pos"
+            Icon="home.png"
+            ContentTemplate="{DataTemplate views:MainPage}"
+        />
+    </FlyoutItem>
+
+
+
+    <Tab Title="One"
+        Route="One"
+        Icon="home.png">
+
+        <!--<ShellContent
+            Route="LoginPage"
+            Style="{StaticResource MenuItemShell}"
+            Title="Login"
+            Icon="home.png"
+            ContentTemplate="{DataTemplate views:Pages.Auth.LoginPage}"
+        />-->
+
+        <!--<ShellContent
+            Route="MainPage"
+            Style="{StaticResource MenuItemShell}"
+            Title="Pos"
+            Icon="home.png"
+            ContentTemplate="{DataTemplate views:MainPage}"
+        />-->
+
+        <ShellContent
+            Route="MainPage"
+            Style="{StaticResource MenuItemShell}"
+            Title="Pos"
+            Icon="home.png"
+            ContentTemplate="{DataTemplate views:MainPage}"
+        />
+    </Tab>
+
+
+    <!--<MenuItem
+        Text="Logout"
+        IconImageSource="help.png"
+        Command="{Binding LogoutCommandAsync}"
+        />-->
+
+    <Shell.FlyoutFooter>
+        <Button Text="Logout" Command="{Binding LogoutCommandAsync}" />
+    </Shell.FlyoutFooter>
+
+</Shell>

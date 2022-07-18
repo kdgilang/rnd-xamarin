@@ -7,22 +7,27 @@
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Content>
-        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <StackLayout
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Padding="20">
+            <ActivityIndicator
+                IsRunning="{Binding IsSubmitted}"
+                Color="{StaticResource colorSecondary}"/>
             <FlexLayout Direction="Column"
                 AlignItems="Center"
                 JustifyContent="Center"
                 HorizontalOptions="CenterAndExpand"
-                VerticalOptions="CenterAndExpand"
-                Padding="20">
+                VerticalOptions="CenterAndExpand">
 
-                <Image
+                <!--<Image
                     x:Name="Logo"
                     Source="relix.png"
                     WidthRequest="80"
                     HeightRequest="80"
                     BackgroundColor="#FC5A5A"
                     HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand" />
+                    VerticalOptions="CenterAndExpand" />-->
 
                 <StackLayout
                 
@@ -34,18 +39,32 @@
                         Spacing="10"
                         HorizontalOptions="FillAndExpand">
                         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                            <Entry
-                                Placeholder="Email"
-                                Margin="0, 20 , 0, 20" 
-                                Text="{Binding Email}"
-                                TextColor="#fff"
-                                PlaceholderColor="#ccc" />
-                            <Entry
-                                Placeholder="Password"
-                                Text="{Binding Password}"
-                                IsPassword="true"
-                                TextColor="#fff"
-                                PlaceholderColor="#ccc" />
+                            <StackLayout
+                                Margin="0, 20 , 0, 20">
+                                <Entry
+                                    Placeholder="Email" 
+                                    Text="{Binding Email}"
+                                    TextColor="#fff"
+                                    PlaceholderColor="#ccc"
+                                    Keyboard="Email" />
+                                <Label
+                                    x:Name="ErrorEmailLabel"
+                                    IsVisible="{Binding IsEmailError}"
+                                    Text="Email is required."
+                                    TextColor="Red" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Entry
+                                    Placeholder="Password"
+                                    Text="{Binding Password}"
+                                    IsPassword="true"
+                                    TextColor="#fff"
+                                    PlaceholderColor="#ccc" />
+                                <Label
+                                    IsVisible="{Binding IsPasswordError}"
+                                    Text="Password is required."
+                                    TextColor="Red" />
+                            </StackLayout>
                         </StackLayout>
                         <StackLayout
                             Orientation="Horizontal"
@@ -61,7 +80,8 @@
                                 FontAttributes="Bold"
                                 Command="{Binding LoginCommandAsync}"
                                 TextColor="White"
-                                HorizontalOptions="FillAndExpand" />
+                                HorizontalOptions="FillAndExpand"
+                                IsEnabled="{Binding !IsSubmitted}"/>
                         </StackLayout>
                     </StackLayout>
                     <Label

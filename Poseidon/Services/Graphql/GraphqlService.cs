@@ -6,6 +6,7 @@ using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
 using Poseidon.Configs;
 using Poseidon.Services.Graphql;
+using Xamarin.Essentials;
 
 [assembly: Xamarin.Forms.Dependency(typeof(GraphqlService))]
 namespace Poseidon.Services.Graphql
@@ -22,6 +23,11 @@ namespace Poseidon.Services.Graphql
 
         public async Task<GraphQLResponse<T>> QueryAsync<T>(string query, string operationName, object variables)
         {
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                throw new InvalidOperationException("No Internet");
+            }
+
             try
             {
                 var request = new GraphQLRequest

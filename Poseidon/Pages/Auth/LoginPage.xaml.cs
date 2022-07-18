@@ -1,7 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Collections.Generic;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace Poseidon.Pages.Auth
 {
@@ -11,11 +8,6 @@ namespace Poseidon.Pages.Auth
         {
             InitializeComponent();
             BindingContext = new LoginPageModel();
-        }
-
-        protected override void OnPropertyChanged(string propertyName)
-        {
-           
         }
     }
 }
