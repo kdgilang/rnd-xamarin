@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Poseidon.Pages.Auth.LoginPage"
+    BackgroundColor="{StaticResource colorPrimary}"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Content>
+        <StackLayout
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Padding="20">
+            <ActivityIndicator
+                IsRunning="{Binding IsSubmitted}"
+                Color="{StaticResource colorSecondary}"/>
+            <FlexLayout Direction="Column"
+                AlignItems="Center"
+                JustifyContent="Center"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand">
+
+                <!--<Image
+                    x:Name="Logo"
+                    Source="relix.png"
+                    WidthRequest="80"
+                    HeightRequest="80"
+                    BackgroundColor="#FC5A5A"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand" />-->
+
+                <StackLayout
+                
+                    Margin="10,30,10,30"
+                    Spacing="20"
+                    VerticalOptions="EndAndExpand">
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="10"
+                        HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                            <StackLayout
+                                Margin="0, 20 , 0, 20">
+                                <Entry
+                                    Placeholder="Email" 
+                                    Text="{Binding Email}"
+                                    TextColor="#fff"
+                                    PlaceholderColor="#ccc"
+                                    Keyboard="Email" />
+                                <Label
+                                    x:Name="ErrorEmailLabel"
+                                    IsVisible="{Binding IsEmailError}"
+                                    Text="Email is required."
+                                    TextColor="Red" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Entry
+                                    Placeholder="Password"
+                                    Text="{Binding Password}"
+                                    IsPassword="true"
+                                    TextColor="#fff"
+                                    PlaceholderColor="#ccc" />
+                                <Label
+                                    IsVisible="{Binding IsPasswordError}"
+                                    Text="Password is required."
+                                    TextColor="Red" />
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout
+                            Orientation="Horizontal"
+                            HorizontalOptions="FillAndExpand"
+                            Margin="0, 20">
+                            <Button
+                                x:Name="LoginButton"
+                                Opacity="1"
+                                HeightRequest="60"
+                                BackgroundColor="{StaticResource colorSecondary}"
+                                CornerRadius="5"
+                                Text="Login"
+                                FontAttributes="Bold"
+                                Command="{Binding LoginCommandAsync}"
+                                TextColor="White"
+                                HorizontalOptions="FillAndExpand"
+                                IsEnabled="{Binding !IsSubmitted}"/>
+                        </StackLayout>
+                    </StackLayout>
+                    <Label
+                        FontSize="10"
+                        TextColor="White"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="EndAndExpand">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="By signing up, you agree with our " />
+                                <Span
+                                    Text="Terms and Conditions"
+                                    TextColor="{StaticResource colorSecondary}"
+                                    TextDecorations="Underline" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+            </FlexLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
