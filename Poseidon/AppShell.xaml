@@ -4,12 +4,33 @@
        xmlns:sys="clr-namespace:System;assembly=netstandard"
        xmlns:views="clr-namespace:Poseidon"
        x:Class="Poseidon.AppShell"
-       FlyoutBackgroundColor="{StaticResource colorPrimary}"
+       FlyoutBackgroundColor="{StaticResource colorSecondary}"
        FlyoutBackgroundImageAspect="AspectFill"
        FlyoutHeaderBehavior="CollapseOnScroll">
 
     <Shell.FlyoutHeader>
-        <Label Text="Header" />
+        <StackLayout
+            Padding="40"
+            BackgroundColor="{StaticResource colorTertiary}"
+            >
+            <Frame
+                HeightRequest="100"
+                CornerRadius="150"
+                IsClippedToBounds="True"
+                Margin="0"
+                Padding="0">
+                <Image
+                    Aspect="AspectFill"
+                    Source="{Binding ImageUrl}" />
+            </Frame>
+            <Label
+                HorizontalTextAlignment="Center"
+                Text="{Binding Name}"
+                TextColor="White"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                Margin="0, 15, 0, 0"/>
+        </StackLayout>
     </Shell.FlyoutHeader>
 
     <Shell.Resources>
@@ -34,11 +55,27 @@
         </Style>
     </Shell.Resources>
 
-    <FlyoutItem>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent
-            Route="MainPage"
+            Route="pos"
             Style="{StaticResource MenuItemShell}"
             Title="Pos"
+            Icon="home.png"
+            ContentTemplate="{DataTemplate views:MainPage}"
+        />
+
+        <ShellContent
+            Route="profile"
+            Style="{StaticResource MenuItemShell}"
+            Title="Profile"
+            Icon="home.png"
+            ContentTemplate="{DataTemplate views:MainPage}"
+        />
+
+        <ShellContent
+            Route="product"
+            Style="{StaticResource MenuItemShell}"
+            Title="Product"
             Icon="home.png"
             ContentTemplate="{DataTemplate views:MainPage}"
         />
@@ -46,25 +83,17 @@
 
 
 
-    <Tab Title="One"
+    <!--<Tab Title="One"
         Route="One"
         Icon="home.png">
 
-        <!--<ShellContent
+        <ShellContent
             Route="LoginPage"
             Style="{StaticResource MenuItemShell}"
             Title="Login"
             Icon="home.png"
             ContentTemplate="{DataTemplate views:Pages.Auth.LoginPage}"
-        />-->
-
-        <!--<ShellContent
-            Route="MainPage"
-            Style="{StaticResource MenuItemShell}"
-            Title="Pos"
-            Icon="home.png"
-            ContentTemplate="{DataTemplate views:MainPage}"
-        />-->
+        />
 
         <ShellContent
             Route="MainPage"
@@ -73,7 +102,15 @@
             Icon="home.png"
             ContentTemplate="{DataTemplate views:MainPage}"
         />
-    </Tab>
+
+        <ShellContent
+            Route="MainPage"
+            Style="{StaticResource MenuItemShell}"
+            Title="Pos"
+            Icon="home.png"
+            ContentTemplate="{DataTemplate views:MainPage}"
+        />
+    </Tab>-->
 
 
     <!--<MenuItem

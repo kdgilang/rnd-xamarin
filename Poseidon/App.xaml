@@ -5,6 +5,6 @@
     <Application.Resources>
         <Color x:Key="colorPrimary">#0d1d35</Color>
         <Color x:Key="colorSecondary">#0b8a99</Color>
-
+        <Color x:Key="colorTertiary">#de5122</Color>
     </Application.Resources>
 </Application>
