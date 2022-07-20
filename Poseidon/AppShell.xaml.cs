@@ -13,6 +13,8 @@ namespace Poseidon
     {
         public Dictionary<string, Type> Routes { get; private set; } = new Dictionary<string, Type>();
 
+        private readonly GetUserByIdResponse _user;
+
         public ICommand HelpCommand => new Command<string>(async (url) =>
             await Browser.OpenAsync(url, new BrowserLaunchOptions
             {
@@ -27,30 +29,17 @@ namespace Poseidon
         {
             InitializeComponent();
             RegisterRoutes();
-            User = AuthenticatedUser.getAuthenticatedUser();
+
+            _user = AuthenticatedUser.getAuthenticatedUser();
+
             BindingContext = this;
-        }
-
-        private GetUserByIdResponse _user;
-        public GetUserByIdResponse User
-        {
-            get
-            {
-                return _user;
-            }
-
-            set
-            {
-                _user = value;
-                OnPropertyChanged("IsSubmitted");
-            }
         }
 
         public string Name
         {
             get
             {
-                return User?.UsersPermissionsUser?.Data?.Attributes?.Name;
+                return _user?.UsersPermissionsUser?.Data?.Attributes?.Name;
             }
         }
 
@@ -58,8 +47,7 @@ namespace Poseidon
         {
             get
             {
-                Console.WriteLine($"{AppSettings.BASE_URL}{User?.UsersPermissionsUser?.Data?.Attributes?.Image.Data.Attributes.Url}");
-                return $"{AppSettings.BASE_URL}{User?.UsersPermissionsUser?.Data?.Attributes?.Image.Data.Attributes.Url}";
+                return $"{AppSettings.BASE_URL}{_user?.UsersPermissionsUser?.Data?.Attributes?.Image.Data.Attributes.Url}";
             }
         }
 

@@ -4,7 +4,7 @@
        xmlns:sys="clr-namespace:System;assembly=netstandard"
        xmlns:views="clr-namespace:Poseidon"
        x:Class="Poseidon.AppShell"
-       FlyoutBackgroundColor="{StaticResource colorSecondary}"
+       FlyoutBackgroundColor="{StaticResource colorPrimary}"
        FlyoutBackgroundImageAspect="AspectFill"
        FlyoutHeaderBehavior="CollapseOnScroll">
 
@@ -15,10 +15,12 @@
             >
             <Frame
                 HeightRequest="100"
+                WidthRequest="100"
                 CornerRadius="150"
                 IsClippedToBounds="True"
                 Margin="0"
-                Padding="0">
+                BackgroundColor="{StaticResource colorPrimary}"
+                Padding="10">
                 <Image
                     Aspect="AspectFill"
                     Source="{Binding ImageUrl}" />
@@ -41,19 +43,37 @@
             <Setter Property="Shell.ForegroundColor"
                     Value="White" />
             <Setter Property="Shell.TitleColor"
-                    Value="{StaticResource colorPrimary}" />
+                    Value="{StaticResource colorTertiary}" />
             <Setter Property="Shell.DisabledColor"
                     Value="#B4FFFFFF" />
             <Setter Property="Shell.UnselectedColor"
-                    Value="#95FFFFFF" />
+                    Value="White" />
         </Style>
         <Style x:Key="MenuItemShell"
                TargetType="Element"
                BasedOn="{StaticResource BaseStyle}">
             <Setter Property="Shell.BackgroundColor"
-                    Value="{StaticResource colorSecondary}" />
+                    Value="{StaticResource colorPrimary}" />
+        </Style>
+        <Style Class="FlyoutItemLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource colorTertiary}" />
         </Style>
     </Shell.Resources>
+
+    <FlyoutItem
+        Title="Home"
+        Icon="home.png"
+        Route="Home">
+        <Tab>
+            <ShellContent
+                Route="pos"
+                Style="{StaticResource MenuItemShell}"
+                Title="Pos"
+                Icon="home.png"
+                ContentTemplate="{DataTemplate views:MainPage}"
+            />
+        </Tab>
+    </FlyoutItem>
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent
