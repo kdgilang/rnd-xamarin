@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:sys="clr-namespace:System;assembly=netstandard"
        xmlns:views="clr-namespace:Poseidon"
+       xmlns:components="clr-namespace:Poseidon.Components"
        x:Class="Poseidon.AppShell"
        FlyoutBackgroundColor="{StaticResource colorPrimary}"
        FlyoutBackgroundImageAspect="AspectFill"
@@ -50,8 +50,7 @@
                     Value="White" />
         </Style>
         <Style x:Key="MenuItemShell"
-               TargetType="Element"
-               BasedOn="{StaticResource BaseStyle}">
+               TargetType="Element">
             <Setter Property="Shell.BackgroundColor"
                     Value="{StaticResource colorPrimary}" />
         </Style>
@@ -62,38 +61,35 @@
 
     <FlyoutItem
         Title="Home"
-        Icon="home.png"
-        Route="Home">
+        Icon="icon_house">
         <Tab>
             <ShellContent
-                Route="pos"
                 Style="{StaticResource MenuItemShell}"
                 Title="Pos"
+                Icon="icon_cashier"
+                ContentTemplate="{DataTemplate views:MainPage}"
+            />
+
+            <ShellContent
+                Style="{StaticResource MenuItemShell}"
+                Title="History"
+                Icon="home.png"
+                ContentTemplate="{DataTemplate views:MainPage}"
+            />
+
+            <ShellContent
+                Style="{StaticResource MenuItemShell}"
+                Title="Profile"
                 Icon="home.png"
                 ContentTemplate="{DataTemplate views:MainPage}"
             />
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+    <FlyoutItem
+        Title="Product"
+        Icon="icon_house">
         <ShellContent
-            Route="pos"
-            Style="{StaticResource MenuItemShell}"
-            Title="Pos"
-            Icon="home.png"
-            ContentTemplate="{DataTemplate views:MainPage}"
-        />
-
-        <ShellContent
-            Route="profile"
-            Style="{StaticResource MenuItemShell}"
-            Title="Profile"
-            Icon="home.png"
-            ContentTemplate="{DataTemplate views:MainPage}"
-        />
-
-        <ShellContent
-            Route="product"
             Style="{StaticResource MenuItemShell}"
             Title="Product"
             Icon="home.png"
@@ -101,6 +97,36 @@
         />
     </FlyoutItem>
 
+    <!--<FlyoutItem
+        Title="Profile"
+        Route="profile"
+        FlyoutIcon="icon_house">
+        <Tab>
+            <ShellContent
+                Route="pos"
+                Style="{StaticResource MenuItemShell}"
+                Title="Pos"
+                Icon="icon_cashier"
+                ContentTemplate="{DataTemplate views:MainPage}"
+            />
+
+            <ShellContent
+                Route="profile"
+                Style="{StaticResource MenuItemShell}"
+                Title="Profile"
+                Icon="home.png"
+                ContentTemplate="{DataTemplate views:MainPage}"
+            />
+
+            <ShellContent
+                Route="product"
+                Style="{StaticResource MenuItemShell}"
+                Title="Product"
+                Icon="home.png"
+                ContentTemplate="{DataTemplate views:MainPage}"
+            />
+        </Tab>
+    </FlyoutItem>-->
 
 
     <!--<Tab Title="One"
@@ -140,7 +166,17 @@
         />-->
 
     <Shell.FlyoutFooter>
-        <Button Text="Logout" Command="{Binding LogoutCommandAsync}" />
+        <StackLayout>
+            <Button
+                Text="Logout"
+                Command="{Binding LogoutCommandAsync}"
+                BackgroundColor="Transparent"
+                ImageSource="icon_circle_left"
+                
+                HorizontalOptions="EndAndExpand"
+                TextColor="{StaticResource colorTertiary}"/>
+            <components:ButtonIcon Label="Test label"/>
+        </StackLayout>
     </Shell.FlyoutFooter>
 
 </Shell>

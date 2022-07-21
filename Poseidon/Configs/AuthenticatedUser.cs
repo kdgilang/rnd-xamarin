@@ -19,7 +19,7 @@ namespace Poseidon.Configs
                 return null;
             }
 
-            App.Current.Properties["user"] = userJson;
+            Preferences.Set("user", userJson);
 
             return JsonConvert.DeserializeObject<GetUserByIdResponse>(userJson);
         }
@@ -29,7 +29,7 @@ namespace Poseidon.Configs
 
             if (App.Current.Properties.ContainsKey("user"))
             {
-                var userJson = App.Current.Properties["user"].ToString();
+                var userJson = Preferences.Get("user", null);
 
                 return JsonConvert.DeserializeObject<GetUserByIdResponse>(userJson);
             }
@@ -45,7 +45,7 @@ namespace Poseidon.Configs
 
         public static async void Save(string userToken, object user)
         {
-            App.Current.Properties["user"] = user;
+            Preferences.Set("user", user.ToString());
             await SecureStorage.SetAsync("user", JsonConvert.SerializeObject(user));
             await SecureStorage.SetAsync("userToken", userToken);
         }

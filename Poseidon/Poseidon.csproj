@@ -42,6 +42,8 @@
     <None Remove="Pages\Auth\" />
     <None Remove="Usecases\Users\" />
     <None Remove="Usecases\User\GetUsersUseCase\" />
+    <None Remove="Pages\History\" />
+    <None Remove="Components\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -62,6 +64,8 @@
     <Folder Include="Pages\Auth\" />
     <Folder Include="Usecases\User\" />
     <Folder Include="Usecases\User\GetUserByIdUseCase\" />
+    <Folder Include="Pages\History\" />
+    <Folder Include="Components\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
