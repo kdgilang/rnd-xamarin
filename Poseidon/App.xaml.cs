@@ -1,8 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Poseidon.Pages.Auth;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using Xamarin.Essentials;
+using Poseidon.Configs;
 
 namespace Poseidon
 {
@@ -18,7 +17,9 @@ namespace Poseidon
 
         protected override async void OnStart()
         {
-            string userId = await SecureStorage.GetAsync("userID");
+            var user = await AuthenticatedUser.getAuthenticatedUserAsync();
+            var userId = user?.UsersPermissionsUser?.Data?.Id.ToString();
+
             if (!string.IsNullOrEmpty(userId))
             {
                 MainPage = new AppShell();

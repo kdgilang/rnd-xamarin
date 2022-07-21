@@ -4,17 +4,22 @@ using System.Threading.Tasks;
 using Poseidon.Services.Graphql;
 using Poseidon.Usecases.Auth.LoginUseCase;
 using Xamarin.Essentials;
+using Poseidon.Usecases.User.GetUserByIdUseCase;
+using Newtonsoft.Json;
+using Poseidon.Configs;
 
-[assembly: Xamarin.Forms.Dependency(typeof(LoginUseCase))]
+[assembly: Dependency(typeof(LoginUseCase))]
 namespace Poseidon.Usecases.Auth.LoginUseCase
 {
     public class LoginUseCase : ILoginUseCase
     {
         private readonly IGraphqlService _graphqlService;
+        private readonly IGetUserByIdUseCase _getUserByIdUseCase;
 
         public LoginUseCase()
         {
             _graphqlService = DependencyService.Get<IGraphqlService>();
+            _getUserByIdUseCase = DependencyService.Get<IGetUserByIdUseCase>();
         }
 
         public async Task<LoginResponse> LoginAsync(string email, string password)
@@ -43,10 +48,16 @@ namespace Poseidon.Usecases.Auth.LoginUseCase
 
                 if (user?.Login?.User?.Id > 0)
                 {
-                    await SecureStorage.SetAsync("userID", user.Login.User.Id.ToString());
-                    await SecureStorage.SetAsync("userToken", user.Login.Jwt);
+                    var userByID = await _getUserByIdUseCase.GetUserByIdAsycn(user.Login.User.Id);
 
-                    return user;
+                    if (userByID.UsersPermissionsUser.Data.Attributes.Confirmed)
+                    {
+                        AuthenticatedUser.Save(user.Login.Jwt, userByID);
+
+                        return user;
+                    }
+
+                    throw new InvalidOperationException("user not confirmed");
                 }
 
                 throw new InvalidOperationException(res.Errors[0].Message);

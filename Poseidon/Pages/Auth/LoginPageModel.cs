@@ -99,7 +99,7 @@ namespace Poseidon.Pages.Auth
             }
 
             IsSubmitted = true;
-            //await _bluetoothService.Print(SelectedDevice, Receipt.Template());
+
             try
             {
                 await _loginUseCase.LoginAsync(Email, Password);
