@@ -2,6 +2,8 @@
 using Xamarin.Essentials;
 using Poseidon.Usecases.User.GetUserByIdUseCase;
 using Newtonsoft.Json;
+using System;
+using System.Text.RegularExpressions;
 
 namespace Poseidon.Configs
 {
@@ -10,9 +12,7 @@ namespace Poseidon.Configs
 
         public static async Task<GetUserByIdResponse> getAuthenticatedUserAsync()
         {
-
             var userJson = await SecureStorage.GetAsync("user");
-
 
             if (userJson == null)
             {
@@ -26,11 +26,10 @@ namespace Poseidon.Configs
 
         public static GetUserByIdResponse getAuthenticatedUser()
         {
+            string userJson = Regex.Unescape(Preferences.Get("user", null));
 
-            if (App.Current.Properties.ContainsKey("user"))
+            if (!string.IsNullOrEmpty(userJson))
             {
-                var userJson = Preferences.Get("user", null);
-
                 return JsonConvert.DeserializeObject<GetUserByIdResponse>(userJson);
             }
 
@@ -45,9 +44,17 @@ namespace Poseidon.Configs
 
         public static async void Save(string userToken, object user)
         {
-            Preferences.Set("user", user.ToString());
-            await SecureStorage.SetAsync("user", JsonConvert.SerializeObject(user));
-            await SecureStorage.SetAsync("userToken", userToken);
+            try
+            {
+                Preferences.Set("user", user.ToString());
+                await SecureStorage.SetAsync("user", JsonConvert.SerializeObject(user));
+                await SecureStorage.SetAsync("userToken", userToken);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }

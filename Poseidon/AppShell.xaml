@@ -167,15 +167,10 @@
 
     <Shell.FlyoutFooter>
         <StackLayout>
-            <Button
-                Text="Logout"
-                Command="{Binding LogoutCommandAsync}"
-                BackgroundColor="Transparent"
-                ImageSource="icon_circle_left"
-                
-                HorizontalOptions="EndAndExpand"
+            <components:ButtonIcon
+                Label="Logout"
+                TapCommand="{Binding LogoutCommandAsync}"
                 TextColor="{StaticResource colorTertiary}"/>
-            <components:ButtonIcon Label="Test label"/>
         </StackLayout>
     </Shell.FlyoutFooter>
 

@@ -2,12 +2,23 @@
 <ContentView
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="Poseidon.Components.ButtonIcon">
+    x:Class="Poseidon.Components.ButtonIcon"
+    x:Name="buttonIcon">
     <ContentView.Content>
         <StackLayout
-            Orientation="Horizontal">
-            <Image />
-            <Button Text="{Binding Label}" />
+            Orientation="Horizontal"
+            HorizontalOptions="CenterAndExpand"
+            Padding="10, 20">
+            <Image
+                Source="icon_circle_left"
+                Aspect="AspectFit"
+                WidthRequest="20"
+                HeightRequest="20"/>
+            <Button
+                Text="{Binding Label, Source={x:Reference buttonIcon}}"
+                Command="{Binding TapCommand, Source={x:Reference buttonIcon}}"
+                TextColor="{Binding TextColor, Source={x:Reference buttonIcon}}"
+                BackgroundColor="Transparent" />
         </StackLayout>
     </ContentView.Content>
 </ContentView>

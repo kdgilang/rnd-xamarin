@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Poseidon.Components
@@ -12,17 +13,39 @@ namespace Poseidon.Components
             typeof(ButtonIcon),
             string.Empty);
 
+        public static readonly BindableProperty TextColorProperty = BindableProperty.Create(
+            "TextColor",
+            typeof(Color),
+            typeof(ButtonIcon),
+            Color.Black);
+
+        public static readonly BindableProperty TapCommandProperty = BindableProperty.Create(
+            "TapCommand",
+            typeof(ICommand),
+            typeof(ButtonIcon),
+            null);
+
         public ButtonIcon()
         {
             InitializeComponent();
-            BindingContext = this;
         }
-
 
         public string Label
         {
-            get => (string)GetValue(ButtonIcon.LabelProperty);
-            set => SetValue(ButtonIcon.LabelProperty, value);
+            get => (string)GetValue(LabelProperty);
+            set => SetValue(LabelProperty, value);
+        }
+
+        public Color TextColor
+        {
+            get => (Color)GetValue(TextColorProperty);
+            set => SetValue(TextColorProperty, value);
+        }
+
+        public ICommand TapCommand
+        {
+            get => (ICommand)GetValue(TapCommandProperty);
+            set => SetValue(TapCommandProperty, value);
         }
     }
 }
