@@ -26,7 +26,7 @@ namespace Poseidon.Configs
 
         public static GetUserByIdResponse getAuthenticatedUser()
         {
-            string userJson = Regex.Unescape(Preferences.Get("user", null));
+            string userJson = Preferences.Get("user", null);
 
             if (!string.IsNullOrEmpty(userJson))
             {
@@ -46,10 +46,11 @@ namespace Poseidon.Configs
         {
             try
             {
-                Preferences.Set("user", user.ToString());
-                await SecureStorage.SetAsync("user", JsonConvert.SerializeObject(user));
-                await SecureStorage.SetAsync("userToken", userToken);
+                var userStrJson = JsonConvert.SerializeObject(user);
 
+                Preferences.Set("user", userStrJson);
+                await SecureStorage.SetAsync("user", userStrJson);
+                await SecureStorage.SetAsync("userToken", userToken);
             }
             catch (Exception e)
             {

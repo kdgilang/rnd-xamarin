@@ -45,10 +45,10 @@
         public bool Confirmed { get; set; }
 
         [JsonProperty("updatedAt")]
-        public DateTimeOffset UpdatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
 
         [JsonProperty("createdAt")]
-        public DateTimeOffset CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         [JsonProperty("company")]
         public Company Company { get; set; }
@@ -79,6 +79,9 @@
     {
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        [JsonProperty("image")]
+        public Image Image { get; set; }
     }
 
     public partial class Image

@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Poseidon.Pages.Auth;
+﻿using System;
 using Xamarin.Forms;
 using Poseidon.Configs;
 
@@ -12,17 +11,24 @@ namespace Poseidon
             InitializeComponent();
 
 
-            MainPage = new NavigationPage(new LoginPage());
+            MainPage = new AppShell();
         }
 
         protected override async void OnStart()
         {
-            var user = await AuthenticatedUser.getAuthenticatedUserAsync();
-            var userId = user?.UsersPermissionsUser?.Data?.Id.ToString();
-
-            if (!string.IsNullOrEmpty(userId))
+            try
             {
-                MainPage = new AppShell();
+                var user = await AuthenticatedUser.getAuthenticatedUserAsync();
+                var userId = user?.UsersPermissionsUser?.Data?.Id.ToString();
+
+                if (string.IsNullOrEmpty(userId))
+                {
+                    await Shell.Current.GoToAsync("///login");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
 

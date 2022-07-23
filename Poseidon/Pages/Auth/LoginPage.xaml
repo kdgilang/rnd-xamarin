@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Poseidon.Pages.Auth.LoginPage"
     BackgroundColor="{StaticResource colorPrimary}"
+    Shell.NavBarIsVisible="False"
+    Shell.PresentationMode="Animated"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Content>

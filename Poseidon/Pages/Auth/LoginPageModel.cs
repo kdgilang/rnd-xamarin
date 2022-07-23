@@ -93,7 +93,7 @@ namespace Poseidon.Pages.Auth
             IsEmailError = string.IsNullOrEmpty(Email);
             IsPasswordError = string.IsNullOrEmpty(Password);
 
-            if (IsPasswordError || IsEmailError)
+            if (IsPasswordError || IsEmailError || IsSubmitted)
             {
                 return;
             }
@@ -103,8 +103,9 @@ namespace Poseidon.Pages.Auth
             try
             {
                 await _loginUseCase.LoginAsync(Email, Password);
+                await Shell.Current.GoToAsync("///home");
+
                 IsSubmitted = false;
-                App.Current.MainPage = new AppShell();
             }
             catch (Exception e)
             {

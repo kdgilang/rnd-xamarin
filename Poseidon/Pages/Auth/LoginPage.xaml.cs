@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
+using Poseidon.Configs;
 
 namespace Poseidon.Pages.Auth
 {

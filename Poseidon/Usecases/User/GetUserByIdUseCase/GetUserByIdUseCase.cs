@@ -39,6 +39,16 @@ namespace Poseidon.Usecases.User.GetUserByIdUseCase
                                     id
                                     attributes {
                                       name
+                                      image {
+                                        data {
+                                          attributes {
+                                            url
+                                            name
+                                            caption
+                                            alternativeText
+                                          }
+                                        }
+                                      }
                                     }
                                   }
                                 }
