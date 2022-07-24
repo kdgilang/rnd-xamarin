@@ -9,9 +9,12 @@
        FlyoutHeaderBehavior="CollapseOnScroll">
 
     <Shell.FlyoutHeader>
-        <StackLayout HeightRequest="250" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-            <Grid VerticalOptions="CenterAndExpand">
-                <Grid VerticalOptions="CenterAndExpand">
+        <StackLayout
+            HeightRequest="280"
+            VerticalOptions="StartAndExpand"
+            HorizontalOptions="CenterAndExpand">
+            <Grid Padding="0">
+                <Grid Padding="0">
                     <Image
                         Aspect="AspectFill"
                         VerticalOptions="FillAndExpand"
@@ -47,7 +50,7 @@
                             TextColor="White"
                             FontAttributes="Bold"
                             FontSize="Medium"
-                            Margin="0, 15, 0, 0"/>
+                            Margin="0, 10, 0, 0"/>
                     </StackLayout>
                 </StackLayout>
             </Grid>

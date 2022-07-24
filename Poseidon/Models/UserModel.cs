@@ -21,11 +21,9 @@ namespace Poseidon.Models
         {
             get
             {
-                var imgId = _user?.UsersPermissionsUser?.Data?.Attributes?
-                                    .Image?.Data?.Id;
                 string imgUrl = _user?.UsersPermissionsUser?.Data?.Attributes?
                                     .Image?.Data?.Attributes?.Url;
-                return imgId < 1 ? "poseidon.png" : $"{AppSettings.BASE_URL}{imgUrl}";
+                return string.IsNullOrEmpty(imgUrl) ? "poseidon.png" : $"{AppSettings.BASE_URL}{imgUrl}";
             }
         }
 
@@ -33,11 +31,9 @@ namespace Poseidon.Models
         {
             get
             {
-                var imgId = _user?.UsersPermissionsUser?.Data?.Attributes?
-                    .Company.Data.Attributes.Image.Data.Id;
                 string imgUrl = _user?.UsersPermissionsUser?.Data?.Attributes?
                                     .Company.Data.Attributes.Image.Data.Attributes.Url;
-                return imgId < 1 ? "bg1.jpeg" : $"{AppSettings.BASE_URL}{imgUrl}";
+                return string.IsNullOrEmpty(imgUrl) ? "bg1.jpeg" : $"{AppSettings.BASE_URL}{imgUrl}";
             }
         }
     }
