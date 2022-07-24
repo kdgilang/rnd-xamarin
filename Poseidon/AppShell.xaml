@@ -5,12 +5,11 @@
        xmlns:components="clr-namespace:Poseidon.Components"
        x:Class="Poseidon.AppShell"
        FlyoutBackgroundColor="{StaticResource colorPrimary}"
-       FlyoutBackgroundImageAspect="AspectFill"
        FlyoutHeaderBehavior="CollapseOnScroll">
 
     <Shell.FlyoutHeader>
         <StackLayout
-            HeightRequest="280"
+            HeightRequest="300"
             VerticalOptions="StartAndExpand"
             HorizontalOptions="CenterAndExpand">
             <Grid Padding="0">
@@ -102,7 +101,7 @@
 
             <ShellContent
                 Style="{StaticResource MenuItemShell}"
-                Title="Profile"
+                Title="Order"
                 Icon="home.png"
                 ContentTemplate="{DataTemplate views:MainPage}"
             />
@@ -110,13 +109,21 @@
     </FlyoutItem>
 
     <FlyoutItem
-        Route="product"
-        Title="Product"
-        Icon="icon_house">
+        Route="profile"
+        Title="Profile"
+        Icon="icon_user">
         <ShellContent
             Style="{StaticResource MenuItemShell}"
-            Title="Product"
-            Icon="home.png"
+            ContentTemplate="{DataTemplate views:MainPage}"
+        />
+    </FlyoutItem>
+
+    <FlyoutItem
+        Route="product"
+        Title="Product"
+        Icon="icon_sitemap">
+        <ShellContent
+            Style="{StaticResource MenuItemShell}"
             ContentTemplate="{DataTemplate views:MainPage}"
         />
     </FlyoutItem>
@@ -144,5 +151,4 @@
                 TextColor="{StaticResource colorTertiary}"/>
         </StackLayout>
     </Shell.FlyoutFooter>
-
 </Shell>

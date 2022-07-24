@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Poseidon.Models.Print"
              x:Class="Poseidon.MainPage"
-             Shell.PresentationMode="ModalAnimated">
+             Shell.PresentationMode="Animated">
 
     <ContentPage.BindingContext>
         <vm:PrintPageViewModel />
@@ -11,15 +11,14 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Image Source="relix.png"></Image>
-
+            <Label Text="Todo ..."></Label>
             <!--<Picker ItemsSource="{Binding Devices}"
                     Title="Select Device"
                     ItemDisplayBinding="{Binding .}"
                     SelectedItem="{Binding SelectedDevice}"></Picker>-->
 
-            <Label Text="{Binding PrintText}" TextColor="Red"></Label>
-            <Button Text="Print" Command="{Binding PrintCommand}" />
+            <!--<Label Text="{Binding PrintText}" TextColor="Red"></Label>
+            <Button Text="Print" Command="{Binding PrintCommand}" />-->
         </StackLayout>
     </ContentPage.Content>
 

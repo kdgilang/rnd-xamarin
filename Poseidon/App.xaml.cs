@@ -23,7 +23,7 @@ namespace Poseidon
 
                 if (string.IsNullOrEmpty(userId))
                 {
-                    await Shell.Current.GoToAsync("///login");
+                    await Shell.Current.GoToAsync("//login");
                 }
             }
             catch (Exception e)

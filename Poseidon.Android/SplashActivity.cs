@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Poseidon.Droid
 {
-    [Activity(Label = "SplashActivity", MainLauncher = true, Theme = "@style/Theme.Splash", NoHistory = true) ]
+    [Activity(Label = "Poseidon",  MainLauncher = true, Theme = "@style/Theme.Splash", NoHistory = true) ]
     public class SplashActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -33,7 +33,7 @@ namespace Poseidon.Droid
 
         private async Task SimulateStartup()
         {
-            await Task.Delay(2000);
+            await Task.Delay(1500);
 
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
