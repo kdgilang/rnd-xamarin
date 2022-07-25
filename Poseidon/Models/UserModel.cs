@@ -32,7 +32,7 @@ namespace Poseidon.Models
             get
             {
                 string imgUrl = _user?.UsersPermissionsUser?.Data?.Attributes?
-                                    .Company.Data.Attributes.Image.Data.Attributes.Url;
+                                    .Company?.Data?.Attributes?.Image?.Data?.Attributes?.Url;
                 return string.IsNullOrEmpty(imgUrl) ? "bg1.jpeg" : $"{AppSettings.BASE_URL}{imgUrl}";
             }
         }

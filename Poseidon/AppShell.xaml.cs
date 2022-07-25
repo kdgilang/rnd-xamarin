@@ -25,7 +25,7 @@ namespace Poseidon
         public AppShell()
         {
             InitializeComponent();
-            RegisterRoutes();
+            //RegisterRoutes();
 
             BindingContext = new AppShellViewModel();
         }

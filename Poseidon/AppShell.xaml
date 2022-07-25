@@ -9,7 +9,7 @@
 
     <Shell.FlyoutHeader>
         <StackLayout
-            HeightRequest="300"
+            HeightRequest="200"
             VerticalOptions="StartAndExpand"
             HorizontalOptions="CenterAndExpand">
             <Grid Padding="0">
@@ -81,8 +81,18 @@
     </Shell.Resources>
 
     <FlyoutItem
-        Route="home"
+        Title="Login"
+        Route="login"    
+        FlyoutItemIsVisible="False">
+        <ShellContent
+            Style="{StaticResource MenuItemShell}"
+            ContentTemplate="{DataTemplate views:Pages.Auth.LoginPage}"
+        />
+    </FlyoutItem>
+
+    <FlyoutItem
         Title="Home"
+        Route="home"
         Icon="icon_house">
         <Tab>
             <ShellContent
@@ -111,9 +121,9 @@
 
     <FlyoutItem
         Title="Profile"
-        Icon="icon_user">
+        Icon="icon_user"
+        Route="profile">
         <ShellContent
-            Route="profile"
             Style="{StaticResource MenuItemShell}"
             ContentTemplate="{DataTemplate views:MainPage}"
         />
@@ -121,24 +131,11 @@
 
     <FlyoutItem
         Title="Product"
-        Icon="icon_sitemap">
+        Icon="icon_sitemap"
+        Route="product">
         <ShellContent
-            Title="Product"
-            Icon="icon_sitemap"
-            Route="product"
             Style="{StaticResource MenuItemShell}"
             ContentTemplate="{DataTemplate views:MainPage}"
-        />
-    </FlyoutItem>
-
-    
-    <FlyoutItem>
-        <ShellContent
-            Route="login"
-            Style="{StaticResource MenuItemShell}"
-            Title="Login"
-            FlyoutItemIsVisible="False"
-            ContentTemplate="{DataTemplate views:Pages.Auth.LoginPage}"
         />
     </FlyoutItem>
 

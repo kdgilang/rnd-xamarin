@@ -103,7 +103,7 @@ namespace Poseidon.Pages.Auth
             try
             {
                 await _loginUseCase.LoginAsync(Email, Password);
-                await Shell.Current.GoToAsync("//pos");
+                await Shell.Current.GoToAsync("//home");
 
                 IsSubmitted = false;
             }

@@ -7,9 +7,9 @@ namespace Poseidon.Models
 {
     public class AppShellViewModel : UserModel
     {
-        public AppShellViewModel()
+        public AppShellViewModel(): base()
         {
-           
+            
         }
 
 
