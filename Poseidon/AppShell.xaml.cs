@@ -4,6 +4,7 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Poseidon.Models;
+using Poseidon.Pages.Auth;
 
 namespace Poseidon
 {
@@ -24,20 +25,20 @@ namespace Poseidon
         public AppShell()
         {
             InitializeComponent();
-            //RegisterRoutes();
+            RegisterRoutes();
 
             BindingContext = new AppShellViewModel();
         }
 
-        //void RegisterRoutes()
-        //{
-        //    Routes.Add("login", typeof(LoginPage));
-        //    Routes.Add("home", typeof(MainPage));
+        void RegisterRoutes()
+        {
+            Routes.Add("login", typeof(LoginPage));
+            Routes.Add("pos", typeof(MainPage));
 
-        //    foreach (var item in Routes)
-        //    {
-        //        Routing.RegisterRoute(item.Key, item.Value);
-        //    }
-        //}
+            foreach (var item in Routes)
+            {
+                Routing.RegisterRoute(item.Key, item.Value);
+            }
+        }
     }
 }

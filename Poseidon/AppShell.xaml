@@ -86,6 +86,7 @@
         Icon="icon_house">
         <Tab>
             <ShellContent
+                Route="pos"
                 Style="{StaticResource MenuItemShell}"
                 Title="Pos"
                 Icon="icon_cashier"
@@ -109,35 +110,33 @@
     </FlyoutItem>
 
     <FlyoutItem
-        Route="profile"
         Title="Profile"
         Icon="icon_user">
         <ShellContent
+            Route="profile"
             Style="{StaticResource MenuItemShell}"
             ContentTemplate="{DataTemplate views:MainPage}"
         />
     </FlyoutItem>
 
     <FlyoutItem
-        Route="product"
         Title="Product"
         Icon="icon_sitemap">
         <ShellContent
+            Title="Product"
+            Icon="icon_sitemap"
+            Route="product"
             Style="{StaticResource MenuItemShell}"
             ContentTemplate="{DataTemplate views:MainPage}"
         />
     </FlyoutItem>
 
     
-    <FlyoutItem
-        Route="login"
-        Title="Login"
-        FlyoutItemIsVisible="False"
-        Icon="icon_house">
+    <FlyoutItem>
         <ShellContent
+            Route="login"
             Style="{StaticResource MenuItemShell}"
             Title="Login"
-            Icon="home.png"
             FlyoutItemIsVisible="False"
             ContentTemplate="{DataTemplate views:Pages.Auth.LoginPage}"
         />
