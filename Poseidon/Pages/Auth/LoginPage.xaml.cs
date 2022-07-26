@@ -1,6 +1,5 @@
 ﻿using System;
 using Xamarin.Forms;
-using Poseidon.Configs;
 
 namespace Poseidon.Pages.Auth
 {
@@ -9,7 +8,7 @@ namespace Poseidon.Pages.Auth
         public LoginPage()
         {
             InitializeComponent();
-            BindingContext = new LoginPageModel();
+            BindingContext = new LoginPageViewModel();
         }
     }
 }

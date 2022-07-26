@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Poseidon.Models;
-using Poseidon.Pages.Auth;
+using Poseidon.ViewModels;
 
 namespace Poseidon
 {
@@ -25,20 +24,33 @@ namespace Poseidon
         public AppShell()
         {
             InitializeComponent();
-            //RegisterRoutes();
 
             BindingContext = new AppShellViewModel();
         }
 
-        void RegisterRoutes()
+        protected override void OnNavigating(ShellNavigatingEventArgs args)
         {
-            Routes.Add("login", typeof(LoginPage));
-            Routes.Add("pos", typeof(MainPage));
+            base.OnNavigating(args);
 
-            foreach (var item in Routes)
+            //Cancel any back navigation
+            //if (args.Source == ShellNavigationSource.Pop)
+            //{
+            //    args.Cancel();
+            //}
+
+            string current = args.Current?.Location?.ToString();
+            string target = args.Target?.Location?.ToString();
+            if (current == "//login" && target == "///home")
             {
-                Routing.RegisterRoute(item.Key, item.Value);
+                BindingContext = new AppShellViewModel();
             }
+        }
+
+        protected override void OnNavigated(ShellNavigatedEventArgs args)
+        {
+            base.OnNavigated(args);
+
+            // Perform required logic
         }
     }
 }

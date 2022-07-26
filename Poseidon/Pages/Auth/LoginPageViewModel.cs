@@ -6,12 +6,12 @@ using Poseidon.Usecases.Auth.LoginUseCase;
 
 namespace Poseidon.Pages.Auth
 {
-    public class LoginPageModel : INotifyPropertyChanged
+    public class LoginPageViewModel : INotifyPropertyChanged
     {
         private readonly ILoginUseCase _loginUseCase;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public LoginPageModel()
+        public LoginPageViewModel()
         {
             _loginUseCase = DependencyService.Get<ILoginUseCase>();
         }
@@ -103,7 +103,7 @@ namespace Poseidon.Pages.Auth
             try
             {
                 await _loginUseCase.LoginAsync(Email, Password);
-                await Shell.Current.GoToAsync("//home");
+                await Shell.Current.GoToAsync("///home");
 
                 IsSubmitted = false;
             }

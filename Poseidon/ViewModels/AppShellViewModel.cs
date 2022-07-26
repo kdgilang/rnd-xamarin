@@ -2,14 +2,15 @@
 using Xamarin.Forms;
 using System.Windows.Input;
 using Poseidon.Configs;
+using Poseidon.Models;
 
-namespace Poseidon.Models
+namespace Poseidon.ViewModels
 {
-    public class AppShellViewModel : UserModel
+    public class AppShellViewModel
     {
-        public AppShellViewModel(): base()
+        public AppShellViewModel()
         {
-            
+            new UserModel();
         }
 
 
@@ -21,7 +22,7 @@ namespace Poseidon.Models
 
             await Task.Delay(1000);
 
-            await Shell.Current.GoToAsync("//login");
+            await Shell.Current.GoToAsync("///login");
         });
     }
 }

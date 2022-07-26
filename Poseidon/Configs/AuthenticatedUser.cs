@@ -38,8 +38,8 @@ namespace Poseidon.Configs
 
         public static void logutUser()
         {
-            SecureStorage.Remove("user");
-            SecureStorage.Remove("userToken");
+            Preferences.Remove("user");
+            SecureStorage.RemoveAll();
         }
 
         public static async void Save(string userToken, object user)
@@ -49,6 +49,7 @@ namespace Poseidon.Configs
                 var userStrJson = JsonConvert.SerializeObject(user);
 
                 Preferences.Set("user", userStrJson);
+
                 await SecureStorage.SetAsync("user", userStrJson);
                 await SecureStorage.SetAsync("userToken", userToken);
             }
