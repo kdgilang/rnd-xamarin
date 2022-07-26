@@ -22,10 +22,10 @@
         public long Id { get; set; }
 
         [JsonProperty("attributes")]
-        public DatumAttributes Attributes { get; set; }
+        public ProductResponse Attributes { get; set; }
     }
 
-    public partial class DatumAttributes
+    public partial class ProductResponse
     {
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -67,10 +67,10 @@
     public partial class ImageData
     {
         [JsonProperty("attributes")]
-        public DataAttributes Attributes { get; set; }
+        public ImageAttributes Attributes { get; set; }
     }
 
-    public partial class DataAttributes
+    public partial class ImageAttributes
     {
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -78,7 +78,7 @@
         [JsonProperty("url")]
         public string Url { get; set; }
 
-        [JsonProperty("alternativeText")]
-        public string AlternativeText { get; set; }
+        [JsonProperty("caption")]
+        public string Caption { get; set; }
     }
 }

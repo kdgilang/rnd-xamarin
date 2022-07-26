@@ -1,13 +1,13 @@
 ﻿using Poseidon.Configs;
 using Poseidon.User.UseCases.GetUserByIdUseCase;
 
-namespace Poseidon.Models
+namespace Poseidon.ViewModels
 {
-    public class UserModel
+    public class UserViewModel : BaseViewModel
     {
         private readonly GetUserByIdResponse _user;
 
-        public UserModel()
+        public UserViewModel()
         {
             _user = AuthenticatedUser.getAuthenticatedUser();
         }
@@ -25,6 +25,11 @@ namespace Poseidon.Models
                                     .Image?.Data?.Attributes?.Url;
                 return string.IsNullOrEmpty(imgUrl) ? "poseidon.png" : $"{AppSettings.BASE_URL}{imgUrl}";
             }
+        }
+
+        public long CompanyId
+        {
+            get => _user.UsersPermissionsUser.Data.Attributes.Company.Data.Id;
         }
 
         public string ImageCoverUrl

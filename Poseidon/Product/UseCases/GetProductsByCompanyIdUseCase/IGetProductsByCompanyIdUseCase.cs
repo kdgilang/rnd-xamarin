@@ -4,6 +4,6 @@ namespace Poseidon.Product.UseCases.GetProductsByCompanyIdUseCase
 {
     public interface IGetProductsByCompanyIdUseCase
     {
-        Task<GetProductsByCompanyIdResponse> ExecuteAsync(int id);
+        Task<GetProductsByCompanyIdResponse> ExecuteAsync(long id);
     }
 }

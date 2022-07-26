@@ -16,7 +16,7 @@ namespace Poseidon.Product.UseCases.GetProductsByCompanyIdUseCase
             _graphqlService = DependencyService.Get<IGraphqlService>();
         }
 
-        public async Task<GetProductsByCompanyIdResponse> ExecuteAsync(int id)
+        public async Task<GetProductsByCompanyIdResponse> ExecuteAsync(long id)
         {
             string query = @"query ProductsByCompanyId($id: ID!){
                 products(filters: {company: {id: { eq: $id}}}){
@@ -37,7 +37,7 @@ namespace Poseidon.Product.UseCases.GetProductsByCompanyIdUseCase
                         attributes{
                             name
                             url
-                            alternativeText
+                            caption
                         }
                         }
                     }

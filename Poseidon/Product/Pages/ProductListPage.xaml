@@ -4,6 +4,66 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Poseidon.Product.Pages.ProductListPage">
     <ContentPage.Content>
-        
+        <ListView
+            HasUnevenRows="True"
+            x:Name="ProductList"
+            ItemsSource="{Binding Products}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell
+                        x:Name="Item">
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem
+                                        Text="Edit"
+                                        IconImageSource="favorite.png"
+                                        BackgroundColor="#27b376"
+                                        BindingContext="{Binding Source={x:Reference ProductList}, Path=BindingContext}"
+                                        Command="{Binding EditCommandAsync}"
+                                        CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" />
+                                    <SwipeItem
+                                        Text="Delete"
+                                        IconImageSource="delete.png"
+                                        BackgroundColor="#fe4d4d"
+                                        BindingContext="{Binding Source={x:Reference ProductList}, Path=BindingContext}"
+                                        Command="{Binding DeleteCommandAsync}"
+                                        CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Grid
+                                Padding="10">
+                                <Frame
+                                    CornerRadius="5"
+                                    HasShadow="True">
+                                    <StackLayout
+                                        Orientation="Horizontal">
+                                        <Image
+                                            Source="{Binding Image.Url}"
+                                            WidthRequest="100"
+                                            VerticalOptions="Center" />
+                                        <StackLayout
+                                            VerticalOptions="Center">
+                                            <Label
+                                                HorizontalTextAlignment="Start"
+                                                FontSize="Large"
+                                                Text="{Binding Name}"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center" />
+                                            <Label
+                                                HorizontalTextAlignment="Start"
+                                                Text="{Binding Description}"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center" />
+
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </SwipeView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </ContentPage.Content>
 </ContentPage>
