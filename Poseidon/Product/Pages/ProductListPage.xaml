@@ -6,6 +6,10 @@
     <ContentPage.Content>
         <ListView
             HasUnevenRows="True"
+            IsPullToRefreshEnabled="True"
+            IsRefreshing="{Binding IsLoading}"
+            SeparatorVisibility="None"
+            RefreshCommand="{Binding RefreshCommandAsync}"
             x:Name="ProductList"
             ItemsSource="{Binding Products}">
             <ListView.ItemTemplate>
@@ -43,17 +47,20 @@
                                             WidthRequest="100"
                                             VerticalOptions="Center" />
                                         <StackLayout
-                                            VerticalOptions="Center">
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="StartAndExpand">
                                             <Label
-                                                HorizontalTextAlignment="Start"
                                                 FontSize="Large"
+                                                LineBreakMode="TailTruncation"
                                                 Text="{Binding Name}"
-                                                HorizontalOptions="Center"
+                                                WidthRequest="240"
                                                 VerticalOptions="Center" />
                                             <Label
+                                                LineBreakMode="TailTruncation"
+                                                WidthRequest="240"
                                                 HorizontalTextAlignment="Start"
+                                                HorizontalOptions="Start"
                                                 Text="{Binding Description}"
-                                                HorizontalOptions="Center"
                                                 VerticalOptions="Center" />
 
                                         </StackLayout>

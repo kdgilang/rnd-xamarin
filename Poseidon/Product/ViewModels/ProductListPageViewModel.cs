@@ -12,12 +12,6 @@ namespace Poseidon.Product.ViewModels
         {
         }
 
-        public async override Task OnAppearing()
-        {
-            await base.OnAppearing();
-        }
-
-
         public ICommand DeleteCommandAsync =>
             new Command<string>(async (string id) =>
             {
@@ -29,5 +23,12 @@ namespace Poseidon.Product.ViewModels
         {
             await App.Current.MainPage.DisplayAlert($"Edit {id}", "This action is TBA", "ok");
         });
+
+        public ICommand RefreshCommandAsync =>
+            new Command(async () =>
+            {
+                await PopulateDataAsync();
+            }
+        );
     }
 }

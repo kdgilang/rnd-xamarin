@@ -17,6 +17,8 @@ namespace Poseidon.ViewModels
         public ProductsViewModel()
         {
             _getProductsByCompanyId = DependencyService.Get<IGetProductsByCompanyIdUseCase>();
+
+            PopulateDataAsync();
         }
 
         public List<ProductModel> Products
@@ -29,8 +31,10 @@ namespace Poseidon.ViewModels
             get => _products;
         }
 
-        public virtual async Task OnAppearing()
+        public async Task PopulateDataAsync()
         {
+            IsLoading = true;
+
             var res = await _getProductsByCompanyId.ExecuteAsync(CompanyId);
             Products = res?.Products?.Data?.Select(item =>
                 new ProductModel
@@ -53,6 +57,8 @@ namespace Poseidon.ViewModels
                     }
                 }
             ).ToList();
+
+            IsLoading = false;
         }
     }
 }

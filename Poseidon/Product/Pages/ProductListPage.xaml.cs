@@ -1,26 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Poseidon.Product.ViewModels;
 
 namespace Poseidon.Product.Pages
 {
     public partial class ProductListPage : ContentPage
     {
-        private ProductListPageViewModel _productList;
+
         public ProductListPage()
         {
             InitializeComponent();
 
-            _productList = new ProductListPageViewModel();
-            BindingContext = _productList;
+            BindingContext = new ProductListPageViewModel();
         }
 
-        protected async override void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            await _productList.OnAppearing();
         }
     }
 }

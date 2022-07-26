@@ -10,6 +10,21 @@ namespace Poseidon.ViewModels
         {
         }
 
+        private bool _isloading;
+        public bool IsLoading
+        {
+            get
+            {
+                return _isloading;
+            }
+
+            set
+            {
+                _isloading = value;
+                OnPropertyChanged("IsLoading");
+            }
+        }
+
         protected void OnPropertyChanged(string propertyName)
         {
             var handler = PropertyChanged;
