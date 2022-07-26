@@ -1,15 +1,13 @@
 ﻿using System;
 using Xamarin.Forms;
+using Poseidon.Configs;
 using System.Threading.Tasks;
 using Poseidon.Services.Graphql;
-using Poseidon.Usecases.Auth.LoginUseCase;
-using Xamarin.Essentials;
-using Poseidon.Usecases.User.GetUserByIdUseCase;
-using Newtonsoft.Json;
-using Poseidon.Configs;
+using Poseidon.Auth.UseCases.LoginUseCase;
+using Poseidon.User.UseCases.GetUserByIdUseCase;
 
 [assembly: Dependency(typeof(LoginUseCase))]
-namespace Poseidon.Usecases.Auth.LoginUseCase
+namespace Poseidon.Auth.UseCases.LoginUseCase
 {
     public class LoginUseCase : ILoginUseCase
     {

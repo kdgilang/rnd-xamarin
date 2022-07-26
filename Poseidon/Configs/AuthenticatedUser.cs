@@ -1,9 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
-using Poseidon.Usecases.User.GetUserByIdUseCase;
+using Poseidon.User.UseCases.GetUserByIdUseCase;
 using Newtonsoft.Json;
-using System;
-using System.Text.RegularExpressions;
 
 namespace Poseidon.Configs
 {

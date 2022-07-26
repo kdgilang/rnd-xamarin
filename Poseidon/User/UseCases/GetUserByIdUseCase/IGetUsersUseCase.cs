@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Poseidon.Usecases.User.GetUserByIdUseCase
+namespace Poseidon.User.UseCases.GetUserByIdUseCase
 {
     public interface IGetUserByIdUseCase
     {

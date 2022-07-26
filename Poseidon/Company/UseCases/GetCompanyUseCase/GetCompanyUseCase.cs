@@ -2,10 +2,10 @@
 using Xamarin.Forms;
 using Poseidon.Services.Graphql;
 using System.Threading.Tasks;
-using Poseidon.Usecases.Company.GetCompanyUseCase;
+using Poseidon.Company.UseCases.GetCompanyUseCase;
 
 [assembly: Dependency(typeof(GetCompanyUseCase))]
-namespace Poseidon.Usecases.Company.GetCompanyUseCase
+namespace Poseidon.Company.UseCases.GetCompanyUseCase
 {
     public class GetCompanyUseCase : IGetCompaniesUseCase
     {

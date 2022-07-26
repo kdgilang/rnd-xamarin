@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Poseidon.Usecases.Company.GetCompanyUseCase
+namespace Poseidon.Company.UseCases.GetCompanyUseCase
 {
     public interface IGetCompaniesUseCase
     {

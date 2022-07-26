@@ -2,9 +2,9 @@
 using Xamarin.Forms;
 using System.Windows.Input;
 using System.ComponentModel;
-using Poseidon.Usecases.Auth.LoginUseCase;
+using Poseidon.Auth.UseCases.LoginUseCase;
 
-namespace Poseidon.Pages.Auth
+namespace Poseidon.Auth.ViewModels
 {
     public class LoginPageViewModel : INotifyPropertyChanged
     {

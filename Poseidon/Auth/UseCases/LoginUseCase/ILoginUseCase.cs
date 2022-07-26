@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Poseidon.Usecases.Auth.LoginUseCase
+namespace Poseidon.Auth.UseCases.LoginUseCase
 {
     public interface ILoginUseCase
     {

@@ -1,7 +1,8 @@
 ﻿using System;
 using Xamarin.Forms;
+using Poseidon.Auth.ViewModels;
 
-namespace Poseidon.Pages.Auth
+namespace Poseidon.Auth.Pages
 {
     public partial class LoginPage : ContentPage
     {

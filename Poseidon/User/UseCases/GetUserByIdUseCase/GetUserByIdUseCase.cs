@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using Poseidon.Services.Graphql;
 using Xamarin.Forms;
-using Poseidon.Usecases.User.GetUserByIdUseCase;
+using Poseidon.User.UseCases.GetUserByIdUseCase;
 
 [assembly: Dependency(typeof(GetUserByIdUseCase))]
-namespace Poseidon.Usecases.User.GetUserByIdUseCase
+namespace Poseidon.User.UseCases.GetUserByIdUseCase
 {
     public class GetUserByIdUseCase : IGetUserByIdUseCase
     {

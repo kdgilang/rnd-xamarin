@@ -13,11 +13,13 @@
                 Source="icon_circle_left"
                 Aspect="AspectFit"
                 WidthRequest="20"
+                VerticalOptions="Center"
                 HeightRequest="20"/>
             <Button
                 Text="{Binding Label, Source={x:Reference buttonIcon}}"
                 Command="{Binding TapCommand, Source={x:Reference buttonIcon}}"
                 TextColor="{Binding TextColor, Source={x:Reference buttonIcon}}"
+                VerticalOptions="Center"
                 BackgroundColor="Transparent" />
         </StackLayout>
     </ContentView.Content>

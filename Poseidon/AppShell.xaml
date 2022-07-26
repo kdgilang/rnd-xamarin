@@ -86,7 +86,7 @@
         FlyoutItemIsVisible="False">
         <ShellContent
             Style="{StaticResource MenuItemShell}"
-            ContentTemplate="{DataTemplate views:Pages.Auth.LoginPage}"
+            ContentTemplate="{DataTemplate views:Auth.Pages.LoginPage}"
         />
     </FlyoutItem>
 

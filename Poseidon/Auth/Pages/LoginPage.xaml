@@ -2,7 +2,7 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="Poseidon.Pages.Auth.LoginPage"
+    x:Class="Poseidon.Auth.Pages.LoginPage"
     BackgroundColor="{StaticResource colorPrimary}"
     NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False"

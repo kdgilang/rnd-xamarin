@@ -8,11 +8,28 @@ namespace Poseidon.ViewModels
 {
     public class AppShellViewModel
     {
+
+        private readonly UserModel _user;
+
         public AppShellViewModel()
         {
-            new UserModel();
+            _user = new UserModel();
         }
 
+        public string ImageUrl
+        {
+            get => _user.ImageUrl;
+        }
+
+        public string ImageCoverUrl
+        {
+            get => _user.ImageCoverUrl;
+        }
+
+        public string Name
+        {
+            get => _user.Name;
+        }
 
         public ICommand LogoutCommandAsync => new Command(async () =>
         {

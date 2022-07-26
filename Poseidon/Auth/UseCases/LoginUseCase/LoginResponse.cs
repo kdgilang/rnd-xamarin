@@ -1,4 +1,4 @@
-﻿namespace Poseidon.Usecases.Auth.LoginUseCase
+﻿namespace Poseidon.Auth.UseCases.LoginUseCase
 {
     using Newtonsoft.Json;
 

@@ -1,5 +1,5 @@
 ﻿using Poseidon.Configs;
-using Poseidon.Usecases.User.GetUserByIdUseCase;
+using Poseidon.User.UseCases.GetUserByIdUseCase;
 
 namespace Poseidon.Models
 {

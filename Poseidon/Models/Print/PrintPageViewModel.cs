@@ -7,14 +7,12 @@ using Xamarin.Forms;
 using ESCPOS_NET.Templates;
 using System.ComponentModel;
 using System.Linq;
-using Poseidon.Usecases.Company.GetCompanyUseCase;
 
 namespace Poseidon.Models.Print
 {
     public class PrintPageViewModel : INotifyPropertyChanged
     {
         private readonly IBluetoothService _bluetoothService;
-        private readonly IGetCompaniesUseCase _getCompanyUseCase;
         public event PropertyChangedEventHandler PropertyChanged;
 
         private IList<string> _devices;
@@ -68,17 +66,12 @@ namespace Poseidon.Models.Print
         {
             //await _bluetoothService.Print(SelectedDevice, Receipt.Template());
             PrintText = "Loading...";
-            var companyResponse = await _getCompanyUseCase.GetCompaniesAsync();
-
-            PrintText = companyResponse?.Companies.Data.FirstOrDefault().Attributes.Email;
 
         });
 
         public PrintPageViewModel ()
         {
             //_bluetoothService = DependencyService.Get<IBluetoothService>();
-
-            _getCompanyUseCase = DependencyService.Get<IGetCompaniesUseCase>();
 
             //var list = _bluetoothService?.GetDevices();
             //Devices.Clear();

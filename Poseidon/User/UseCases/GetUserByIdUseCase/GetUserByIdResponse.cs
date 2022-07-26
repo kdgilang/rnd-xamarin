@@ -1,4 +1,4 @@
-﻿namespace Poseidon.Usecases.User.GetUserByIdUseCase
+﻿namespace Poseidon.User.UseCases.GetUserByIdUseCase
 {
     using System;
     using Newtonsoft.Json;
