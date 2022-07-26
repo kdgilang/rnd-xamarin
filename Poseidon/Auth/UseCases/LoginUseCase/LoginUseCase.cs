@@ -20,7 +20,7 @@ namespace Poseidon.Auth.UseCases.LoginUseCase
             _getUserByIdUseCase = DependencyService.Get<IGetUserByIdUseCase>();
         }
 
-        public async Task<LoginResponse> LoginAsync(string email, string password)
+        public async Task<LoginResponse> ExecuteAsync(string email, string password)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace Poseidon.Auth.UseCases.LoginUseCase
 
                 if (user?.Login?.User?.Id > 0)
                 {
-                    var userByID = await _getUserByIdUseCase.GetUserByIdAsycn(user.Login.User.Id);
+                    var userByID = await _getUserByIdUseCase.ExecuteAsync(user.Login.User.Id);
 
                     if (userByID.UsersPermissionsUser.Data.Attributes.Confirmed)
                     {

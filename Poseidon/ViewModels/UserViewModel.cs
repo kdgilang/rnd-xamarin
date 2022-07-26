@@ -1,13 +1,13 @@
 ﻿using Poseidon.Configs;
 using Poseidon.User.UseCases.GetUserByIdUseCase;
 
-namespace Poseidon.ViewModels
+namespace Poseidon.Models
 {
-    public class UserViewModel : BaseViewModel
+    public class UserModel
     {
         private readonly GetUserByIdResponse _user;
 
-        public UserViewModel()
+        public UserModel()
         {
             _user = AuthenticatedUser.getAuthenticatedUser();
         }

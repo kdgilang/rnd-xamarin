@@ -57,6 +57,7 @@
     <None Remove="Company\UseCases\GetCompanyUseCase\" />
     <None Remove="User\UseCases\GetUserByIdUseCase\" />
     <None Remove="Product\ViewModels\" />
+    <None Remove="Product\UseCases\GetProductsByCompanyIdUseCase\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -86,6 +87,7 @@
     <Folder Include="Company\UseCases\GetCompanyUseCase\" />
     <Folder Include="User\UseCases\GetUserByIdUseCase\" />
     <Folder Include="Product\ViewModels\" />
+    <Folder Include="Product\UseCases\GetProductsByCompanyIdUseCase\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />

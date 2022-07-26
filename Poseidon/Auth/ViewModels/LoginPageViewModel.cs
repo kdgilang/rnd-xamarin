@@ -102,7 +102,7 @@ namespace Poseidon.Auth.ViewModels
 
             try
             {
-                await _loginUseCase.LoginAsync(Email, Password);
+                await _loginUseCase.ExecuteAsync(Email, Password);
                 await Shell.Current.GoToAsync("///home");
 
                 IsSubmitted = false;

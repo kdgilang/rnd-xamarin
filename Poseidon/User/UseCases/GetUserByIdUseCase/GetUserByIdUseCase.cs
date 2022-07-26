@@ -16,7 +16,7 @@ namespace Poseidon.User.UseCases.GetUserByIdUseCase
             _graphqlService = DependencyService.Get<IGraphqlService>();
         }
 
-        public async Task<GetUserByIdResponse> GetUserByIdAsycn(int id)
+        public async Task<GetUserByIdResponse> ExecuteAsync(int id)
         {
             try
             {

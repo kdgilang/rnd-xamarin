@@ -64,14 +64,14 @@ namespace Poseidon.Models.Print
 
         public ICommand PrintCommand => new Command(async () =>
         {
-            //await _bluetoothService.Print(SelectedDevice, Receipt.Template());
+            await _bluetoothService.Print(SelectedDevice, Receipt.Template());
             PrintText = "Loading...";
 
         });
 
         public PrintPageViewModel ()
         {
-            //_bluetoothService = DependencyService.Get<IBluetoothService>();
+            _bluetoothService = DependencyService.Get<IBluetoothService>();
 
             //var list = _bluetoothService?.GetDevices();
             //Devices.Clear();
