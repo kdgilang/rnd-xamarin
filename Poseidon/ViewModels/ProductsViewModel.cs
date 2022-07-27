@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using System.Linq;
 using System.Collections.Generic;
-using Poseidon.Product.UseCases.GetProductsByCompanyIdUseCase;
 using Poseidon.Product.Models;
 using Poseidon.Models;
 using Poseidon.Configs;
+using Poseidon.Product.UseCases.GetProductsByCompanyIdUseCase;
 
 namespace Poseidon.ViewModels
 {
@@ -17,44 +17,48 @@ namespace Poseidon.ViewModels
         public ProductsViewModel()
         {
             _getProductsByCompanyId = DependencyService.Get<IGetProductsByCompanyIdUseCase>();
-
-            PopulateDataAsync();
         }
 
         private List<ProductModel> _products;
         public List<ProductModel> Products
         {
+            get => _products;
+
             set
             {
                 _products = value;
                 ActiveProducts = value;
                 OnPropertyChanged("Products");
             }
-
-            get => _products;
         }
 
         private List<ProductModel> _activeProducts;
         public List<ProductModel> ActiveProducts
         {
+            get => _activeProducts?.Where(item => item.IsActive).ToList();
+
             set
             {
                 _activeProducts = value;
+                IsActiveProductsEmpty = ActiveProducts.Count() < 1;
                 OnPropertyChanged("ActiveProducts");
             }
+        }
 
-            get => _activeProducts?.Where(item => item.IsActive).ToList();
+        private bool _isActiveProductsEmpty;
+        public bool IsActiveProductsEmpty
+        {
+            get => _isActiveProductsEmpty;
+
+            set
+            {
+                _isActiveProductsEmpty = value;
+                OnPropertyChanged("IsActiveProductsEmpty");
+            }
         }
 
         public async Task PopulateDataAsync()
         {
-            if (IsLoading)
-            {
-                return;
-            }
-
-            IsLoading = true;
-
             try
             {
                 var res = await _getProductsByCompanyId.ExecuteAsync(CompanyId);
@@ -79,14 +83,16 @@ namespace Poseidon.ViewModels
                         }
                     }
                 ).ToList();
-
-                IsLoading = false;
             }
             catch(Exception e)
             {
-                IsLoading = false;
                 await App.Current.MainPage.DisplayAlert("Unable to load data", $"{e.Message}", "ok");
             }
+        }
+
+        public virtual async void OnAppearing()
+        {
+            await PopulateDataAsync();
         }
     }
 }

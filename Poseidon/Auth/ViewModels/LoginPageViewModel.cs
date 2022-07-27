@@ -104,14 +104,15 @@ namespace Poseidon.Auth.ViewModels
             {
                 await _loginUseCase.ExecuteAsync(Email, Password);
                 await Shell.Current.GoToAsync("///home");
-
-                IsSubmitted = false;
             }
             catch (Exception e)
             {
-                IsSubmitted = false;
                 await Application.Current.MainPage
                     .DisplayAlert("Login failed", $"{e.Message}, \nplease try again.", "Ok");
+            }
+            finally
+            {
+                IsSubmitted = false;
             }
         });
 

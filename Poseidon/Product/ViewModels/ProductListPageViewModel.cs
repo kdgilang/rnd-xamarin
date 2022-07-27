@@ -1,17 +1,20 @@
 ﻿using System;
 using Xamarin.Forms;
 using System.Linq;
-using System.Collections.Generic;
 using Poseidon.Product.Models;
 using System.Windows.Input;
 using Poseidon.ViewModels;
+using Poseidon.Product.UseCases.UpdateProductByIdUseCase;
 
 namespace Poseidon.Product.ViewModels
 {
     public class ProductListPageViewModel : ProductsViewModel
     {
+        private readonly IUpdateProductByIdUseCase _updateProductById;
+
         public ProductListPageViewModel()
         {
+            _updateProductById = DependencyService.Get<IUpdateProductByIdUseCase>();
         }
 
         public ICommand EditCommandAsync =>
@@ -36,8 +39,25 @@ namespace Poseidon.Product.ViewModels
                 if (isDelete)
                 {
                     IsLoading = true;
-                    Products = Products.Where(item => item.Id == id).ToList();
-                    IsLoading = false;
+                    try
+                    {
+                        Products.Single(item => item.Id == id).IsActive = false;
+
+                        var resProduct = await _updateProductById.ExecuteAsync
+                            (
+                                Products.FirstOrDefault(x => x.Id == id)
+                            );
+
+                        Products = Products.Where(x => x.IsActive).ToList();
+                    }
+                    catch (Exception e)
+                    {
+                        await App.Current.MainPage.DisplayAlert("Error", $"{e.Message}", "ok");
+                    }
+                    finally
+                    {
+                        IsLoading = false;
+                    }
                 }
             }
         );
@@ -68,7 +88,16 @@ namespace Poseidon.Product.ViewModels
         public ICommand RefreshCommandAsync =>
             new Command(async () =>
             {
+                if(IsLoading)
+                {
+                    return;
+                }
+
+                IsLoading = true;
+
                 await PopulateDataAsync();
+
+                IsLoading = false;
             }
         );
 
@@ -78,5 +107,10 @@ namespace Poseidon.Product.ViewModels
                 await App.Current.MainPage.DisplayAlert($"Add", "This action is TBA", "ok");
             }
         );
+
+        public override void OnAppearing()
+        {
+           base.OnAppearing();
+        }
     }
 }

@@ -25,6 +25,7 @@ namespace Poseidon.Product.UseCases.GetProductsByCompanyIdUseCase
                     attributes{
                     name
                     quantity
+                    quantity_notify
                     description
                     is_active
                     createdAt

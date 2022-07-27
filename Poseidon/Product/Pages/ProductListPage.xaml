@@ -17,11 +17,17 @@
                 x:Name="SearchBar"
                 SearchCommand="{Binding SearchCommand}"
                 SearchCommandParameter="{Binding Text, Source={x:Reference SearchBar}}" />
+            <Label
+                IsVisible="{Binding IsActiveProductsEmpty}"
+                Text="No active products found"
+                Padding="10, 50"
+                HorizontalOptions="CenterAndExpand"/>
             <ListView
                 x:Name="ProductList"
+                CachingStrategy="RecycleElement"
                 HasUnevenRows="True"
                 IsPullToRefreshEnabled="True"
-                IsRefreshing="{Binding IsLoading}"
+                IsRefreshing="{Binding IsLoading, Mode=OneWay}"
                 SeparatorVisibility="None"
                 RefreshCommand="{Binding RefreshCommandAsync}"
                 ItemsSource="{Binding ActiveProducts}"

@@ -1,31 +1,30 @@
-﻿namespace Poseidon.Product.UseCases.GetProductsByCompanyIdUseCase
+﻿namespace Poseidon.Product.UseCases.UpdateProductByIdUseCase
 {
     using System;
-    using System.Collections.Generic;
     using Newtonsoft.Json;
 
-    public partial class GetProductsByCompanyIdResponse
+    public partial class UpdateProductByIdResponse
     {
-        [JsonProperty("products")]
-        public Products Products { get; set; }
+        [JsonProperty("updateProduct")]
+        public UpdateProduct UpdateProduct { get; set; }
     }
 
-    public partial class Products
+    public partial class UpdateProduct
     {
         [JsonProperty("data")]
-        public List<Datum> Data { get; set; }
+        public UpdateProductData Data { get; set; }
     }
 
-    public partial class Datum
+    public partial class UpdateProductData
     {
         [JsonProperty("id")]
         public long Id { get; set; }
 
         [JsonProperty("attributes")]
-        public ProductResponse Attributes { get; set; }
+        public PurpleAttributes Attributes { get; set; }
     }
 
-    public partial class ProductResponse
+    public partial class PurpleAttributes
     {
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -70,10 +69,10 @@
     public partial class ImageData
     {
         [JsonProperty("attributes")]
-        public ImageAttributes Attributes { get; set; }
+        public FluffyAttributes Attributes { get; set; }
     }
 
-    public partial class ImageAttributes
+    public partial class FluffyAttributes
     {
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -85,3 +84,4 @@
         public string Caption { get; set; }
     }
 }
+

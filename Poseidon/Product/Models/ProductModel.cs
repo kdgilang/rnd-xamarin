@@ -11,6 +11,8 @@ namespace Poseidon.Product.Models
 
         public long Quantity { get; set; }
 
+        public long QuantityNotify { get; set; }
+
         public string Description { get; set; }
 
         public bool IsActive { get; set; }

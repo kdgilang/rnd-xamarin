@@ -16,6 +16,8 @@ namespace Poseidon.Product.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
+            ((ProductListPageViewModel)BindingContext).OnAppearing();
         }
     }
 }
