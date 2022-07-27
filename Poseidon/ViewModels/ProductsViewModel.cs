@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using System.Linq;
 using System.Collections.Generic;
@@ -12,7 +13,6 @@ namespace Poseidon.ViewModels
     public class ProductsViewModel : UserViewModel
     {
         private readonly IGetProductsByCompanyIdUseCase _getProductsByCompanyId;
-        private List<ProductModel> _products;
 
         public ProductsViewModel()
         {
@@ -21,44 +21,72 @@ namespace Poseidon.ViewModels
             PopulateDataAsync();
         }
 
+        private List<ProductModel> _products;
         public List<ProductModel> Products
         {
             set
             {
                 _products = value;
+                ActiveProducts = value;
                 OnPropertyChanged("Products");
             }
+
             get => _products;
+        }
+
+        private List<ProductModel> _activeProducts;
+        public List<ProductModel> ActiveProducts
+        {
+            set
+            {
+                _activeProducts = value;
+                OnPropertyChanged("ActiveProducts");
+            }
+
+            get => _activeProducts?.Where(item => item.IsActive).ToList();
         }
 
         public async Task PopulateDataAsync()
         {
+            if (IsLoading)
+            {
+                return;
+            }
+
             IsLoading = true;
 
-            var res = await _getProductsByCompanyId.ExecuteAsync(CompanyId);
-            Products = res?.Products?.Data?.Select(item =>
-                new ProductModel
-                {
-                    Id = item.Id,
-                    Name = item?.Attributes?.Name,
-                    Description = item.Attributes.Description,
-                    Price = item.Attributes.Price,
-                    MemberPrice = item.Attributes.MemberPrice,
-                    Discount = item.Attributes.Discount,
-                    IsActive = item.Attributes.IsActive,
-                    CreatedAt = item.Attributes.CreatedAt,
-                    UpdatedAt = item.Attributes.UpdatedAt,
-                    Quantity = item.Attributes.Quantity,
-                    Image = new ImageModel
+            try
+            {
+                var res = await _getProductsByCompanyId.ExecuteAsync(CompanyId);
+                Products = res?.Products?.Data?.Select(item =>
+                    new ProductModel
                     {
-                        Url = $"{AppSettings.BASE_URL}{item.Attributes.Image.Data.Attributes.Url}",
-                        Caption = item.Attributes.Image.Data.Attributes.Caption,
-                        Name = item.Attributes.Image.Data.Attributes.Name
+                        Id = item.Id,
+                        Name = item?.Attributes?.Name,
+                        Description = item.Attributes.Description,
+                        Price = item.Attributes.Price,
+                        MemberPrice = item.Attributes.MemberPrice,
+                        Discount = item.Attributes.Discount,
+                        IsActive = item.Attributes.IsActive,
+                        CreatedAt = item.Attributes.CreatedAt,
+                        UpdatedAt = item.Attributes.UpdatedAt,
+                        Quantity = item.Attributes.Quantity,
+                        Image = new ImageModel
+                        {
+                            Url = $"{AppSettings.BASE_URL}{item.Attributes.Image.Data.Attributes.Url}",
+                            Caption = item.Attributes.Image.Data.Attributes.Caption,
+                            Name = item.Attributes.Image.Data.Attributes.Name
+                        }
                     }
-                }
-            ).ToList();
+                ).ToList();
 
-            IsLoading = false;
+                IsLoading = false;
+            }
+            catch(Exception e)
+            {
+                IsLoading = false;
+                await App.Current.MainPage.DisplayAlert("Unable to load data", $"{e.Message}", "ok");
+            }
         }
     }
 }

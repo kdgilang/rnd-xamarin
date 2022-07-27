@@ -3,74 +3,91 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Poseidon.Product.Pages.ProductListPage">
-    <ContentPage.Content>
-        <ListView
-            HasUnevenRows="True"
-            IsPullToRefreshEnabled="True"
-            IsRefreshing="{Binding IsLoading}"
-            SeparatorVisibility="None"
-            RefreshCommand="{Binding RefreshCommandAsync}"
-            x:Name="ProductList"
-            ItemsSource="{Binding Products}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell
-                        x:Name="Item">
-                        <SwipeView>
-                            <SwipeView.RightItems>
-                                <SwipeItems>
-                                    <SwipeItem
-                                        Text="Edit"
-                                        IconImageSource="favorite.png"
-                                        BackgroundColor="#27b376"
-                                        BindingContext="{Binding Source={x:Reference ProductList}, Path=BindingContext}"
-                                        Command="{Binding EditCommandAsync}"
-                                        CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" />
-                                    <SwipeItem
-                                        Text="Delete"
-                                        IconImageSource="delete.png"
-                                        BackgroundColor="#fe4d4d"
-                                        BindingContext="{Binding Source={x:Reference ProductList}, Path=BindingContext}"
-                                        Command="{Binding DeleteCommandAsync}"
-                                        CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
-                                </SwipeItems>
-                            </SwipeView.RightItems>
-                            <Grid
-                                Padding="10">
-                                <Frame
-                                    CornerRadius="5"
-                                    HasShadow="True">
-                                    <StackLayout
-                                        Orientation="Horizontal">
-                                        <Image
-                                            Source="{Binding Image.Url}"
-                                            WidthRequest="100"
-                                            VerticalOptions="Center" />
-                                        <StackLayout
-                                            VerticalOptions="Center"
-                                            HorizontalOptions="StartAndExpand">
-                                            <Label
-                                                FontSize="Large"
-                                                LineBreakMode="TailTruncation"
-                                                Text="{Binding Name}"
-                                                WidthRequest="240"
-                                                VerticalOptions="Center" />
-                                            <Label
-                                                LineBreakMode="TailTruncation"
-                                                WidthRequest="240"
-                                                HorizontalTextAlignment="Start"
-                                                HorizontalOptions="Start"
-                                                Text="{Binding Description}"
-                                                VerticalOptions="Center" />
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Icon="icon_plus"
+            Text="Add"
+            Command="{Binding AddCommandAsync}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar
+                x:Name="SearchBar"
+                SearchCommand="{Binding SearchCommand}"
+                SearchCommandParameter="{Binding Text, Source={x:Reference SearchBar}}" />
+            <ListView
+                x:Name="ProductList"
+                HasUnevenRows="True"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsLoading}"
+                SeparatorVisibility="None"
+                RefreshCommand="{Binding RefreshCommandAsync}"
+                ItemsSource="{Binding ActiveProducts}"
+                SelectionMode="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem
+                                            Text="Edit"
+                                            IconImageSource="icon_pen"
+                                            BackgroundColor="#27b376"
+                                            Command="{Binding BindingContext.EditCommandAsync, Source={x:Reference ProductList}}"
+                                            CommandParameter="{Binding .}" />
+                                         <SwipeItem
+                                            Text="Archive"
+                                            IconImageSource="icon_archive"
+                                            BackgroundColor="#f2b100"
+                                            Command="{Binding BindingContext.ArchiveCommandAsync, Source={x:Reference ProductList}}"
+                                            CommandParameter="{Binding Id}"/>
+                                        <SwipeItem
+                                            Text="Delete"
+                                            IconImageSource="icon_trash"
+                                            BackgroundColor="#fe4d4d"
+                                            Command="{Binding BindingContext.DeleteCommandAsync, Source={x:Reference ProductList}}"
+                                            CommandParameter="{Binding Id}"/>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <Grid
+                                    x:Name="Item"
+                                    Padding="10">
+                                    <Frame
+                                        CornerRadius="5"
+                                        HasShadow="True">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image
+                                                Source="{Binding Image.Url}"
+                                                WidthRequest="100"
+                                                VerticalOptions="Center" />
+                                            <StackLayout
+                                                HorizontalOptions="StartAndExpand">
+                                                <Label
+                                                    FontSize="Large"
+                                                    LineBreakMode="TailTruncation"
+                                                    Text="{Binding Name}"
+                                                    WidthRequest="240"
+                                                    VerticalOptions="Center" />
+                                                <Label
+                                                    LineBreakMode="TailTruncation"
+                                                    WidthRequest="240"
+                                                    HorizontalTextAlignment="Start"
+                                                    HorizontalOptions="Start"
+                                                    Text="{Binding Description}"
+                                                    VerticalOptions="Center" />
+
+                                            </StackLayout>
                                         </StackLayout>
-                                    </StackLayout>
-                                </Frame>
-                            </Grid>
-                        </SwipeView>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                                    </Frame>
+                                </Grid>
+                            </SwipeView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
