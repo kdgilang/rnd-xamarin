@@ -72,7 +72,7 @@
                                             <StackLayout
                                                 HorizontalOptions="StartAndExpand">
                                                 <Label
-                                                    FontSize="Large"
+                                                    FontSize="Medium"
                                                     LineBreakMode="TailTruncation"
                                                     Text="{Binding Name}"
                                                     WidthRequest="240"
