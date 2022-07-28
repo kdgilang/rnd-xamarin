@@ -75,11 +75,11 @@
                                                     FontSize="Medium"
                                                     LineBreakMode="TailTruncation"
                                                     Text="{Binding Name}"
-                                                    WidthRequest="240"
+                                                    WidthRequest="300"
                                                     VerticalOptions="Center" />
                                                 <Label
                                                     LineBreakMode="TailTruncation"
-                                                    WidthRequest="240"
+                                                    WidthRequest="300"
                                                     HorizontalTextAlignment="Start"
                                                     HorizontalOptions="Start"
                                                     Text="{Binding Description}"
