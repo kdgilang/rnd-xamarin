@@ -3,21 +3,21 @@ using Poseidon.Product.ViewModels;
 
 namespace Poseidon.Product.Pages
 {
-    public partial class ProductListPage : ContentPage
+    public partial class ProductsPage : ContentPage
     {
 
-        public ProductListPage()
+        public ProductsPage()
         {
             InitializeComponent();
 
-            BindingContext = new ProductListPageViewModel();
+            BindingContext = new ProductsPageViewModel();
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            ((ProductListPageViewModel)BindingContext).OnAppearing();
+            ((ProductsPageViewModel)BindingContext).OnAppearing();
         }
     }
 }

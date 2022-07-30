@@ -8,11 +8,11 @@ using Poseidon.Product.UseCases.UpdateProductByIdUseCase;
 
 namespace Poseidon.Product.ViewModels
 {
-    public class ProductListPageViewModel : ProductsViewModel
+    public class ProductsPageViewModel : ProductsViewModel
     {
         private readonly IUpdateProductByIdUseCase _updateProductById;
 
-        public ProductListPageViewModel()
+        public ProductsPageViewModel()
         {
             _updateProductById = DependencyService.Get<IUpdateProductByIdUseCase>();
         }

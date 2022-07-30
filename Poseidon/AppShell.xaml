@@ -135,7 +135,7 @@
         Route="product">
         <ShellContent
             Style="{StaticResource MenuItemShell}"
-            ContentTemplate="{DataTemplate views:Product.Pages.ProductListPage}"
+            ContentTemplate="{DataTemplate views:Product.Pages.ProductsPage}"
         />
     </FlyoutItem>
 
