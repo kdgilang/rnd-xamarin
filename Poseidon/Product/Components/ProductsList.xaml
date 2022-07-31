@@ -2,21 +2,38 @@
 <ContentView
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="Poseidon.Product.Components.ProductsList">
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    x:Class="Poseidon.Product.Components.ProductsList"
+    x:Name="producstList">
     <ContentView.Content>
         <ListView
-            x:Name="productList"
             CachingStrategy="RecycleElementAndDataTemplate"
             HasUnevenRows="True"
             IsPullToRefreshEnabled="True"
             IsRefreshing="{Binding IsBusy, Mode=OneWay}"
             SeparatorVisibility="None"
             RefreshCommand="{Binding RefreshCommand}"
-            ItemsSource="{Binding Products}"
-            SelectionMode="None">
+            ItemsSource="{Binding Products}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
+                    <ViewCell android:ViewCell.IsContextActionsLegacyModeEnabled="true">
+                       <ViewCell.ContextActions>    
+                           <MenuItem
+                               Command="{Binding EditCommand, Source={x:Reference producstList}}"
+                               CommandParameter="{Binding .}"
+                               Text="Edit"
+                               IconImageSource="icon_pen"/>
+                           <MenuItem
+                               Command="{Binding ArchiveCommand, Source={x:Reference producstList}}"
+                               CommandParameter="{Binding Id}"
+                               Text="Archive"
+                               IconImageSource="icon_archive"/>
+                           <MenuItem
+                               Command="{Binding DeleteCommand, Source={x:Reference producstList}}"
+                               CommandParameter="{Binding Id}"
+                               Text="Delete"
+                               IconImageSource="icon_trash" />
+                       </ViewCell.ContextActions>
                         <SwipeView>
                             <SwipeView.RightItems>
                                 <SwipeItems>
@@ -24,19 +41,19 @@
                                         Text="Edit"
                                         IconImageSource="icon_pen"
                                         BackgroundColor="#27b376"
-                                        Command="{Binding BindingContext.EditCommandAsync, Source={x:Reference productList}}"
+                                        Command="{Binding EditCommandAsync, Source={x:Reference producstList}}"
                                         CommandParameter="{Binding .}" />
                                     <SwipeItem
                                         Text="Archive"
                                         IconImageSource="icon_archive"
                                         BackgroundColor="#f2b100"
-                                        Command="{Binding BindingContext.ArchiveCommand, Source={x:Reference productList}}"
+                                        Command="{Binding ArchiveCommand, Source={x:Reference producstList}}"
                                         CommandParameter="{Binding Id}"/>
                                     <SwipeItem
                                         Text="Delete"
                                         IconImageSource="icon_trash"
                                         BackgroundColor="#fe4d4d"
-                                        Command="{Binding DeleteCommand, Source={x:Reference productList}}"
+                                        Command="{Binding DeleteCommand, Source={x:Reference producstList}}"
                                         CommandParameter="{Binding Id}" />
                                 </SwipeItems>
                             </SwipeView.RightItems>
@@ -52,6 +69,7 @@
                                         <StackLayout
                                             HorizontalOptions="StartAndExpand">
                                             <Label
+                                                FontSize="Medium"
                                                 LineBreakMode="TailTruncation"
                                                 Text="{Binding Name}"
                                                 WidthRequest="300"

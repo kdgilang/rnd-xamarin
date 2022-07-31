@@ -47,13 +47,13 @@
                 Padding="10, 50"
                 HorizontalOptions="CenterAndExpand"/>
 
-                <!--<components:ProductsList
+                <components:ProductsList
                     Products="{Binding ArchivedProducts}"
                     IsBusy="{Binding IsLoading}"
                     EditCommand="{Binding EditCommandAsync}"
                     ArchiveCommand="{Binding ArchiveCommandAsync}"
                     DeleteCommand="{Binding DeleteCommandAsync}"
-                    RefreshCommand="{Binding RefreshCommandAsync}" />-->
+                    RefreshCommand="{Binding RefreshCommandAsync}" />
         </StackLayout>
     </ContentPage>
 </TabbedPage>
