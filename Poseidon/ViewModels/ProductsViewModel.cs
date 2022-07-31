@@ -28,6 +28,7 @@ namespace Poseidon.ViewModels
             {
                 _products = value;
                 ActiveProducts = value;
+                ArchivedProducts = value;
                 OnPropertyChanged("Products");
             }
         }
@@ -45,6 +46,19 @@ namespace Poseidon.ViewModels
             }
         }
 
+        private List<ProductModel> _archivedProducts;
+        public List<ProductModel> ArchivedProducts
+        {
+            get => _archivedProducts?.Where(item => !item.IsActive).ToList();
+
+            set
+            {
+                _archivedProducts = value;
+                IsArchivedProductsEmpty = ArchivedProducts.Count() < 0;
+                OnPropertyChanged("ArchivedProducts");
+            }
+        }
+
         private bool _isActiveProductsEmpty;
         public bool IsActiveProductsEmpty
         {
@@ -57,10 +71,28 @@ namespace Poseidon.ViewModels
             }
         }
 
+        private bool _isArchivedProductsEmpty;
+        public bool IsArchivedProductsEmpty
+        {
+            get => _isArchivedProductsEmpty;
+
+            set
+            {
+                _isArchivedProductsEmpty = value;
+                OnPropertyChanged("IsArchivedProductsEmpty");
+            }
+        }
+
         public async Task PopulateDataAsync()
         {
+            if (IsLoading)
+            {
+                return;
+            }
+
             try
             {
+                IsLoading = true;
                 var res = await _getProductsByCompanyId.ExecuteAsync(CompanyId);
                 Products = res?.Products?.Data?.Select(item =>
                     new ProductModel
@@ -87,6 +119,10 @@ namespace Poseidon.ViewModels
             catch(Exception e)
             {
                 await App.Current.MainPage.DisplayAlert("Unable to load data", $"{e.Message}", "ok");
+            }
+            finally
+            {
+                IsLoading = false;
             }
         }
 

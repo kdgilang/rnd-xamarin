@@ -1,99 +1,59 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="Poseidon.Product.Pages.ProductsPage">
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:components="clr-namespace:Poseidon.Product.Components"
+            x:Class="Poseidon.Product.Pages.ProductsPage"
+            BarBackgroundColor="{StaticResource colorSecondary}">
 
-    <ContentPage.ToolbarItems>
+    <TabbedPage.ToolbarItems>
         <ToolbarItem
             Icon="icon_plus"
             Text="Add"
             Command="{Binding AddCommandAsync}" />
-    </ContentPage.ToolbarItems>
+    </TabbedPage.ToolbarItems>
 
-    <ContentPage.Content>
+    <ContentPage Title="Products">
         <StackLayout>
             <SearchBar
                 x:Name="SearchBar"
                 SearchCommand="{Binding SearchCommand}"
                 SearchCommandParameter="{Binding Text, Source={x:Reference SearchBar}}" />
+
             <Label
                 IsVisible="{Binding IsActiveProductsEmpty}"
                 Text="No active products found"
                 Padding="10, 50"
                 HorizontalOptions="CenterAndExpand"/>
-            <ListView
-                x:Name="ProductList"
-                CachingStrategy="RecycleElement"
-                HasUnevenRows="True"
-                IsPullToRefreshEnabled="True"
-                IsRefreshing="{Binding IsLoading, Mode=OneWay}"
-                SeparatorVisibility="None"
-                RefreshCommand="{Binding RefreshCommandAsync}"
-                ItemsSource="{Binding ActiveProducts}"
-                SelectionMode="None">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <SwipeView>
-                                <SwipeView.RightItems>
-                                    <SwipeItems>
-                                        <SwipeItem
-                                            Text="Edit"
-                                            IconImageSource="icon_pen"
-                                            BackgroundColor="#27b376"
-                                            Command="{Binding BindingContext.EditCommandAsync, Source={x:Reference ProductList}}"
-                                            CommandParameter="{Binding .}" />
-                                         <SwipeItem
-                                            Text="Archive"
-                                            IconImageSource="icon_archive"
-                                            BackgroundColor="#f2b100"
-                                            Command="{Binding BindingContext.ArchiveCommandAsync, Source={x:Reference ProductList}}"
-                                            CommandParameter="{Binding Id}"/>
-                                        <SwipeItem
-                                            Text="Delete"
-                                            IconImageSource="icon_trash"
-                                            BackgroundColor="#fe4d4d"
-                                            Command="{Binding BindingContext.DeleteCommandAsync, Source={x:Reference ProductList}}"
-                                            CommandParameter="{Binding Id}"/>
-                                    </SwipeItems>
-                                </SwipeView.RightItems>
-                                <Grid
-                                    x:Name="Item"
-                                    Padding="10">
-                                    <Frame
-                                        CornerRadius="5"
-                                        HasShadow="True">
-                                        <StackLayout Orientation="Horizontal">
-                                            <Image
-                                                Source="{Binding Image.Url}"
-                                                WidthRequest="100"
-                                                VerticalOptions="Center" />
-                                            <StackLayout
-                                                HorizontalOptions="StartAndExpand">
-                                                <Label
-                                                    FontSize="Medium"
-                                                    LineBreakMode="TailTruncation"
-                                                    Text="{Binding Name}"
-                                                    WidthRequest="300"
-                                                    VerticalOptions="Center" />
-                                                <Label
-                                                    LineBreakMode="TailTruncation"
-                                                    WidthRequest="300"
-                                                    HorizontalTextAlignment="Start"
-                                                    HorizontalOptions="Start"
-                                                    Text="{Binding Description}"
-                                                    VerticalOptions="Center" />
 
-                                            </StackLayout>
-                                        </StackLayout>
-                                    </Frame>
-                                </Grid>
-                            </SwipeView>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <components:ProductsList
+                Products="{Binding ActiveProducts}"
+                IsBusy="{Binding IsLoading}"
+                EditCommand="{Binding EditCommandAsync}"
+                ArchiveCommand="{Binding ArchiveCommandAsync}"
+                DeleteCommand="{Binding DeleteCommandAsync}"
+                RefreshCommand="{Binding RefreshCommandAsync}" />
         </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+    </ContentPage>
+
+    <ContentPage Title="Archived Products">
+        <StackLayout>
+            <SearchBar
+                x:Name="SearchBarArchivedProducts"
+                SearchCommand="{Binding SearchCommand}"
+                SearchCommandParameter="{Binding Text, Source={x:Reference SearchBarArchivedProducts}}" />
+            <Label
+                IsVisible="{Binding IsArchivedProductsEmpty}"
+                Text="No archived products found"
+                Padding="10, 50"
+                HorizontalOptions="CenterAndExpand"/>
+
+                <!--<components:ProductsList
+                    Products="{Binding ArchivedProducts}"
+                    IsBusy="{Binding IsLoading}"
+                    EditCommand="{Binding EditCommandAsync}"
+                    ArchiveCommand="{Binding ArchiveCommandAsync}"
+                    DeleteCommand="{Binding DeleteCommandAsync}"
+                    RefreshCommand="{Binding RefreshCommandAsync}" />-->
+        </StackLayout>
+    </ContentPage>
+</TabbedPage>

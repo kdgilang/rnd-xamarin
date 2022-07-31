@@ -88,16 +88,7 @@ namespace Poseidon.Product.ViewModels
         public ICommand RefreshCommandAsync =>
             new Command(async () =>
             {
-                if(IsLoading)
-                {
-                    return;
-                }
-
-                IsLoading = true;
-
                 await PopulateDataAsync();
-
-                IsLoading = false;
             }
         );
 
