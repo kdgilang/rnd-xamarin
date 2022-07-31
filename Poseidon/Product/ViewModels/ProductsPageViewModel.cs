@@ -48,7 +48,7 @@ namespace Poseidon.Product.ViewModels
                                 Products.FirstOrDefault(x => x.Id == id)
                             );
 
-                        Products = Products.Where(x => x.IsActive).ToList();
+                        Products = Products;
                     }
                     catch (Exception e)
                     {
