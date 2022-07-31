@@ -8,8 +8,8 @@ namespace Poseidon.Product.Components
 {
     public partial class ProductsList : ContentView
     {
-        public static readonly BindableProperty ProductsProperty = BindableProperty.Create(
-            "Products",
+        public static readonly BindableProperty ItemsProperty = BindableProperty.Create(
+            "Items",
             typeof(List<ProductModel>),
             typeof(ProductsList),
             null);
@@ -49,12 +49,12 @@ namespace Poseidon.Product.Components
             InitializeComponent();
         }
 
-        public List<ProductModel> Products
+        public List<ProductModel> Items
         {
-            get => (List<ProductModel>)GetValue(ProductsProperty);
+            get => (List<ProductModel>)GetValue(ItemsProperty);
             set
             {
-                SetValue(ProductsProperty, value);
+                SetValue(ItemsProperty, value);
             }
         }
 

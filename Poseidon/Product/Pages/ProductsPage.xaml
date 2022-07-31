@@ -26,7 +26,7 @@
                 HorizontalOptions="CenterAndExpand"/>
 
             <components:ProductsList
-                Products="{Binding ActiveProducts}"
+                Items="{Binding ActiveProducts}"
                 IsBusy="{Binding IsLoading}"
                 EditCommand="{Binding EditCommandAsync}"
                 ArchiveCommand="{Binding ArchiveCommandAsync}"
@@ -48,7 +48,7 @@
                 HorizontalOptions="CenterAndExpand"/>
 
                 <components:ProductsList
-                    Products="{Binding ArchivedProducts}"
+                    Items="{Binding ArchivedProducts}"
                     IsBusy="{Binding IsLoading}"
                     EditCommand="{Binding EditCommandAsync}"
                     ArchiveCommand="{Binding ArchiveCommandAsync}"
