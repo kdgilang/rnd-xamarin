@@ -1,7 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
 using Poseidon.Configs;
-using Poseidon.ViewModels;
 
 namespace Poseidon
 {
@@ -24,8 +23,6 @@ namespace Poseidon
 
                 if (!string.IsNullOrEmpty(userId))
                 {
-                    var product = new ProductsViewModel();
-                    await product.PopulateDataAsync();
                     await Shell.Current.GoToAsync("//home");
                 }
             }
