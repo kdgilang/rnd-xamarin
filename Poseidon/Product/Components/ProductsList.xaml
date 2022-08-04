@@ -59,7 +59,7 @@
                                         Command="{Binding ToggleArchiveCommand, Source={x:Reference producstList}}"
                                         CommandParameter="{Binding .}"/>
                                      <SwipeItem
-                                        IsVisible="{Binding !IsActive}"
+                                        IsVisible="{Binding !!IsActive}"
                                         Text="Unarchive"
                                         IconImageSource="icon_archive"
                                         BackgroundColor="#f2b100"
