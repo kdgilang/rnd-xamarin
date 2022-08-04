@@ -13,27 +13,35 @@
             IsRefreshing="{Binding IsBusy, Mode=OneWay, Source={x:Reference producstList}}"
             SeparatorVisibility="None"
             RefreshCommand="{Binding RefreshCommand, Source={x:Reference producstList}}"
-            ItemsSource="{Binding Items, Source={x:Reference producstList}}">
+            ItemsSource="{Binding Items, Source={x:Reference producstList}}"
+            SelectionMode="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell android:ViewCell.IsContextActionsLegacyModeEnabled="true">
-                       <ViewCell.ContextActions>    
+                       <!--<ViewCell.ContextActions>    
                            <MenuItem
                                Command="{Binding EditCommand, Source={x:Reference producstList}}"
                                CommandParameter="{Binding .}"
                                Text="Edit"
                                IconImageSource="icon_pen"/>
                            <MenuItem
+                               IsEnabled="{Binding IsActive}"
                                Command="{Binding ArchiveCommand, Source={x:Reference producstList}}"
-                               CommandParameter="{Binding Id}"
+                               CommandParameter="{Binding .}"
                                Text="Archive"
+                               IconImageSource="icon_archive"/>
+                           <MenuItem
+                               IsEnabled="{Binding !IsActive}"
+                               Command="{Binding ArchiveCommand, Source={x:Reference producstList}}"
+                               CommandParameter="{Binding .}"
+                               Text="Unarchive"
                                IconImageSource="icon_archive"/>
                            <MenuItem
                                Command="{Binding DeleteCommand, Source={x:Reference producstList}}"
                                CommandParameter="{Binding Id}"
                                Text="Delete"
                                IconImageSource="icon_trash" />
-                       </ViewCell.ContextActions>
+                       </ViewCell.ContextActions>-->
                         <SwipeView>
                             <SwipeView.RightItems>
                                 <SwipeItems>
@@ -44,11 +52,19 @@
                                         Command="{Binding EditCommandAsync, Source={x:Reference producstList}}"
                                         CommandParameter="{Binding .}" />
                                     <SwipeItem
+                                        IsVisible="{Binding IsActive}"
                                         Text="Archive"
                                         IconImageSource="icon_archive"
                                         BackgroundColor="#f2b100"
-                                        Command="{Binding ArchiveCommand, Source={x:Reference producstList}}"
-                                        CommandParameter="{Binding Id}"/>
+                                        Command="{Binding ToggleArchiveCommand, Source={x:Reference producstList}}"
+                                        CommandParameter="{Binding .}"/>
+                                     <SwipeItem
+                                        IsVisible="{Binding !IsActive}"
+                                        Text="Unarchive"
+                                        IconImageSource="icon_archive"
+                                        BackgroundColor="#f2b100"
+                                        Command="{Binding ToggleArchiveCommand, Source={x:Reference producstList}}"
+                                        CommandParameter="{Binding .}"/>
                                     <SwipeItem
                                         Text="Delete"
                                         IconImageSource="icon_trash"

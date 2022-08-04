@@ -29,7 +29,7 @@
                 Items="{Binding ActiveProducts}"
                 IsBusy="{Binding IsLoading}"
                 EditCommand="{Binding EditCommandAsync}"
-                ArchiveCommand="{Binding ArchiveCommandAsync}"
+                ToggleArchiveCommand="{Binding ToggleArchiveCommandAsync}"
                 DeleteCommand="{Binding DeleteCommandAsync}"
                 RefreshCommand="{Binding RefreshCommandAsync}" />
         </StackLayout>
@@ -47,13 +47,13 @@
                 Padding="10, 50"
                 HorizontalOptions="CenterAndExpand"/>
 
-                <components:ProductsList
-                    Items="{Binding ArchivedProducts}"
-                    IsBusy="{Binding IsLoading}"
-                    EditCommand="{Binding EditCommandAsync}"
-                    ArchiveCommand="{Binding ArchiveCommandAsync}"
-                    DeleteCommand="{Binding DeleteCommandAsync}"
-                    RefreshCommand="{Binding RefreshCommandAsync}" />
+            <components:ProductsList
+                Items="{Binding ArchivedProducts}"
+                IsBusy="{Binding IsLoading}"
+                EditCommand="{Binding EditCommandAsync}"
+                ToggleArchiveCommand="{Binding ToggleArchiveCommandAsync}"
+                DeleteCommand="{Binding DeleteCommandAsync}"
+                RefreshCommand="{Binding RefreshCommandAsync}" />
         </StackLayout>
     </ContentPage>
 </TabbedPage>

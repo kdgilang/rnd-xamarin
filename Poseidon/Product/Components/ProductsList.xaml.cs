@@ -26,8 +26,8 @@ namespace Poseidon.Product.Components
             typeof(ProductsList),
             null);
 
-        public static readonly BindableProperty ArchiveCommandProperty = BindableProperty.Create(
-            "ArchiveCommand",
+        public static readonly BindableProperty ToggleArchiveCommandProperty = BindableProperty.Create(
+            "ToggleArchiveCommand",
             typeof(ICommand),
             typeof(ProductsList),
             null);
@@ -73,10 +73,10 @@ namespace Poseidon.Product.Components
             set => SetValue(EditCommandProperty, value);
         }
 
-        public ICommand ArchiveCommand
+        public ICommand ToggleArchiveCommand
         {
-            get => (ICommand)GetValue(ArchiveCommandProperty);
-            set => SetValue(ArchiveCommandProperty, value);
+            get => (ICommand)GetValue(ToggleArchiveCommandProperty);
+            set => SetValue(ToggleArchiveCommandProperty, value);
         }
 
         public ICommand DeleteCommand

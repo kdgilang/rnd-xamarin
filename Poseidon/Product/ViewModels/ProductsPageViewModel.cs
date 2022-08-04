@@ -32,28 +32,29 @@ namespace Poseidon.Product.ViewModels
             }
         );
 
-        public ICommand ArchiveCommandAsync =>
-            new Command<long>(async (long id) =>
+        public ICommand ToggleArchiveCommandAsync =>
+            new Command<ProductModel>(async (ProductModel product) =>
             {
-                bool isDelete = await App.Current.MainPage
+                bool isAgree = await App.Current.MainPage
                     .DisplayAlert
                     (
-                        "Archive",
-                        "Are you sure want to archive this item?",
+                       product.IsActive ? "Archive" : "Unarchive",
+                        "Are you sure want to continue?",
                         "Yes",
                         "Cancel"
                      );
 
-                if (isDelete)
+                if (isAgree)
                 {
                     IsLoading = true;
+
                     try
                     {
-                        Products.Single(item => item.Id == id).IsActive = false;
+                        Products.Single(item => item.Id == product.Id).IsActive = !product.IsActive;
 
-                        var resProduct = await _updateProductById.ExecuteAsync
+                        await _updateProductById.ExecuteAsync
                             (
-                                Products.FirstOrDefault(x => x.Id == id)
+                                Products.FirstOrDefault(x => x.Id == product.Id)
                             );
 
                         Products = Products;
