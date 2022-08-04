@@ -3,8 +3,14 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:helpers="clr-namespace:Poseidon.Helpers"
     x:Class="Poseidon.Product.Components.ProductsList"
     x:Name="producstList">
+
+    <ContentView.Resources>
+      <helpers:InverseBoolConverter x:Key="InverseBoolConverter"/>
+    </ContentView.Resources>
+
     <ContentView.Content>
         <ListView
             CachingStrategy="RecycleElement"
@@ -59,7 +65,7 @@
                                         Command="{Binding ToggleArchiveCommand, Source={x:Reference producstList}}"
                                         CommandParameter="{Binding .}"/>
                                      <SwipeItem
-                                        IsVisible="{Binding !!IsActive}"
+                                        IsVisible="{Binding IsActive, Converter={StaticResource InverseBoolConverter}}"
                                         Text="Unarchive"
                                         IconImageSource="icon_archive"
                                         BackgroundColor="#f2b100"
