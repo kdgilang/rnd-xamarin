@@ -44,12 +44,6 @@ namespace Poseidon.Product.Components
             typeof(ProductsList),
             null);
 
-        public static readonly BindableProperty IsActiveProductsProperty = BindableProperty.Create(
-            "IsActiveProducts",
-            typeof(bool),
-            typeof(ProductsList),
-            true);
-
         public ProductsList()
         {
             InitializeComponent();
@@ -70,15 +64,6 @@ namespace Poseidon.Product.Components
             set
             {
                 SetValue(IsBusyProperty, value);
-            }
-        }
-
-        public bool IsActiveProducts
-        {
-            get => (bool)GetValue(IsActiveProductsProperty);
-            set
-            {
-                SetValue(IsActiveProductsProperty, value);
             }
         }
 
