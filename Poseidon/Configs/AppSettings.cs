@@ -9,7 +9,7 @@ namespace Poseidon.Configs
 
         public static string BASE_URL = "http://192.168.1.72:1337";
 
-        public static string API_TOKEN = "c96a077113e53d8a71147e9b118c82df76cb6223676caf57c2afeef7f84d9fad84f0c0ad5c5624253e72b34eedcf3ae0db2223621017e914245c2e837ec3648dc4d675e556c3fa5f7af4e08504fc758e0d75635bda50f89c488d91bfa15bb7c1f787549a55b5182ebacfd87e28007bff27002e0600c34ffb3ab6cfc3f5ce6469";
+        public static string API_TOKEN = "7e947353bf3809dcba08634e91dbe8b1702c04cfbf91ec7278760767299d09b21db16b828c96fef0d2cdc6d3c795764ee8df17198fe0c5b6fa236c68556fa18ac4733d6bbfda5aa301397e4dee688eb1f9f8ce73208b0ac21fbab9aa37d48822bf7ff92e8a5c0887663355bb8902759b343cc8732aadd4a869edd20be284b676";
 
         public static string API_BASE_URL = $"{BASE_URL}/graphql";
     }

@@ -62,27 +62,31 @@ namespace Poseidon.ViewModels
             try
             {
                 var res = await _getProductsByCompanyId.ExecuteAsync(CompanyId);
-                Products = res?.Products?.Data?.Select(item =>
-                    new ProductModel
-                    {
-                        Id = item.Id,
-                        Name = item?.Attributes?.Name,
-                        Description = item.Attributes.Description,
-                        Price = item.Attributes.Price,
-                        MemberPrice = item.Attributes.MemberPrice,
-                        Discount = item.Attributes.Discount,
-                        IsActive = item.Attributes.IsActive,
-                        CreatedAt = item.Attributes.CreatedAt,
-                        UpdatedAt = item.Attributes.UpdatedAt,
-                        Quantity = item.Attributes.Quantity,
-                        Image = new ImageModel
+
+                Device.BeginInvokeOnMainThread(() => {
+
+                    Products = res?.Products?.Data?.Select(item =>
+                        new ProductModel
                         {
-                            Url = $"{AppSettings.BASE_URL}{item.Attributes.Image.Data.Attributes.Url}",
-                            Caption = item.Attributes.Image.Data.Attributes.Caption,
-                            Name = item.Attributes.Image.Data.Attributes.Name
+                            Id = item.Id,
+                            Name = item?.Attributes?.Name,
+                            Description = item.Attributes.Description,
+                            Price = item.Attributes.Price,
+                            MemberPrice = item.Attributes.MemberPrice,
+                            Discount = item.Attributes.Discount,
+                            IsActive = item.Attributes.IsActive,
+                            CreatedAt = item.Attributes.CreatedAt,
+                            UpdatedAt = item.Attributes.UpdatedAt,
+                            Quantity = item.Attributes.Quantity,
+                            Image = new ImageModel
+                            {
+                                Url = $"{AppSettings.BASE_URL}{item.Attributes.Image.Data.Attributes.Url}",
+                                Caption = item.Attributes.Image.Data.Attributes.Caption,
+                                Name = item.Attributes.Image.Data.Attributes.Name
+                            }
                         }
-                    }
-                ).ToList();
+                    ).ToList();
+                });
             }
             catch(Exception e)
             {
@@ -90,9 +94,9 @@ namespace Poseidon.ViewModels
             }
         }
 
-        public virtual async void OnAppearing()
+        public virtual void OnAppearing()
         {
-            await PopulateDataAsync();
+            Task.Run(PopulateDataAsync);
         }
     }
 }
