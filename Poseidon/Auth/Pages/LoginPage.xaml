@@ -6,7 +6,8 @@
     BackgroundColor="{StaticResource colorPrimary}"
     NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False"
-    Shell.PresentationMode="ModalAnimated">
+    Shell.PresentationMode="ModalAnimated"
+    Visual="Material">
 
     <ContentPage.Content>
         <StackLayout

@@ -28,6 +28,7 @@ namespace Poseidon.ViewModels
             {
                 _products = value;
                 ActiveProducts = value;
+                ArchivedProducts = value;
                 OnPropertyChanged("Products");
             }
         }
@@ -54,6 +55,32 @@ namespace Poseidon.ViewModels
             {
                 _isActiveProductsEmpty = value;
                 OnPropertyChanged("IsActiveProductsEmpty");
+            }
+        }
+
+        private List<ProductModel> _archivedProducts;
+        public List<ProductModel> ArchivedProducts
+        {
+            get => _archivedProducts?.Where(item => !item.IsActive).ToList();
+
+            set
+            {
+                _archivedProducts = value;
+                IsArchivedProductsEmpty = ArchivedProducts.Count() < 0;
+                OnPropertyChanged("ArchivedProducts");
+            }
+        }
+
+
+        private bool _isArchivedProductsEmpty;
+        public bool IsArchivedProductsEmpty
+        {
+            get => _isArchivedProductsEmpty;
+
+            set
+            {
+                _isArchivedProductsEmpty = value;
+                OnPropertyChanged("IsArchivedProductsEmpty");
             }
         }
 

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:components="clr-namespace:Poseidon.Product.Components"
+            x:Class="Poseidon.Product.Pages.ProductsPage"
+            Visual="Material"
+            BarBackgroundColor="{StaticResource colorSecondary}">
+
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem
+            Icon="icon_plus"
+            Text="Add"
+            Command="{Binding AddCommandAsync}" />
+    </TabbedPage.ToolbarItems>
+
+    <ContentPage Title="Products">
+        <StackLayout>
+            <SearchBar
+                x:Name="SearchBar"
+                SearchCommand="{Binding SearchCommand}"
+                SearchCommandParameter="{Binding Text, Source={x:Reference SearchBar}}" />
+
+            <Label
+                IsVisible="{Binding IsActiveProductsEmpty}"
+                Text="No active products found"
+                Padding="10, 50"
+                HorizontalOptions="CenterAndExpand"/>
+
+            <components:ProductsList
+                Items="{Binding ActiveProducts}"
+                IsBusy="{Binding IsLoading}"
+                EditCommand="{Binding EditCommandAsync}"
+                ToggleArchiveCommand="{Binding ToggleArchiveCommandAsync}"
+                DeleteCommand="{Binding DeleteCommandAsync}"
+                RefreshCommand="{Binding RefreshCommandAsync}" />
+        </StackLayout>
+    </ContentPage>
+
+    <ContentPage Title="Archived Products">
+        <StackLayout>
+            <SearchBar
+                x:Name="SearchBarArchivedProducts"
+                SearchCommand="{Binding SearchCommand}"
+                SearchCommandParameter="{Binding Text, Source={x:Reference SearchBarArchivedProducts}}" />
+            <Label
+                IsVisible="{Binding IsArchivedProductsEmpty}"
+                Text="No archived products found"
+                Padding="10, 50"
+                HorizontalOptions="CenterAndExpand"/>
+
+            <components:ProductsList
+                Items="{Binding ArchivedProducts}"
+                IsBusy="{Binding IsLoading}"
+                EditCommand="{Binding EditCommandAsync}"
+                ToggleArchiveCommand="{Binding ToggleArchiveCommandAsync}"
+                DeleteCommand="{Binding DeleteCommandAsync}"
+                RefreshCommand="{Binding RefreshCommandAsync}" />
+        </StackLayout>
+    </ContentPage>
+</TabbedPage>

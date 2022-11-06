@@ -11,6 +11,7 @@ namespace Poseidon.Configs
 
         public static string API_TOKEN = "7e947353bf3809dcba08634e91dbe8b1702c04cfbf91ec7278760767299d09b21db16b828c96fef0d2cdc6d3c795764ee8df17198fe0c5b6fa236c68556fa18ac4733d6bbfda5aa301397e4dee688eb1f9f8ce73208b0ac21fbab9aa37d48822bf7ff92e8a5c0887663355bb8902759b343cc8732aadd4a869edd20be284b676";
 
+
         public static string API_BASE_URL = $"{BASE_URL}/graphql";
     }
 }

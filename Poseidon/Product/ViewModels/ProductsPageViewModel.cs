@@ -1,20 +1,24 @@
 ﻿using System;
 using Xamarin.Forms;
+using System.Threading.Tasks;
 using System.Linq;
 using Poseidon.Product.Models;
 using System.Windows.Input;
 using Poseidon.ViewModels;
 using Poseidon.Product.UseCases.UpdateProductByIdUseCase;
+using Poseidon.Product.UseCases.GetProductsByCompanyIdUseCase;
 
 namespace Poseidon.Product.ViewModels
 {
-    public class ProductListPageViewModel : ProductsViewModel
+    public class ProductsPageViewModel : ProductsViewModel
     {
+
         private readonly IUpdateProductByIdUseCase _updateProductById;
 
-        public ProductListPageViewModel()
+        public ProductsPageViewModel()
         {
             _updateProductById = DependencyService.Get<IUpdateProductByIdUseCase>();
+            Task.Run(PopulateDataAsync);
         }
 
         public ICommand EditCommandAsync =>
@@ -24,31 +28,32 @@ namespace Poseidon.Product.ViewModels
             }
         );
 
-        public ICommand ArchiveCommandAsync =>
-            new Command<long>(async (long id) =>
+        public ICommand ToggleArchiveCommandAsync =>
+            new Command<ProductModel>(async (ProductModel product) =>
             {
-                bool isDelete = await App.Current.MainPage
+                bool isAgree = await App.Current.MainPage
                     .DisplayAlert
                     (
-                        "Archive",
-                        "Are you sure want to archive this item?",
+                       product.IsActive ? "Archive" : "Unarchive",
+                        "Are you sure want to continue?",
                         "Yes",
                         "Cancel"
                      );
 
-                if (isDelete)
+                if (isAgree)
                 {
                     IsLoading = true;
+
                     try
                     {
-                        Products.Single(item => item.Id == id).IsActive = false;
+                        Products.Single(item => item.Id == product.Id).IsActive = !product.IsActive;
 
-                        var resProduct = await _updateProductById.ExecuteAsync
+                        await _updateProductById.ExecuteAsync
                             (
-                                Products.FirstOrDefault(x => x.Id == id)
+                                Products.FirstOrDefault(x => x.Id == product.Id)
                             );
 
-                        Products = Products.Where(x => x.IsActive).ToList();
+                        Products = Products;
                     }
                     catch (Exception e)
                     {
@@ -88,16 +93,7 @@ namespace Poseidon.Product.ViewModels
         public ICommand RefreshCommandAsync =>
             new Command(async () =>
             {
-                if(IsLoading)
-                {
-                    return;
-                }
-
-                IsLoading = true;
-
                 await PopulateDataAsync();
-
-                IsLoading = false;
             }
         );
 
@@ -110,7 +106,7 @@ namespace Poseidon.Product.ViewModels
 
         public override void OnAppearing()
         {
-           base.OnAppearing();
+            //base.OnAppearing();
         }
     }
 }
