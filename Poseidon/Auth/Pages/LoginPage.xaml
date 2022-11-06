@@ -43,11 +43,12 @@
                         HorizontalOptions="FillAndExpand">
                         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                             <StackLayout
+                                HorizontalOptions="FillAndExpand"
                                 Margin="0, 20 , 0, 20">
                                 <Entry
                                     Placeholder="Email" 
                                     Text="{Binding Email}"
-                                    TextColor="#fff"
+                                    TextColor="{StaticResource colorPrimary}"
                                     PlaceholderColor="#ccc"
                                     Keyboard="Email" />
                                 <Label
@@ -56,12 +57,12 @@
                                     Text="Email is required."
                                     TextColor="Red" />
                             </StackLayout>
-                            <StackLayout>
+                            <StackLayout HorizontalOptions="FillAndExpand">
                                 <Entry
                                     Placeholder="Password"
                                     Text="{Binding Password}"
                                     IsPassword="true"
-                                    TextColor="#fff"
+                                    TextColor="{StaticResource colorPrimary}"
                                     PlaceholderColor="#ccc" />
                                 <Label
                                     IsVisible="{Binding IsPasswordError}"
