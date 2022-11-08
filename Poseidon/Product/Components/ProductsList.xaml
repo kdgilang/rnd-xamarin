@@ -82,7 +82,6 @@
                             </SwipeView.RightItems>
                             <Grid Padding="10">
                                 <StackLayout
-                                    BackgroundColor="LightGray"
                                     Orientation="Horizontal"
                                     Padding="10, 20, 10, 20"
                                     xct:TouchEffect.NativeAnimation="True"
@@ -91,10 +90,10 @@
                                     xct:ShadowEffect.OffsetX="5"
                                     xct:TouchEffect.Command="{Binding TapItemCommand, Source={x:Reference producstList}}"
                                     xct:CornerRadiusEffect.CornerRadius="5">
-                                    <!--<Image
+                                    <Image
                                         Source="{Binding Image.Url}"
                                         WidthRequest="80"
-                                        VerticalOptions="Center" />-->
+                                        VerticalOptions="Center" />
                                     <StackLayout
                                         HorizontalOptions="StartAndExpand">
                                         <Label
