@@ -3,6 +3,17 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Poseidon.Pos.Pages.PosPage">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="Order"
+            Order="Secondary"
+            Priority="0"/>
+        <ToolbarItem
+            Text="History"
+            Order="Secondary"
+            Priority="1"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Label Text="Here is pos label"/>
     </ContentPage.Content>
