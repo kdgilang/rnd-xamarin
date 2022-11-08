@@ -90,7 +90,7 @@
         />
     </FlyoutItem>
 
-    <FlyoutItem
+    <!--<FlyoutItem
         Title="Home"
         Route="home"
         Icon="icon_house">
@@ -117,6 +117,15 @@
                 ContentTemplate="{DataTemplate views:MainPage}"
             />
         </Tab>
+    </FlyoutItem>-->
+    <FlyoutItem
+        Title="Pos"
+        Icon="icon_cashier"
+        Route="home">
+        <ShellContent
+            Style="{StaticResource MenuItemShell}"
+            ContentTemplate="{DataTemplate views:Pos.Pages.PosPage}"
+        />
     </FlyoutItem>
 
     <FlyoutItem

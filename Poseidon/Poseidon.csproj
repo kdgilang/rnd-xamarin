@@ -64,6 +64,8 @@
     <None Remove="Product\Components\" />
     <None Remove="Helpers\" />
     <None Remove="Xamarin.Forms.Visual.Material" />
+    <None Remove="Pos\" />
+    <None Remove="Pos\Pages\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -98,6 +100,8 @@
     <Folder Include="Product\UseCases\UpdateProductByIdUseCase\" />
     <Folder Include="Product\Components\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Pos\" />
+    <Folder Include="Pos\Pages\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />

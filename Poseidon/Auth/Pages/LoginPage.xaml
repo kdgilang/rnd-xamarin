@@ -13,81 +13,71 @@
         <StackLayout
             VerticalOptions="FillAndExpand"
             HorizontalOptions="FillAndExpand"
-            Padding="20">
+            Padding="0">
             <ActivityIndicator
                 IsRunning="{Binding IsSubmitted}"
+                Margin="20"
                 Color="{StaticResource colorSecondary}"/>
-            <FlexLayout Direction="Column"
+            <FlexLayout
+                Direction="Column"
                 AlignItems="Center"
                 JustifyContent="Center"
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="CenterAndExpand">
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
 
-                <!--<Image
+                <Image
                     x:Name="Logo"
-                    Source="relix.png"
+                    Source="poseidon.png"
                     WidthRequest="80"
                     HeightRequest="80"
-                    BackgroundColor="#FC5A5A"
                     HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand" />-->
+                    VerticalOptions="CenterAndExpand" />
 
                 <StackLayout
-                
-                    Margin="10,30,10,30"
-                    Spacing="20"
+                    Margin="10,20,10,20"
+                    Spacing="0"
+                    HorizontalOptions="FillAndExpand"
                     VerticalOptions="EndAndExpand">
                     <StackLayout
-                        Orientation="Vertical"
-                        Spacing="10"
-                        HorizontalOptions="FillAndExpand">
-                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                            <StackLayout
-                                HorizontalOptions="FillAndExpand"
-                                Margin="0, 20 , 0, 20">
-                                <Entry
-                                    Placeholder="Email" 
-                                    Text="{Binding Email}"
-                                    TextColor="{StaticResource colorPrimary}"
-                                    PlaceholderColor="#ccc"
-                                    Keyboard="Email" />
-                                <Label
-                                    x:Name="ErrorEmailLabel"
-                                    IsVisible="{Binding IsEmailError}"
-                                    Text="Email is required."
-                                    TextColor="Red" />
-                            </StackLayout>
-                            <StackLayout HorizontalOptions="FillAndExpand">
-                                <Entry
-                                    Placeholder="Password"
-                                    Text="{Binding Password}"
-                                    IsPassword="true"
-                                    TextColor="{StaticResource colorPrimary}"
-                                    PlaceholderColor="#ccc" />
-                                <Label
-                                    IsVisible="{Binding IsPasswordError}"
-                                    Text="Password is required."
-                                    TextColor="Red" />
-                            </StackLayout>
-                        </StackLayout>
-                        <StackLayout
-                            Orientation="Horizontal"
-                            HorizontalOptions="FillAndExpand"
-                            Margin="0, 20">
-                            <Button
-                                x:Name="LoginButton"
-                                Opacity="1"
-                                HeightRequest="60"
-                                BackgroundColor="{StaticResource colorSecondary}"
-                                CornerRadius="5"
-                                Text="Login"
-                                FontAttributes="Bold"
-                                Command="{Binding LoginCommandAsync}"
-                                TextColor="White"
-                                HorizontalOptions="FillAndExpand"
-                                IsEnabled="{Binding !IsSubmitted}"/>
-                        </StackLayout>
+                        HorizontalOptions="FillAndExpand"
+                        Margin="0, 20 , 0, 20">
+                        <Entry
+                            Placeholder="Email" 
+                            Text="{Binding Email}"
+                            TextColor="{StaticResource colorPrimary}"
+                            PlaceholderColor="#ccc"
+                            Keyboard="Email" />
+                        <Label
+                            x:Name="ErrorEmailLabel"
+                            IsVisible="{Binding IsEmailError}"
+                            Text="Email is required."
+                            TextColor="Red" />
                     </StackLayout>
+                    <StackLayout HorizontalOptions="FillAndExpand">
+                        <Entry
+                            Placeholder="Password"
+                            Text="{Binding Password}"
+                            IsPassword="true"
+                            TextColor="{StaticResource colorPrimary}"
+                            PlaceholderColor="#ccc" />
+                        <Label
+                            IsVisible="{Binding IsPasswordError}"
+                            Text="Password is required."
+                            TextColor="Red" />
+                    </StackLayout>
+                    <Button
+                        x:Name="LoginButton"
+                        Opacity="1"
+                        Margin="0, 20"
+                        HeightRequest="60"
+                        BackgroundColor="{StaticResource colorSecondary}"
+                        CornerRadius="5"
+                        Text="Login"
+                        FontAttributes="Bold"
+                        Command="{Binding LoginCommandAsync}"
+                        TextColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsEnabled="{Binding !IsSubmitted}"/>
                     <Label
                         FontSize="10"
                         TextColor="White"
