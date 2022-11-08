@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     xmlns:helpers="clr-namespace:Poseidon.Helpers"
     x:Class="Poseidon.Product.Components.ProductsList"
     x:Name="producstList">
@@ -80,39 +81,38 @@
                                 </SwipeItems>
                             </SwipeView.RightItems>
                             <Grid Padding="10">
-                                <Frame
-                                    CornerRadius="5"
-                                    HasShadow="True">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Image
-                                            Source="{Binding Image.Url}"
-                                            WidthRequest="80"
+                                <StackLayout
+                                    BackgroundColor="LightGray"
+                                    Orientation="Horizontal"
+                                    Padding="10, 20, 10, 20"
+                                    xct:TouchEffect.NativeAnimation="True"
+                                    xct:ShadowEffect.Color="Black"
+                                    xct:ShadowEffect.Opacity="0.65"
+                                    xct:ShadowEffect.OffsetX="5"
+                                    xct:TouchEffect.Command="{Binding TapItemCommand, Source={x:Reference producstList}}"
+                                    xct:CornerRadiusEffect.CornerRadius="5">
+                                    <!--<Image
+                                        Source="{Binding Image.Url}"
+                                        WidthRequest="80"
+                                        VerticalOptions="Center" />-->
+                                    <StackLayout
+                                        HorizontalOptions="StartAndExpand">
+                                        <Label
+                                            FontSize="Medium"
+                                            LineBreakMode="TailTruncation"
+                                            Text="{Binding Name}"
+                                            WidthRequest="300"
                                             VerticalOptions="Center" />
-                                        <StackLayout
-                                            HorizontalOptions="StartAndExpand">
-                                            <Label
-                                                FontSize="Medium"
-                                                LineBreakMode="TailTruncation"
-                                                Text="{Binding Name}"
-                                                WidthRequest="300"
-                                                VerticalOptions="Center" />
-                                            <Label
-                                                FontSize="Small"
-                                                LineBreakMode="TailTruncation"
-                                                WidthRequest="300"
-                                                HorizontalTextAlignment="Start"
-                                                HorizontalOptions="Start"
-                                                Text="{Binding Description}"
-                                                VerticalOptions="Center" />
-                                        </StackLayout>
+                                        <Label
+                                            FontSize="Small"
+                                            LineBreakMode="TailTruncation"
+                                            WidthRequest="300"
+                                            HorizontalTextAlignment="Start"
+                                            HorizontalOptions="Start"
+                                            Text="{Binding Description}"
+                                            VerticalOptions="Center" />
                                     </StackLayout>
-                                    <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                        Command="{Binding TapItemCommand, Source={x:Reference producstList}}"
-                                        NumberOfTapsRequired="1"
-                                        CommandParameter="{Binding .}" />
-                                    </Frame.GestureRecognizers>
-                                </Frame>
+                                </StackLayout>
                             </Grid>
                         </SwipeView>
                     </ViewCell>
