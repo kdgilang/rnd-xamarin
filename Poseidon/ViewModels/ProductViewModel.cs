@@ -7,14 +7,15 @@ using Poseidon.Product.Models;
 using Poseidon.Models;
 using Poseidon.Configs;
 using Poseidon.Product.UseCases.GetProductsByCompanyIdUseCase;
+using System.Windows.Input;
 
 namespace Poseidon.ViewModels
 {
-    public class ProductsViewModel : UserViewModel
+    public class ProductViewModel : UserViewModel
     {
         private readonly IGetProductsByCompanyIdUseCase _getProductsByCompanyId;
 
-        public ProductsViewModel()
+        public ProductViewModel()
         {
             _getProductsByCompanyId = DependencyService.Get<IGetProductsByCompanyIdUseCase>();
         }
@@ -120,6 +121,13 @@ namespace Poseidon.ViewModels
                 await App.Current.MainPage.DisplayAlert("Unable to load data", $"{e.Message}", "ok");
             }
         }
+
+        public ICommand RefreshCommandAsync =>
+            new Command(async () =>
+            {
+                await PopulateDataAsync();
+            }
+        );
 
         public virtual void OnAppearing()
         {

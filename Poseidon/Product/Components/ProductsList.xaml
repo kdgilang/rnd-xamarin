@@ -55,7 +55,7 @@
                                         Text="Edit"
                                         IconImageSource="icon_pen"
                                         BackgroundColor="#27b376"
-                                        Command="{Binding EditCommandAsync, Source={x:Reference producstList}}"
+                                        Command="{Binding EditCommand, Source={x:Reference producstList}}"
                                         CommandParameter="{Binding .}" />
                                     <SwipeItem
                                         IsVisible="{Binding IsActive}"
@@ -106,6 +106,12 @@
                                                 VerticalOptions="Center" />
                                         </StackLayout>
                                     </StackLayout>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                        Command="{Binding TapItemCommand, Source={x:Reference producstList}}"
+                                        NumberOfTapsRequired="1"
+                                        CommandParameter="{Binding .}" />
+                                    </Frame.GestureRecognizers>
                                 </Frame>
                             </Grid>
                         </SwipeView>

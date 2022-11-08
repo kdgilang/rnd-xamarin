@@ -44,6 +44,12 @@ namespace Poseidon.Product.Components
             typeof(ProductsList),
             null);
 
+        public static readonly BindableProperty TapItemCommandProperty = BindableProperty.Create(
+            "TapItemCommand",
+            typeof(ICommand),
+            typeof(ProductsList),
+            null);
+
         public ProductsList()
         {
             InitializeComponent();
@@ -89,6 +95,12 @@ namespace Poseidon.Product.Components
         {
             get => (ICommand)GetValue(DeleteCommandProperty);
             set => SetValue(DeleteCommandProperty, value);
+        }
+
+        public ICommand TapItemCommand
+        {
+            get => (ICommand)GetValue(TapItemCommandProperty);
+            set => SetValue(TapItemCommandProperty, value);
         }
     }
 }

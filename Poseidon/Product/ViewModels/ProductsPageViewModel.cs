@@ -10,7 +10,7 @@ using Poseidon.Product.UseCases.GetProductsByCompanyIdUseCase;
 
 namespace Poseidon.Product.ViewModels
 {
-    public class ProductsPageViewModel : ProductsViewModel
+    public class ProductsPageViewModel : ProductViewModel
     {
 
         private readonly IUpdateProductByIdUseCase _updateProductById;
@@ -18,7 +18,6 @@ namespace Poseidon.Product.ViewModels
         public ProductsPageViewModel()
         {
             _updateProductById = DependencyService.Get<IUpdateProductByIdUseCase>();
-            Task.Run(PopulateDataAsync);
         }
 
         public ICommand EditCommandAsync =>
@@ -90,13 +89,6 @@ namespace Poseidon.Product.ViewModels
             }
         );
 
-        public ICommand RefreshCommandAsync =>
-            new Command(async () =>
-            {
-                await PopulateDataAsync();
-            }
-        );
-
         public ICommand AddCommandAsync =>
             new Command(async () =>
             {
@@ -106,7 +98,7 @@ namespace Poseidon.Product.ViewModels
 
         public override void OnAppearing()
         {
-            //base.OnAppearing();
+            base.OnAppearing();
         }
     }
 }

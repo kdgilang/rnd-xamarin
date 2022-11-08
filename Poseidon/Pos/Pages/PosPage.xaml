@@ -2,8 +2,9 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="Poseidon.Pos.Pages.PosPage">
-    
+    xmlns:components="clr-namespace:Poseidon.Product.Components"
+    x:Class="Poseidon.Pos.Pages.PosPage"
+    Visual="Material">
     <ContentPage.ToolbarItems>
         <ToolbarItem
             Text="Order"
@@ -15,7 +16,27 @@
             Priority="1"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <Label Text="Here is pos label"/>
+        <StackLayout>
+            <SearchBar
+                x:Name="searchBar"
+                FontSize="12"
+                PlaceholderColor="Gray"
+                Placeholder="Type Name/Code of the Product..."
+                SearchCommand="{Binding SearchCommand}"
+                SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" />
+
+            <Label
+                IsVisible="{Binding IsActiveProductsEmpty}"
+                Text="No active products found"
+                Padding="10, 50"
+                HorizontalOptions="CenterAndExpand"/>
+
+            <components:ProductsList
+                Items="{Binding ActiveProducts}"
+                IsBusy="{Binding IsLoading}"
+                TapItemCommand="{Binding TapProductCommandAsync}"
+                RefreshCommand="{Binding RefreshCommandAsync}" />
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
 
