@@ -82,7 +82,6 @@
 
             <components:ProductsList
                 Items="{Binding ActiveProducts}"
-                IsBusy="{Binding IsLoading}"
                 TapItemCommand="{Binding TapProductCommandAsync}"
                 RefreshCommand="{Binding RefreshCommandAsync}" />
         </StackLayout>

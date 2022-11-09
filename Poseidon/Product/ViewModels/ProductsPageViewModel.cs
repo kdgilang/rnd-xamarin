@@ -41,7 +41,7 @@ namespace Poseidon.Product.ViewModels
 
                 if (isAgree)
                 {
-                    IsLoading = true;
+                    IsBusy = true;
 
                     try
                     {
@@ -60,7 +60,7 @@ namespace Poseidon.Product.ViewModels
                     }
                     finally
                     {
-                        IsLoading = false;
+                        IsBusy = false;
                     }
                 }
             }

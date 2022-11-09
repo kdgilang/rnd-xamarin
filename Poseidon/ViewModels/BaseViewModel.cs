@@ -10,17 +10,17 @@ namespace Poseidon.ViewModels
         {
         }
 
-        private bool _isloading;
-        public bool IsLoading
+        private bool _isBusy;
+        public bool IsBusy
         {
             get
             {
-                return _isloading;
+                return _isBusy;
             }
 
             set
             {
-                _isloading = value;
+                _isBusy = value;
                 OnPropertyChanged("IsLoading");
             }
         }

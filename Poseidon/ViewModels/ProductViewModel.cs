@@ -89,12 +89,12 @@ namespace Poseidon.ViewModels
         {
             try
             {
-                if (IsLoading)
+                if (IsBusy)
                 {
                     return;
                 }
 
-                IsLoading = true;
+                 IsBusy = true;
 
                 var res = await _getProductsByCompanyId.ExecuteAsync(CompanyId);
 
@@ -122,11 +122,11 @@ namespace Poseidon.ViewModels
                         }
                     ).ToList();
                 });
-                IsLoading = false;
+                IsBusy = false;
             }
             catch(Exception e)
             {
-                IsLoading = false;
+                IsBusy = false;
                 await App.Current.MainPage.DisplayAlert("Unable to load data", $"{e.Message}", "ok");
             }
         }
