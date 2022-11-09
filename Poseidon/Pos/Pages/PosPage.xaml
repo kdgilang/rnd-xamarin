@@ -1,10 +1,19 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
+<pages:BaseContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:Poseidon.Product.Components"
+    xmlns:pages="clr-namespace:Poseidon.Pages"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+    xmlns:helpers="clr-namespace:Poseidon.Helpers"
     x:Class="Poseidon.Pos.Pages.PosPage"
     Visual="Material">
+
+    <ContentPage.Resources>
+      <helpers:InverseBoolConverter x:Key="InverseBoolConverter"/>
+    </ContentPage.Resources>
+
     <ContentPage.ToolbarItems>
         <ToolbarItem
             Text="Order"
@@ -15,21 +24,61 @@
             Order="Secondary"
             Priority="1"/>
     </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
-        <StackLayout>
-            <SearchBar
+        <StackLayout
+            Padding="15, 0"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Label Text="{Binding IsLoading}" />
+            <Grid
+                x:Name="gridCam"
+                HorizontalOptions="CenterAndExpand"
+                ColumnSpacing="0"
+                Margin="0, 0, 0, 20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+
+            <StackLayout
+                BackgroundColor="White"
+                Orientation="Horizontal"
+                Margin="0, 0, 0, 20"
+                Padding="20, 10"
+                HorizontalOptions="CenterAndExpand"
+                xct:CornerRadiusEffect.CornerRadius="5"
+                xct:TouchEffect.NativeAnimation="True">
+                <Image
+                    Source="icon_camera"
+                    WidthRequest="25"
+                    HeightRequest="25" />
+                <Label
+                    Text="{Binding ScanButtonText}"
+                    Margin="10, 0" />
+
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="OnToggleScanner"
+                        NumberOfTapsRequired="1" />
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+
+            <Entry
+                IsVisible="{Binding IsCameraViewVisible,Converter={StaticResource InverseBoolConverter}}"
+                Grid.Row="0"
                 x:Name="searchBar"
                 FontSize="12"
                 PlaceholderColor="Gray"
+                HorizontalOptions="FillAndExpand"
                 Placeholder="Type Name/Code of the Product..."
-                SearchCommand="{Binding SearchCommand}"
-                SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" />
+                ReturnCommand="{Binding SearchCommand}"
+                ReturnCommandParameter="{Binding Text, Source={x:Reference searchBar}}" />
 
-            <Label
-                IsVisible="{Binding IsActiveProductsEmpty}"
-                Text="No active products found"
-                Padding="10, 50"
-                HorizontalOptions="CenterAndExpand"/>
 
             <components:ProductsList
                 Items="{Binding ActiveProducts}"
@@ -38,5 +87,5 @@
                 RefreshCommand="{Binding RefreshCommandAsync}" />
         </StackLayout>
     </ContentPage.Content>
-</ContentPage>
+</pages:BaseContentPage>
 

@@ -20,6 +20,8 @@ namespace Poseidon.Droid
 
             global::Xamarin.Forms.FormsMaterial.Init(this, savedInstanceState);
 
+            ZXing.Net.Mobile.Forms.Android.Platform.Init();
+
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

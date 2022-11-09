@@ -17,39 +17,14 @@
             CachingStrategy="RecycleElement"
             HasUnevenRows="True"
             IsPullToRefreshEnabled="True"
-            IsRefreshing="{Binding IsBusy, Mode=OneWay, Source={x:Reference producstList}}"
             SeparatorVisibility="None"
             RefreshCommand="{Binding RefreshCommand, Source={x:Reference producstList}}"
             ItemsSource="{Binding Items, Source={x:Reference producstList}}"
             SelectionMode="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell android:ViewCell.IsContextActionsLegacyModeEnabled="true">
-                       <!--<ViewCell.ContextActions>    
-                           <MenuItem
-                               Command="{Binding EditCommand, Source={x:Reference producstList}}"
-                               CommandParameter="{Binding .}"
-                               Text="Edit"
-                               IconImageSource="icon_pen"/>
-                           <MenuItem
-                               IsEnabled="{Binding IsActive}"
-                               Command="{Binding ArchiveCommand, Source={x:Reference producstList}}"
-                               CommandParameter="{Binding .}"
-                               Text="Archive"
-                               IconImageSource="icon_archive"/>
-                           <MenuItem
-                               IsEnabled="{Binding !IsActive}"
-                               Command="{Binding ArchiveCommand, Source={x:Reference producstList}}"
-                               CommandParameter="{Binding .}"
-                               Text="Unarchive"
-                               IconImageSource="icon_archive"/>
-                           <MenuItem
-                               Command="{Binding DeleteCommand, Source={x:Reference producstList}}"
-                               CommandParameter="{Binding Id}"
-                               Text="Delete"
-                               IconImageSource="icon_trash" />
-                       </ViewCell.ContextActions>-->
-                        <SwipeView>
+                    <ViewCell>
+                        <SwipeView BackgroundColor="Transparent">
                             <SwipeView.RightItems>
                                 <SwipeItems>
                                     <SwipeItem
@@ -80,14 +55,14 @@
                                         CommandParameter="{Binding Id}" />
                                 </SwipeItems>
                             </SwipeView.RightItems>
-                            <Grid Padding="10">
+                            <Grid Padding="0, 10">
                                 <StackLayout
+                                    Padding="10, 20"
+                                    BackgroundColor="White"
                                     Orientation="Horizontal"
-                                    Padding="10, 20, 10, 20"
                                     xct:TouchEffect.NativeAnimation="True"
                                     xct:ShadowEffect.Color="Black"
-                                    xct:ShadowEffect.Opacity="0.65"
-                                    xct:ShadowEffect.OffsetX="5"
+                                    xct:ShadowEffect.OffsetX="3"
                                     xct:TouchEffect.Command="{Binding TapItemCommand, Source={x:Reference producstList}}"
                                     xct:CornerRadiusEffect.CornerRadius="5">
                                     <Image
@@ -97,13 +72,13 @@
                                     <StackLayout
                                         HorizontalOptions="StartAndExpand">
                                         <Label
-                                            FontSize="Medium"
+                                            FontSize="14"
                                             LineBreakMode="TailTruncation"
                                             Text="{Binding Name}"
                                             WidthRequest="300"
                                             VerticalOptions="Center" />
                                         <Label
-                                            FontSize="Small"
+                                            FontSize="10"
                                             LineBreakMode="TailTruncation"
                                             WidthRequest="300"
                                             HorizontalTextAlignment="Start"

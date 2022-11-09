@@ -89,6 +89,13 @@ namespace Poseidon.ViewModels
         {
             try
             {
+                if (IsLoading)
+                {
+                    return;
+                }
+
+                IsLoading = true;
+
                 var res = await _getProductsByCompanyId.ExecuteAsync(CompanyId);
 
                 Device.BeginInvokeOnMainThread(() => {
@@ -115,23 +122,25 @@ namespace Poseidon.ViewModels
                         }
                     ).ToList();
                 });
+                IsLoading = false;
             }
             catch(Exception e)
             {
+                IsLoading = false;
                 await App.Current.MainPage.DisplayAlert("Unable to load data", $"{e.Message}", "ok");
             }
         }
 
         public ICommand RefreshCommandAsync =>
-            new Command(async () =>
+            new Command(() =>
             {
-                await PopulateDataAsync();
+                Device.InvokeOnMainThreadAsync(PopulateDataAsync);
             }
         );
 
         public virtual void OnAppearing()
         {
-            Task.Run(PopulateDataAsync);
+            Device.InvokeOnMainThreadAsync(PopulateDataAsync);
         }
     }
 }

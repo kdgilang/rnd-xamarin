@@ -18,7 +18,8 @@ namespace Poseidon.Product.Components
             "IsBusy",
             typeof(bool),
             typeof(ProductsList),
-            false);
+            false,
+            BindingMode.TwoWay);
 
         public static readonly BindableProperty EditCommandProperty = BindableProperty.Create(
             "EditCommand",
