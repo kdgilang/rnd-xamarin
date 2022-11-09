@@ -17,6 +17,7 @@
             CachingStrategy="RecycleElement"
             HasUnevenRows="True"
             IsPullToRefreshEnabled="True"
+            IsRefreshing="{Binding IsBusy, Mode=OneWay, Source={x:Reference producstList}}"
             SeparatorVisibility="None"
             RefreshCommand="{Binding RefreshCommand, Source={x:Reference producstList}}"
             ItemsSource="{Binding Items, Source={x:Reference producstList}}"

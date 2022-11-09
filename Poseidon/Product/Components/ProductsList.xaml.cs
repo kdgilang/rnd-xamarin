@@ -94,8 +94,8 @@ namespace Poseidon.Product.Components
 
         public ICommand RefreshCommand
         {
-            get => (ICommand)GetValue(DeleteCommandProperty);
-            set => SetValue(DeleteCommandProperty, value);
+            get => (ICommand)GetValue(RefreshCommandProperty);
+            set => SetValue(RefreshCommandProperty, value);
         }
 
         public ICommand TapItemCommand

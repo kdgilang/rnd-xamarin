@@ -21,7 +21,7 @@ namespace Poseidon.ViewModels
             set
             {
                 _isBusy = value;
-                OnPropertyChanged("IsLoading");
+                OnPropertyChanged(nameof(IsBusy));
             }
         }
 

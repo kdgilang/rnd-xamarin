@@ -28,7 +28,7 @@
 
             <components:ProductsList
                 Items="{Binding ActiveProducts}"
-                IsBusy="{Binding IsLoading}"
+                IsBusy="{Binding IsBusy}"
                 EditCommand="{Binding EditCommandAsync}"
                 ToggleArchiveCommand="{Binding ToggleArchiveCommandAsync}"
                 DeleteCommand="{Binding DeleteCommandAsync}"
@@ -50,7 +50,7 @@
 
             <components:ProductsList
                 Items="{Binding ArchivedProducts}"
-                IsBusy="{Binding IsLoading}"
+                IsBusy="{Binding IsBusy}"
                 EditCommand="{Binding EditCommandAsync}"
                 ToggleArchiveCommand="{Binding ToggleArchiveCommandAsync}"
                 DeleteCommand="{Binding DeleteCommandAsync}"
