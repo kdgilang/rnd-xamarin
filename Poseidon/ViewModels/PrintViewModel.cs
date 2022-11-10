@@ -8,12 +8,11 @@ using ESCPOS_NET.Templates;
 using System.ComponentModel;
 using System.Linq;
 
-namespace Poseidon.Models.Print
+namespace Poseidon.ViewModels
 {
-    public class PrintPageViewModel : INotifyPropertyChanged
+    public class PrintViewModel : BaseViewModel
     {
         private readonly IBluetoothService _bluetoothService;
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private IList<string> _devices;
         public IList<string> Devices
@@ -69,7 +68,7 @@ namespace Poseidon.Models.Print
 
         });
 
-        public PrintPageViewModel ()
+        public PrintViewModel ()
         {
             _bluetoothService = DependencyService.Get<IBluetoothService>();
 
@@ -84,13 +83,6 @@ namespace Poseidon.Models.Print
             //    }
             //}
 
-        }
-
-        protected void OnPropertyChanged(string propertyName)
-        {
-            var handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
