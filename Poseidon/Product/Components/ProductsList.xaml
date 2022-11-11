@@ -62,8 +62,7 @@
                                     BackgroundColor="White"
                                     Orientation="Horizontal"
                                     xct:TouchEffect.NativeAnimation="True"
-                                    xct:ShadowEffect.Color="Black"
-                                    xct:ShadowEffect.OffsetX="3"
+                                    xct:ShadowEffect.Color="Gray"
                                     xct:TouchEffect.Command="{Binding TapItemCommand, Source={x:Reference producstList}}"
                                     xct:CornerRadiusEffect.CornerRadius="5">
                                     <Image

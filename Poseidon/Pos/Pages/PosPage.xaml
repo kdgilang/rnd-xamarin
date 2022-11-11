@@ -127,7 +127,9 @@
                                         FontAttributes="Bold" />
                                     <Stepper
                                         HeightRequest="20"
-                                        Value="{Binding Quantity, Mode=TwoWay}"
+                                        BackgroundColor="LightGray"
+                                        Value="{Binding Quantity}"
+                                        ValueChanged="OnQuantityChanged"
                                         Increment="1"
                                         Minimum="1" />
                                 </StackLayout>

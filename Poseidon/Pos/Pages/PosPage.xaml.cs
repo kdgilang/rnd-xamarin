@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using Poseidon.Pages;
 using Poseidon.Pos.ViewModels;
-using Poseidon.Product.ViewModels;
-using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
 using ZXing.Net.Mobile.Forms;
+using Poseidon.Models;
 
 namespace Poseidon.Pos.Pages
 {
@@ -23,13 +21,12 @@ namespace Poseidon.Pos.Pages
         {
             base.OnAppearing();
 
-            ((PosPageViewModel)BindingContext).OnAppearing();
+            _vm.OnAppearing();
         }
 
         public void OnToggleScanner(object sender, EventArgs e)
         {
             _vm.IsCameraViewVisible = !_vm.IsCameraViewVisible;
-
             _vm.ScanButtonText = _vm.IsCameraViewVisible ? "Close" : "Scan";
 
             if (_vm.IsCameraViewVisible)
@@ -52,7 +49,8 @@ namespace Poseidon.Pos.Pages
 
         public void OnQuantityChanged(object sender, ValueChangedEventArgs e)
         {
-            _vm.Cart.Items[0].Quantity += 1;
+            var stepper = (Stepper)sender;
+            var widget = (CartItemModel)stepper.BindingContext;
         }
     }
 }

@@ -5,7 +5,7 @@ using Poseidon.User.Models;
 namespace Poseidon.Models
 {
 
-    public partial class CartModel
+    public class CartModel
     {
         public long Id { set; get; }
         public string Note { set; get; }
@@ -13,7 +13,7 @@ namespace Poseidon.Models
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public UserModel User { get; set; }
-        public IList<CartItemModel> Items { get; set; }
+        public List<CartItemModel> Items { get; set; }
     }
 
     public enum CartStatus

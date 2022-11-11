@@ -2,8 +2,7 @@
 using System.Windows.Input;
 using Poseidon.ViewModels;
 using Xamarin.Forms;
-using System.Threading.Tasks;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using ZXing.Net.Mobile.Forms;
 using Poseidon.Models;
 using Poseidon.Product.Models;
@@ -94,6 +93,7 @@ namespace Poseidon.Pos.ViewModels
         public override void OnAppearing()
         {
             base.OnAppearing();
+
             Device.BeginInvokeOnMainThread(() =>
             {
                 Cart = new CartModel
@@ -103,7 +103,7 @@ namespace Poseidon.Pos.ViewModels
                     Status = CartStatus.pending,
                     CreatedAt = new DateTime(),
                     UpdatedAt = new DateTime(),
-                    Items = new ObservableCollection<CartItemModel>
+                    Items = new List<CartItemModel>
                     {
                         new CartItemModel {
                             Id = 1,
