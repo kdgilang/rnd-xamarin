@@ -9,7 +9,7 @@ namespace Poseidon.Models
     public partial class CartModel
     {
         public long Id { set; get; }
-        public string node { set; get; }
+        public string Note { set; get; }
         public CartStatus Status { set; get; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }

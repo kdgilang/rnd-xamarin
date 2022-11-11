@@ -3,7 +3,10 @@ using System.Windows.Input;
 using Poseidon.ViewModels;
 using Xamarin.Forms;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using ZXing.Net.Mobile.Forms;
+using Poseidon.Models;
+using Poseidon.Product.Models;
 
 namespace Poseidon.Pos.ViewModels
 {
@@ -11,6 +14,48 @@ namespace Poseidon.Pos.ViewModels
     {
         public PosPageViewModel() : base()
         {
+
+            Cart = new CartModel
+            {
+                Id = 1,
+                Note = "Sebuah note di cart",
+                Status = CartStatus.pending,
+                CreatedAt = new DateTime(),
+                UpdatedAt = new DateTime(),
+                Products = new List<ProductModel>
+                {
+                    new ProductModel {
+                        Id = 1,
+                        Name = "Sushi ala ala",
+                        Price = 20000,
+                        MemberPrice = 10000,
+                        Description = "Sushi mixed salad with stone & rock",
+                        Discount = 4,
+                        IsActive = true,
+                        Quantity = 5,
+                        QuantityNotify = 2,
+                        Image = new ImageModel
+                        {
+                            Id = 1,
+                            Url = "https://picsum.photos/200/300",
+                            Caption = "image caption 1",
+                            Name = "Image 1"
+                        }
+                    }
+                } 
+            };
+        }
+
+        private CartModel _cart;
+        public CartModel Cart
+        {
+            get => _cart;
+
+            set
+            {
+                _cart = value;
+                OnPropertyChanged(nameof(Cart));
+            }
         }
 
         private bool _isCameraViewVisible;

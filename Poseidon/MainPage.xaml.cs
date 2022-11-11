@@ -1,6 +1,5 @@
 ﻿using System;
 using Xamarin.Forms;
-using Poseidon.Models.Print;
 
 namespace Poseidon
 {
