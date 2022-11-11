@@ -26,7 +26,7 @@ namespace Poseidon.Pos.Pages
             ((PosPageViewModel)BindingContext).OnAppearing();
         }
 
-        void OnToggleScanner(object sender, EventArgs e)
+        public void OnToggleScanner(object sender, EventArgs e)
         {
             _vm.IsCameraViewVisible = !_vm.IsCameraViewVisible;
 
@@ -48,6 +48,11 @@ namespace Poseidon.Pos.Pages
             {
                 gridCam.Children.RemoveAt(0);
             }
+        }
+
+        public void OnQuantityChanged(object sender, ValueChangedEventArgs e)
+        {
+            _vm.Cart.Items[0].Quantity += 1;
         }
     }
 }

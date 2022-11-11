@@ -3,7 +3,7 @@ using System.Windows.Input;
 using Poseidon.ViewModels;
 using Xamarin.Forms;
 using System.Threading.Tasks;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using ZXing.Net.Mobile.Forms;
 using Poseidon.Models;
 using Poseidon.Product.Models;
@@ -12,38 +12,8 @@ namespace Poseidon.Pos.ViewModels
 {
     public class PosPageViewModel : ProductViewModel
     {
-        public PosPageViewModel() : base()
+        public PosPageViewModel()
         {
-
-            Cart = new CartModel
-            {
-                Id = 1,
-                Note = "Sebuah note di cart",
-                Status = CartStatus.pending,
-                CreatedAt = new DateTime(),
-                UpdatedAt = new DateTime(),
-                Products = new List<ProductModel>
-                {
-                    new ProductModel {
-                        Id = 1,
-                        Name = "Sushi ala ala",
-                        Price = 20000,
-                        MemberPrice = 10000,
-                        Description = "Sushi mixed salad with stone & rock",
-                        Discount = 4,
-                        IsActive = true,
-                        Quantity = 5,
-                        QuantityNotify = 2,
-                        Image = new ImageModel
-                        {
-                            Id = 1,
-                            Url = "https://picsum.photos/200/300",
-                            Caption = "image caption 1",
-                            Name = "Image 1"
-                        }
-                    }
-                } 
-            };
         }
 
         private CartModel _cart;
@@ -115,7 +85,99 @@ namespace Poseidon.Pos.ViewModels
                 }
             }
         );
-        
+
+        public void OnQuantityChanged(object sender, EventArgs e)
+        {
+            //_vm.Cart.
+        }
+
+        public override void OnAppearing()
+        {
+            base.OnAppearing();
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                Cart = new CartModel
+                {
+                    Id = 1,
+                    Note = "Sebuah note di cart",
+                    Status = CartStatus.pending,
+                    CreatedAt = new DateTime(),
+                    UpdatedAt = new DateTime(),
+                    Items = new ObservableCollection<CartItemModel>
+                    {
+                        new CartItemModel {
+                            Id = 1,
+                            Quantity = 4,
+                            Product = new ProductModel
+                            {
+                                Id = 1,
+                                Name = "Sushi ala ala",
+                                Price = 20000,
+                                MemberPrice = 10000,
+                                Description = "Sushi mixed salad with stone & rock",
+                                Discount = 4,
+                                IsActive = true,
+                                Quantity = 5,
+                                QuantityNotify = 2,
+                                Image = new ImageModel
+                                {
+                                    Id = 1,
+                                    Url = "https://picsum.photos/200/300",
+                                    Caption = "image caption 1",
+                                    Name = "Image 1"
+                                }
+                            }
+                        },
+                        new CartItemModel {
+                            Id = 2,
+                            Quantity = 1,
+                            Product = new ProductModel
+                            {
+                                Id = 2,
+                                Name = "Nasi ala ala",
+                                Price = 20000,
+                                MemberPrice = 10000,
+                                Description = "Nasi mixed salad with stone & rock",
+                                Discount = 4,
+                                IsActive = true,
+                                Quantity = 5,
+                                QuantityNotify = 2,
+                                Image = new ImageModel
+                                {
+                                    Id = 1,
+                                    Url = "https://picsum.photos/200/300",
+                                    Caption = "image caption 1",
+                                    Name = "Image 1"
+                                }
+                            }
+                        },
+                        new CartItemModel {
+                            Id = 3,
+                            Quantity = 2,
+                            Product = new ProductModel
+                            {
+                                Id = 3,
+                                Name = "Gorengan ala ala",
+                                Price = 20000,
+                                MemberPrice = 10000,
+                                Description = "Gorengan mixed salad with stone & rock",
+                                Discount = 4,
+                                IsActive = true,
+                                Quantity = 5,
+                                QuantityNotify = 2,
+                                Image = new ImageModel
+                                {
+                                    Id = 1,
+                                    Url = "https://picsum.photos/200/300",
+                                    Caption = "image caption 1",
+                                    Name = "Image 1"
+                                }
+                            }
+                        }
+                    }
+                };
+            });
+        }
     }
 }
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Poseidon.Product.Models;
 using Poseidon.User.Models;
 
 namespace Poseidon.Models
@@ -11,10 +10,10 @@ namespace Poseidon.Models
         public long Id { set; get; }
         public string Note { set; get; }
         public CartStatus Status { set; get; }
-        public DateTimeOffset CreatedAt { get; set; }
-        public DateTimeOffset UpdatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
         public UserModel User { get; set; }
-        public List<ProductModel> Products { get; set; }
+        public IList<CartItemModel> Items { get; set; }
     }
 
     public enum CartStatus
@@ -47,10 +46,10 @@ namespace Poseidon.Models
     //    public string Status { get; set; }
 
     //    [JsonProperty("createdAt")]
-    //    public DateTimeOffset CreatedAt { get; set; }
+    //    public DateTime CreatedAt { get; set; }
 
     //    [JsonProperty("updatedAt")]
-    //    public DateTimeOffset UpdatedAt { get; set; }
+    //    public DateTime UpdatedAt { get; set; }
 
     //    [JsonProperty("products")]
     //    public Carts Products { get; set; }
