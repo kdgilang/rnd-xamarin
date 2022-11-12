@@ -29,7 +29,7 @@ namespace Poseidon.Pos.ViewModels
 
                 double totalPrice = 0;
 
-                foreach (var item in Cart.Items)
+                foreach (var item in value.Items)
                 {
                     totalPrice += (item.Product.Price * item.Quantity);
                 }
