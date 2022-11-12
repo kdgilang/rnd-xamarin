@@ -49,13 +49,13 @@
         public DateTime UpdatedAt { get; set; }
 
         [JsonProperty("price")]
-        public long Price { get; set; }
+        public double Price { get; set; }
 
         [JsonProperty("member_price")]
-        public long MemberPrice { get; set; }
+        public double MemberPrice { get; set; }
 
         [JsonProperty("discount")]
-        public long Discount { get; set; }
+        public int Discount { get; set; }
 
         [JsonProperty("image")]
         public Image Image { get; set; }

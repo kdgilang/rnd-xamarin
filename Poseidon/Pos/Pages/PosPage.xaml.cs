@@ -28,6 +28,7 @@ namespace Poseidon.Pos.Pages
         {
             _vm.IsCameraViewVisible = !_vm.IsCameraViewVisible;
             _vm.ScanButtonText = _vm.IsCameraViewVisible ? "Close" : "Scan";
+            _vm.Cart.Items[0].Quantity = 20;
 
             if (_vm.IsCameraViewVisible)
             {

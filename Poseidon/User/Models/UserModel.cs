@@ -4,9 +4,8 @@ using Poseidon.Company.Models;
 
 namespace Poseidon.User.Models
 {
-    public class UserModel
+    public class UserModel: BaseModel
     {
-        public long Id { set; get; }
         public string UserName { set; get; }
         public string Name { set; get; }
         public string Email { set; get; }

@@ -3,10 +3,8 @@ using Poseidon.Models;
 
 namespace Poseidon.Product.Models
 {
-    public class ProductModel
+    public class ProductModel : BaseModel
     {
-        public long Id { get; set; }
-
         public string Name { get; set; }
 
         public long Quantity { get; set; }
@@ -17,15 +15,11 @@ namespace Poseidon.Product.Models
 
         public bool IsActive { get; set; }
 
-        public DateTime CreatedAt { get; set; }
+        public double Price { get; set; }
 
-        public DateTime UpdatedAt { get; set; }
+        public double MemberPrice { get; set; }
 
-        public long Price { get; set; }
-
-        public long MemberPrice { get; set; }
-
-        public long Discount { get; set; }
+        public int Discount { get; set; }
 
         public ImageModel Image { get; set; }
     }

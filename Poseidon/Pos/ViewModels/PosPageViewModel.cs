@@ -2,10 +2,11 @@
 using System.Windows.Input;
 using Poseidon.ViewModels;
 using Xamarin.Forms;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using ZXing.Net.Mobile.Forms;
 using Poseidon.Models;
 using Poseidon.Product.Models;
+using System.Globalization;
 
 namespace Poseidon.Pos.ViewModels
 {
@@ -23,6 +24,18 @@ namespace Poseidon.Pos.ViewModels
             set
             {
                 _cart = value;
+
+                CultureInfo culture = new CultureInfo("id-ID");
+
+                double totalPrice = 0;
+
+                foreach (var item in Cart.Items)
+                {
+                    totalPrice += (item.Product.Price * item.Quantity);
+                }
+
+                TotalPrice = totalPrice.ToString("C", culture);
+
                 OnPropertyChanged(nameof(Cart));
             }
         }
@@ -48,6 +61,18 @@ namespace Poseidon.Pos.ViewModels
             {
                 _scanButtonText = value;
                 OnPropertyChanged(nameof(ScanButtonText));
+            }
+        }
+
+        private string _totalPrice = "0";
+        public string TotalPrice
+        {
+            get => _totalPrice;
+
+            set
+            {
+                _totalPrice = value;
+                OnPropertyChanged(nameof(TotalPrice));
             }
         }
 
@@ -85,11 +110,6 @@ namespace Poseidon.Pos.ViewModels
             }
         );
 
-        public void OnQuantityChanged(object sender, EventArgs e)
-        {
-            //_vm.Cart.
-        }
-
         public override void OnAppearing()
         {
             base.OnAppearing();
@@ -103,7 +123,7 @@ namespace Poseidon.Pos.ViewModels
                     Status = CartStatus.pending,
                     CreatedAt = new DateTime(),
                     UpdatedAt = new DateTime(),
-                    Items = new List<CartItemModel>
+                    Items = new ObservableCollection<CartItemModel>
                     {
                         new CartItemModel {
                             Id = 1,

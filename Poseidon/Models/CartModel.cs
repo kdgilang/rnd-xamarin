@@ -1,19 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Poseidon.User.Models;
 
 namespace Poseidon.Models
 {
 
-    public class CartModel
+    public class CartModel : BaseModel
     {
-        public long Id { set; get; }
         public string Note { set; get; }
         public CartStatus Status { set; get; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
         public UserModel User { get; set; }
-        public List<CartItemModel> Items { get; set; }
+
+        private ObservableCollection<CartItemModel> _items;
+        public ObservableCollection<CartItemModel> Items
+        {
+            get => _items;
+            set
+            {
+                _items = value;
+                OnPropertyChanged(nameof(Items));
+            }
+        }
     }
 
     public enum CartStatus
