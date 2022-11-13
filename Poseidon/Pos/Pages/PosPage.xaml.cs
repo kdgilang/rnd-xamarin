@@ -48,10 +48,10 @@ namespace Poseidon.Pos.Pages
             }
         }
 
-        public void OnQuantityChanged(object sender, ValueChangedEventArgs e)
+        public void OnStepperValueChanged(object sender, ValueChangedEventArgs e)
         {
-            var stepper = (Stepper)sender;
-            var widget = (CartItemModel)stepper.BindingContext;
+            //var stepper = (Stepper)sender;
+            //var widget = (CartItemModel)stepper.BindingContext;
         }
     }
 }

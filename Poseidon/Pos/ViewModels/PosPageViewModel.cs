@@ -31,12 +31,24 @@ namespace Poseidon.Pos.ViewModels
 
                 foreach (var item in value.Items)
                 {
-                    totalPrice += (item.Product.Price * item.Quantity);
+                    totalPrice += (item.Product.Price.Value * item.Quantity);
                 }
 
                 TotalPrice = totalPrice.ToString("C", culture);
 
                 OnPropertyChanged(nameof(Cart));
+            }
+        }
+
+        private string _totalPrice = "0";
+        public string TotalPrice
+        {
+            get => _totalPrice;
+
+            set
+            {
+                _totalPrice = value;
+                OnPropertyChanged(nameof(TotalPrice));
             }
         }
 
@@ -64,18 +76,6 @@ namespace Poseidon.Pos.ViewModels
             }
         }
 
-        private string _totalPrice = "0";
-        public string TotalPrice
-        {
-            get => _totalPrice;
-
-            set
-            {
-                _totalPrice = value;
-                OnPropertyChanged(nameof(TotalPrice));
-            }
-        }
-
         public ICommand TapProductCommandAsync =>
             new Command(async () =>
             {
@@ -91,7 +91,7 @@ namespace Poseidon.Pos.ViewModels
         );
         
         public ICommand ToggleCameraComand =>
-            new Command(async () =>
+            new Command(() =>
             {
                 IsCameraViewVisible = !IsCameraViewVisible;
 
@@ -132,8 +132,14 @@ namespace Poseidon.Pos.ViewModels
                             {
                                 Id = 1,
                                 Name = "Sushi ala ala",
-                                Price = 20000,
-                                MemberPrice = 10000,
+                                Price = new PriceModel
+                                {
+                                    Value = 35000
+                                },
+                                MemberPrice = new PriceModel
+                                {
+                                    Value = 10000
+                                },
                                 Description = "Sushi mixed salad with stone & rock",
                                 Discount = 4,
                                 IsActive = true,
@@ -155,8 +161,14 @@ namespace Poseidon.Pos.ViewModels
                             {
                                 Id = 2,
                                 Name = "Nasi ala ala",
-                                Price = 20000,
-                                MemberPrice = 10000,
+                                Price = new PriceModel
+                                {
+                                    Value = 40000
+                                },
+                                MemberPrice = new PriceModel
+                                {
+                                    Value = 15000
+                                },
                                 Description = "Nasi mixed salad with stone & rock",
                                 Discount = 4,
                                 IsActive = true,
@@ -178,8 +190,14 @@ namespace Poseidon.Pos.ViewModels
                             {
                                 Id = 3,
                                 Name = "Gorengan ala ala",
-                                Price = 20000,
-                                MemberPrice = 10000,
+                                Price = new PriceModel
+                                {
+                                    Value = 10000
+                                },
+                                MemberPrice = new PriceModel
+                                {
+                                    Value = 10000
+                                },
                                 Description = "Gorengan mixed salad with stone & rock",
                                 Discount = 4,
                                 IsActive = true,

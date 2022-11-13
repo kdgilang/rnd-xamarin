@@ -106,8 +106,14 @@ namespace Poseidon.ViewModels
                             Id = item.Id,
                             Name = item?.Attributes?.Name,
                             Description = item.Attributes.Description,
-                            Price = item.Attributes.Price,
-                            MemberPrice = item.Attributes.MemberPrice,
+                            Price = new PriceModel
+                            {
+                                Value = item.Attributes.MemberPrice
+                            },
+                            MemberPrice = new PriceModel
+                            {
+                                Value = item.Attributes.MemberPrice
+                            },
                             Discount = item.Attributes.Discount,
                             IsActive = item.Attributes.IsActive,
                             CreatedAt = item.Attributes.CreatedAt,

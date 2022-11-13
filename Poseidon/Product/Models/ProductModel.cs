@@ -15,9 +15,18 @@ namespace Poseidon.Product.Models
 
         public bool IsActive { get; set; }
 
-        public double Price { get; set; }
+        private PriceModel _price;
+        public PriceModel Price
+        {
+            get => _price;
+            set
+            {
+                _price = value;
+                OnPropertyChanged(nameof(Price));
+            }
+        }
 
-        public double MemberPrice { get; set; }
+        public PriceModel MemberPrice { get; set; }
 
         public int Discount { get; set; }
 

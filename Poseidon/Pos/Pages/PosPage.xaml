@@ -92,6 +92,7 @@
                             <Label 
                                 Grid.Row="0"
                                 Grid.Column="0"
+                                FontSize="13"
                                 FontAttributes="Bold"
                                 VerticalOptions="Center"
                                 Text="Image"/>
@@ -100,13 +101,15 @@
                                 Grid.Row="0"
                                 Grid.Column="1"
                                 FontAttributes="Bold"
+                                FontSize="13"
                                 VerticalOptions="Center"
-                                Text="Name/Description"
+                                Text="Name"
                                 Padding="0, 2" />
 
                             <Label
                                 Grid.Row="0"
                                 Grid.Column="2"
+                                FontSize="13"
                                 Text="Price"
                                 VerticalOptions="Center"
                                 FontAttributes="Bold" />
@@ -115,6 +118,7 @@
                                 Grid.Row="0"
                                 Grid.Column="3"
                                 FontAttributes="Bold"
+                                FontSize="13"
                                 HorizontalTextAlignment="Center"
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="Center"
@@ -164,19 +168,21 @@
                                     Grid.Row="0"
                                     Grid.Column="2"
                                     VerticalOptions="Center"
-                                    Text="{Binding Product.Price}" />
+                                    FontSize="11"
+                                    Text="{Binding Product.Price.Text}" />
                                 <StackLayout
                                     Grid.Row="0"
                                     Grid.Column="3">
                                     <Label
                                         VerticalOptions="Center"
                                         HorizontalOptions="Center"
-                                        Text="{Binding Quantity}"
+                                        FontSize="11"
+                                        Text="{Binding Quantity, Mode=TwoWay}"
                                         FontAttributes="Bold" />
                                     <Stepper
                                         HeightRequest="20"
-                                        BackgroundColor="Red"
-                                        Value="{Binding Quantity, Mode=TwoWay}"
+                                        Value="{Binding Quantity}"
+                                        ValueChanged="OnStepperValueChanged"
                                         Increment="1"
                                         Minimum="1" />
                                 </StackLayout>
@@ -203,7 +209,7 @@
                     <Label
                         Grid.Row="0"
                         Grid.Column="1"
-                        Text="{Binding TotalPrice}"
+                        Text="{Binding TotalPrice, Mode=TwoWay}"
                         VerticalOptions="Center"
                         HorizontalOptions="End"
                         FontAttributes="Bold"/>
