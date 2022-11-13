@@ -50,8 +50,10 @@ namespace Poseidon.Pos.Pages
 
         public void OnStepperValueChanged(object sender, ValueChangedEventArgs e)
         {
-            //var stepper = (Stepper)sender;
-            //var widget = (CartItemModel)stepper.BindingContext;
+            if (e.OldValue != e.NewValue)
+            {
+                _vm.ApplyCalculatePrice();
+            }
         }
     }
 }

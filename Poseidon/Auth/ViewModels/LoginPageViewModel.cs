@@ -3,13 +3,13 @@ using Xamarin.Forms;
 using System.Windows.Input;
 using System.ComponentModel;
 using Poseidon.Auth.UseCases.LoginUseCase;
+using Poseidon.ViewModels;
 
 namespace Poseidon.Auth.ViewModels
 {
-    public class LoginPageViewModel : INotifyPropertyChanged
+    public class LoginPageViewModel : BaseViewModel
     {
         private readonly ILoginUseCase _loginUseCase;
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public LoginPageViewModel()
         {
@@ -115,12 +115,5 @@ namespace Poseidon.Auth.ViewModels
                 IsSubmitted = false;
             }
         });
-
-        protected void OnPropertyChanged(string propertyName)
-        {
-            var handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

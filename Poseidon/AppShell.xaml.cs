@@ -9,23 +9,18 @@ namespace Poseidon
 {
     public partial class AppShell : Shell
     {
-        public Dictionary<string, Type> Routes { get; private set; } = new Dictionary<string, Type>();
-
-        public ICommand HelpCommand => new Command<string>(async (url) =>
-            await Browser.OpenAsync(url, new BrowserLaunchOptions
-            {
-                LaunchMode = BrowserLaunchMode.SystemPreferred,
-                TitleMode = BrowserTitleMode.Show,
-                PreferredToolbarColor = Color.AliceBlue,
-                PreferredControlColor = Color.Violet
-            })
-        );
+        private AppShellViewModel _vm;
 
         public AppShell()
         {
             InitializeComponent();
 
-            BindingContext = new AppShellViewModel();
+            _vm = new AppShellViewModel();
+
+            if (_vm.User != null)
+            {
+                BindingContext = _vm;
+            }
         }
 
         protected override void OnNavigating(ShellNavigatingEventArgs args)
@@ -40,9 +35,9 @@ namespace Poseidon
 
             string current = args.Current?.Location?.ToString();
             string target = args.Target?.Location?.ToString();
-            if (current == "//login" && target == "///home")
+            if (current == "//login" && target == "///home" && _vm.User != null)
             {
-                BindingContext = new AppShellViewModel();
+                BindingContext = _vm;
             }
         }
 

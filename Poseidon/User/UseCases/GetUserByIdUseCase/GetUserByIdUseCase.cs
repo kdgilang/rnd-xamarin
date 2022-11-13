@@ -29,6 +29,7 @@ namespace Poseidon.User.UseCases.GetUserByIdUseCase
                                 email
                                 username
                                 name
+                                blocked
                                 phone
                                 address
                                 confirmed
@@ -39,6 +40,8 @@ namespace Poseidon.User.UseCases.GetUserByIdUseCase
                                     id
                                     attributes {
                                       name
+                                      tax
+                                      isActive
                                       image {
                                         data {
                                           attributes {

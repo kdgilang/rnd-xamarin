@@ -19,9 +19,9 @@ namespace Poseidon
             try
             {
                 var user = await AuthenticatedUser.getAuthenticatedUserAsync();
-                var userId = user?.UsersPermissionsUser?.Data?.Id.ToString();
+                var userId = user?.UsersPermissionsUser?.Data?.Id;
 
-                if (!string.IsNullOrEmpty(userId))
+                if (userId > 0)
                 {
                     await Shell.Current.GoToAsync("//home");
                 }

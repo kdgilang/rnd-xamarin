@@ -11,17 +11,23 @@ namespace Poseidon.Models
             set
             {
                 _value = value;
+
+                CultureInfo culture = new CultureInfo("id-ID");
+
+                Text =  value.ToString("C", culture);
+
                 OnPropertyChanged(nameof(Value));
             }
         }
 
+        private string _text;
         public string Text
         {
-            get
+            get => _text;
+            set
             {
-                CultureInfo culture = new CultureInfo("id-ID");
-
-                return Value.ToString("C", culture);
+                _text = value;
+                OnPropertyChanged(nameof(Text));
             }
         }
     }

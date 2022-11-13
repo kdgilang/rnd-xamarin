@@ -41,6 +41,12 @@ namespace Poseidon.Company.UseCases.GetCompanyUseCase
         [JsonProperty("address")]
         public string Address { get; set; }
 
+        [JsonProperty("isActive")]
+        public bool IsActive { get; set; }
+
+        [JsonProperty("tax")]
+        public int Tax { get; set; }
+
         [JsonProperty("email")]
         public string Email { get; set; }
 
@@ -49,5 +55,8 @@ namespace Poseidon.Company.UseCases.GetCompanyUseCase
 
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; }
+
+        [JsonProperty("updatedAt")]
+        public DateTime UpdatedAt { get; set; }
     }
 }

@@ -19,8 +19,8 @@ namespace Poseidon.Models
             get => _id;
         }
 
-        private DateTime _createdAt;
-        public DateTime CreatedAt
+        private DateTime? _createdAt;
+        public DateTime? CreatedAt
         {
             set
             {

@@ -47,15 +47,16 @@ namespace Poseidon.Auth.UseCases.LoginUseCase
                 if (user?.Login?.User?.Id > 0)
                 {
                     var userByID = await _getUserByIdUseCase.ExecuteAsync(user.Login.User.Id);
+                    var userData = userByID.UsersPermissionsUser.Data.Attributes;
 
-                    if (userByID.UsersPermissionsUser.Data.Attributes.Confirmed)
+                    if (userData.IsConfirmed && !userData.IsBlocked)
                     {
                         AuthenticatedUser.Save(user.Login.Jwt, userByID);
 
                         return user;
                     }
 
-                    throw new InvalidOperationException("user not confirmed");
+                    throw new InvalidOperationException("user is not confirmed / blocked by admin.");
                 }
 
                 throw new InvalidOperationException(res.Errors[0].Message);

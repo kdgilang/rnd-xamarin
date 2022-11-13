@@ -32,7 +32,10 @@ namespace Poseidon.Company.UseCases.GetCompanyUseCase
                                     address
                                     email
                                     phone
+                                    isActive
+                                    tax
                                     createdAt
+                                    updatedAt
                                 }
                             }
                         }

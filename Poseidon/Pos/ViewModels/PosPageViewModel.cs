@@ -24,24 +24,12 @@ namespace Poseidon.Pos.ViewModels
             set
             {
                 _cart = value;
-
-                CultureInfo culture = new CultureInfo("id-ID");
-
-                double totalPrice = 0;
-
-                foreach (var item in value.Items)
-                {
-                    totalPrice += (item.Product.Price.Value * item.Quantity);
-                }
-
-                TotalPrice = totalPrice.ToString("C", culture);
-
                 OnPropertyChanged(nameof(Cart));
             }
         }
 
-        private string _totalPrice = "0";
-        public string TotalPrice
+        private PriceModel _totalPrice = new PriceModel();
+        public PriceModel TotalPrice
         {
             get => _totalPrice;
 
@@ -49,6 +37,30 @@ namespace Poseidon.Pos.ViewModels
             {
                 _totalPrice = value;
                 OnPropertyChanged(nameof(TotalPrice));
+            }
+        }
+
+        private PriceModel _subTotalPrice = new PriceModel();
+        public PriceModel SubTotalPrice
+        {
+            get => _subTotalPrice;
+
+            set
+            {
+                _subTotalPrice = value;
+                OnPropertyChanged(nameof(SubTotalPrice));
+            }
+        }
+
+        private PriceModel _taxPrice = new PriceModel();
+        public PriceModel TaxPrice
+        {
+            get => _taxPrice;
+
+            set
+            {
+                _taxPrice = value;
+                OnPropertyChanged(nameof(TaxPrice));
             }
         }
 
@@ -109,6 +121,31 @@ namespace Poseidon.Pos.ViewModels
                 }
             }
         );
+
+        public void ApplyCalculatePrice()
+        {
+            double subPrice = 0;
+
+            foreach (var item in Cart.Items)
+            {
+                subPrice += (item.Product.Price.Value * item.Quantity);
+            }
+
+            int tax = User.Company.Tax;
+
+            SubTotalPrice.Value = subPrice;
+
+            if (tax > 0)
+            {
+                TaxPrice.Value = (subPrice * tax) / 100;
+            }
+            else
+            {
+                TaxPrice.Value = 0;
+            }
+
+            TotalPrice.Value = subPrice + TaxPrice.Value;
+        }
 
         public override void OnAppearing()
         {

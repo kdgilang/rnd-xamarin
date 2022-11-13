@@ -41,8 +41,11 @@
         [JsonProperty("address")]
         public string Address { get; set; }
 
+        [JsonProperty("blocked")]
+        public bool IsBlocked { get; set; }
+
         [JsonProperty("confirmed")]
-        public bool Confirmed { get; set; }
+        public bool IsConfirmed { get; set; }
 
         [JsonProperty("updatedAt")]
         public DateTime UpdatedAt { get; set; }
@@ -79,6 +82,12 @@
     {
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        [JsonProperty("tax")]
+        public int Tax { get; set; }
+
+        [JsonProperty("isActive")]
+        public bool IsActive { get; set; }
 
         [JsonProperty("image")]
         public Image Image { get; set; }

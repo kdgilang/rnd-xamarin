@@ -195,6 +195,8 @@
                     Padding="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -203,13 +205,45 @@
                     <Label
                         Grid.Row="0"
                         Grid.Column="0"
-                        Text="Total:"
+                        Text="Sub Total:"
                         VerticalOptions="Center"
                         FontAttributes="Bold"/>
                     <Label
                         Grid.Row="0"
                         Grid.Column="1"
-                        Text="{Binding TotalPrice, Mode=TwoWay}"
+                        Text="{Binding SubTotalPrice.Text}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="End"
+                        FontAttributes="Bold"/>
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Text="Tax:"
+                        VerticalOptions="Center"
+                        FontAttributes="Bold"/>
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        VerticalOptions="Center"
+                        HorizontalOptions="End"
+                        FontAttributes="Bold">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding TaxPrice.Text}"/>
+                                <Span Text="{Binding TaxFormattedText}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Text="Total:"
+                        VerticalOptions="Center"
+                        FontAttributes="Bold"/>
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Text="{Binding TotalPrice.Text}"
                         VerticalOptions="Center"
                         HorizontalOptions="End"
                         FontAttributes="Bold"/>
