@@ -3,24 +3,32 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Poseidon.Components.ButtonIcon"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     x:Name="buttonIcon">
     <ContentView.Content>
         <StackLayout
-            Orientation="Horizontal"
-            HorizontalOptions="CenterAndExpand"
-            Padding="10, 20">
-            <Image
-                Source="icon_circle_left"
-                Aspect="AspectFit"
-                WidthRequest="20"
-                VerticalOptions="Center"
-                HeightRequest="20"/>
-            <Button
-                Text="{Binding Label, Source={x:Reference buttonIcon}}"
-                Command="{Binding TapCommand, Source={x:Reference buttonIcon}}"
-                TextColor="{Binding TextColor, Source={x:Reference buttonIcon}}"
-                VerticalOptions="Center"
-                BackgroundColor="Transparent" />
-        </StackLayout>
+                xct:ShadowEffect.Color="Gray"
+                BackgroundColor="{Binding BackgroundColor, Source={x:Reference buttonIcon}}"
+                Orientation="Horizontal"
+                Padding="20, 10"
+                HorizontalOptions="FillAndExpand"
+                xct:CornerRadiusEffect.CornerRadius="5"
+                xct:TouchEffect.NativeAnimation="True">
+                <Image
+                    Source="{Binding IconSource}"
+                    Aspect="AspectFit"
+                    WidthRequest="20"
+                    VerticalOptions="Center"
+                    HeightRequest="20" />
+                <Label
+                    TextColor="{Binding TextColor, Source={x:Reference buttonIcon}}"
+                    Text="{Binding Label, Source={x:Reference buttonIcon}}"
+                    Margin="10, 0" />
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding TapCommand, Source={x:Reference buttonIcon}}"
+                        NumberOfTapsRequired="1" />
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
     </ContentView.Content>
 </ContentView>

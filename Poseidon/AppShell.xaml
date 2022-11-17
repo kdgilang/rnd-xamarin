@@ -153,6 +153,7 @@
             <components:ButtonIcon
                 Label="Logout"
                 TapCommand="{Binding LogoutCommandAsync}"
+                IconSource="icon_circle_left"
                 TextColor="{StaticResource colorTertiary}"/>
         </StackLayout>
     </Shell.FlyoutFooter>

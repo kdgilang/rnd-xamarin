@@ -35,7 +35,7 @@ namespace Poseidon.ViewModels
 
         public string TaxFormattedText
         {
-            get => $" ({User.Company.Tax.ToString()}%)";
+            get => $"({User.Company.Tax.ToString()}%) ";
         }
 
         public long CompanyId

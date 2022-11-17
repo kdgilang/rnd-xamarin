@@ -13,11 +13,23 @@ namespace Poseidon.Components
             typeof(ButtonIcon),
             string.Empty);
 
+        public static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create(
+            "BackgroundColor",
+            typeof(Color),
+            typeof(ButtonIcon),
+            Color.Transparent);
+
         public static readonly BindableProperty TextColorProperty = BindableProperty.Create(
             "TextColor",
             typeof(Color),
             typeof(ButtonIcon),
             Color.Black);
+
+        public static readonly BindableProperty IconSourceProperty = BindableProperty.Create(
+            "IconSource",
+            typeof(string),
+            typeof(ButtonIcon),
+            string.Empty);
 
         public static readonly BindableProperty TapCommandProperty = BindableProperty.Create(
             "TapCommand",
@@ -36,10 +48,22 @@ namespace Poseidon.Components
             set => SetValue(LabelProperty, value);
         }
 
+        public Color BackgroundColor
+        {
+            get => (Color)GetValue(BackgroundColorProperty);
+            set => SetValue(BackgroundColorProperty, value);
+        }
+
         public Color TextColor
         {
             get => (Color)GetValue(TextColorProperty);
             set => SetValue(TextColorProperty, value);
+        }
+
+        public string IconSource
+        {
+            get => (string)GetValue(IconSourceProperty);
+            set => SetValue(IconSource, value);
         }
 
         public ICommand TapCommand

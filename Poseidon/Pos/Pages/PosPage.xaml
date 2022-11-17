@@ -44,30 +44,6 @@
             </Grid>
 
             <StackLayout
-                xct:ShadowEffect.Color="Gray"
-                BackgroundColor="White"
-                Orientation="Horizontal"
-                Margin="0, 0, 0, 20"
-                Padding="20, 10"
-                HorizontalOptions="CenterAndExpand"
-                xct:CornerRadiusEffect.CornerRadius="5"
-                xct:TouchEffect.NativeAnimation="True">
-                <Image
-                    Source="icon_camera"
-                    WidthRequest="25"
-                    HeightRequest="25" />
-                <Label
-                    Text="{Binding ScanButtonText}"
-                    Margin="10, 0" />
-
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer
-                        Tapped="OnToggleScanner"
-                        NumberOfTapsRequired="1" />
-                </StackLayout.GestureRecognizers>
-            </StackLayout>
-
-            <StackLayout
                 xct:CornerRadiusEffect.CornerRadius="5"
                 xct:ShadowEffect.Color="Gray"
                 Padding="10"
@@ -192,7 +168,8 @@
                 </CollectionView>
 
                 <Grid
-                    Padding="10">
+                    Padding="10"
+                    RowSpacing="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
@@ -205,12 +182,14 @@
                     <Label
                         Grid.Row="0"
                         Grid.Column="0"
+                        FontSize="13"
                         Text="Sub Total:"
                         VerticalOptions="Center"
                         FontAttributes="Bold"/>
                     <Label
                         Grid.Row="0"
                         Grid.Column="1"
+                        FontSize="13"
                         Text="{Binding SubTotalPrice.Text}"
                         VerticalOptions="Center"
                         HorizontalOptions="End"
@@ -218,37 +197,92 @@
                     <Label
                         Grid.Row="1"
                         Grid.Column="0"
+                        FontSize="13"
                         Text="Tax:"
                         VerticalOptions="Center"
                         FontAttributes="Bold"/>
                     <Label
                         Grid.Row="1"
                         Grid.Column="1"
+                        FontSize="13"
                         VerticalOptions="Center"
                         HorizontalOptions="End"
                         FontAttributes="Bold">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="{Binding TaxPrice.Text}"/>
                                 <Span Text="{Binding TaxFormattedText}"/>
+                                <Span Text="{Binding TaxPrice.Text}"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
                     <Label
                         Grid.Row="2"
                         Grid.Column="0"
+                        FontSize="13"
                         Text="Total:"
                         VerticalOptions="Center"
                         FontAttributes="Bold"/>
                     <Label
                         Grid.Row="2"
                         Grid.Column="1"
+                        FontSize="13"
                         Text="{Binding TotalPrice.Text}"
                         VerticalOptions="Center"
                         HorizontalOptions="End"
                         FontAttributes="Bold"/>
                 </Grid>
             </StackLayout>
+
+            <StackLayout
+                Orientation="Horizontal"
+                Margin="0,0,0,10">
+                <StackLayout
+                    xct:ShadowEffect.Color="Gray"
+                    BackgroundColor="White"
+                    Orientation="Horizontal"
+                    Padding="20, 10"
+                    HorizontalOptions="FillAndExpand"
+                    xct:CornerRadiusEffect.CornerRadius="5"
+                    xct:TouchEffect.NativeAnimation="True">
+                    <Image
+                        Source="icon_camera"
+                        WidthRequest="25"
+                        HeightRequest="25" />
+                    <Label
+                        Text="{Binding ScanButtonText}"
+                        Margin="10, 0" />
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnToggleScanner"
+                            NumberOfTapsRequired="1" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+                <StackLayout
+                    xct:ShadowEffect.Color="Gray"
+                    BackgroundColor="White"
+                    Orientation="Horizontal"
+                    Padding="20, 10"
+                    HorizontalOptions="FillAndExpand"
+                    xct:CornerRadiusEffect.CornerRadius="5"
+                    xct:TouchEffect.NativeAnimation="True">
+                    <Image
+                        Source="icon_camera"
+                        WidthRequest="25"
+                        HeightRequest="25" />
+                    <Label
+                        Text="Pay"
+                        Margin="10, 0" />
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnToggleScanner"
+                            NumberOfTapsRequired="1" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </StackLayout>
+
 
             <Entry
                 xct:ShadowEffect.Color="Gray"
