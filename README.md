@@ -3,6 +3,6 @@
 Simple POS mobile app using Xamarin.
 
  - AppShell
- - QRCode scanner using camera
+ - QRCode scanner
  - Product list
  - User profile
